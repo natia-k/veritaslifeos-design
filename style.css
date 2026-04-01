@@ -1,5 +1,5 @@
 :root {
-    /* Light Mode Variables */
+    /* Light Mode - Milk & Chalk */
     --bg: #F9F9FB;
     --sidebar-bg: rgba(255, 255, 255, 0.4);
     --text-primary: #1A1A1E;
@@ -10,53 +10,56 @@
 }
 
 [data-theme="dark"] {
-    /* Dark Mode Variables (Onyx) */
+    /* Dark Mode - Onyx & Charcoal */
     --bg: #0A0A0B;
-    --sidebar-bg: rgba(20, 20, 22, 0.6);
-    --text-primary: #FFFFFF;
+    --sidebar-bg: rgba(20, 20, 22, 0.5);
+    --text-primary: #EEEEEE;
     --text-secondary: #888888;
     --accent: #0A84FF;
     --border: rgba(255, 255, 255, 0.08);
-    --card-hover: rgba(30, 30, 32, 0.5);
+    --card-hover: rgba(30, 30, 32, 0.4);
 }
 
 * {
     margin: 0; padding: 0; box-sizing: border-box;
     font-family: 'Inter', -apple-system, sans-serif;
-    letter-spacing: -0.022em;
+    letter-spacing: -0.022em; /* The premium "tight" look */
 }
 
 body {
     background-color: var(--bg);
     color: var(--text-primary);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.4s ease, color 0.4s ease;
     overflow: hidden;
+    height: 100vh;
 }
 
-/* Background "Aura" Effect */
+/* Background Subtle Glow */
 body::before {
     content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 0%, var(--accent), transparent 25%);
-    opacity: 0.03; z-index: -1;
+    background: radial-gradient(circle at 50% 0%, var(--accent), transparent 30%);
+    opacity: 0.04; z-index: -1;
 }
 
 .app-shell { display: flex; height: 100vh; }
 
-/* Anytype Sidebar */
+/* Sidebar: Anytype Glass Effect */
 .sidebar {
     width: 260px;
     background: var(--sidebar-bg);
-    backdrop-filter: blur(40px) saturate(150%);
-    -webkit-backdrop-filter: blur(40px) saturate(150%);
+    backdrop-filter: blur(40px) saturate(160%);
+    -webkit-backdrop-filter: blur(40px) saturate(160%);
     border-right: 1px solid var(--border);
     padding: 40px 24px;
+    display: flex;
+    flex-direction: column;
 }
 
-.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; font-weight: 700; }
-.logo-dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; font-weight: 700; font-size: 15px; }
+.logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
 
-.nav-group { margin-bottom: 30px; }
-.nav-group small { font-size: 10px; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 12px; letter-spacing: 0.05em; }
+.nav-group { margin-bottom: 32px; }
+.nav-group small { font-size: 10px; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 12px; letter-spacing: 0.06em; opacity: 0.8; }
 
 .nav-item {
     padding: 10px 14px;
@@ -65,47 +68,51 @@ body::before {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-secondary);
-    transition: 0.2s;
+    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item:hover, .nav-item.active { background: var(--border); color: var(--text-primary); }
 
 /* Main Content: Things 3 Minimalism */
-.main-content { flex: 1; padding: 80px 10% 0 10%; overflow-y: auto; }
-.focus-header { margin-bottom: 60px; }
-.focus-header h1 { font-size: 38px; font-weight: 800; margin-bottom: 10px; }
-.focus-header p { color: var(--text-secondary); font-size: 18px; }
+.main-content { flex: 1; padding: 80px 12% 0 12%; overflow-y: auto; }
+.focus-header { margin-bottom: 64px; }
+.focus-header h1 { font-size: 40px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.04em; }
+.focus-header p { color: var(--text-secondary); font-size: 18px; font-weight: 400; }
 
-/* Tasks */
-.task-container { max-width: 650px; }
+/* Tasks: Sunsama Spacing */
+.task-container { max-width: 680px; }
 .task-card {
-    display: flex; gap: 16px; padding: 18px 12px;
+    display: flex; gap: 18px; padding: 20px 14px;
     border-bottom: 1px solid var(--border);
-    cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 1, 0.2, 1);
-    border-radius: 12px;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 14px;
 }
 
 .task-card:hover {
     background: var(--card-hover);
-    transform: translateX(6px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    transform: translateX(6px) translateY(-1px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
 }
 
 .check-circle {
-    width: 20px; height: 20px; border: 2px solid var(--text-secondary);
-    border-radius: 50%; transition: 0.3s;
+    width: 22px; height: 22px; border: 2.5px solid #D1D1D6;
+    border-radius: 50%; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.task-card.completed .check-circle { background: var(--accent); border-color: var(--accent); }
-.task-card.completed .task-title { text-decoration: line-through; opacity: 0.4; }
+[data-theme="dark"] .check-circle { border-color: #3A3A3C; }
 
-.task-info { display: flex; flex-direction: column; }
-.task-title { font-weight: 500; font-size: 16px; }
-.task-meta { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.task-card.completed .check-circle { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
+.task-card.completed .task-title { text-decoration: line-through; opacity: 0.3; }
+
+.task-info { display: flex; flex-direction: column; justify-content: center; }
+.task-title { font-weight: 500; font-size: 16.5px; transition: 0.3s; }
+.task-meta { font-size: 12.5px; color: var(--text-secondary); margin-top: 4px; font-weight: 400; }
 
 /* Theme Switcher */
 .theme-switch {
-    position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-    border-radius: 50%; border: none; background: var(--card-hover);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px;
+    border-radius: 50%; border: 1px solid var(--border); background: var(--card-hover);
+    backdrop-filter: blur(10px); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1); transition: 0.3s;
 }
+.theme-switch:hover { transform: scale(1.1) rotate(12deg); }
