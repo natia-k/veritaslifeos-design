@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas LifeOS | Redesign</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="profile">
+                <div class="avatar"></div>
+                <span>LifeOS Admin</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active">Today</li>
+                <li>Areas</li>
+                <li>Growth</li>
+                <li>Wealth</li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <header>
+                <h1>Good Morning.</h1>
+                <p class="subtitle">Focus on 3 main tasks today.</p>
+            </header>
+
+            <section class="task-section">
+                <div class="task-card" onclick="toggleTask(this)">
+                    <div class="checkbox"></div>
+                    <span class="task-text">Redesign Veritas Mission Control</span>
+                </div>
+                <div class="task-card">
+                    <div class="checkbox"></div>
+                    <span class="task-text">Audit Q1 Financials</span>
+                </div>
+                <div class="task-card">
+                    <div class="checkbox"></div>
+                    <span class="task-text">Prepare LifeOS Pitch Deck</span>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
