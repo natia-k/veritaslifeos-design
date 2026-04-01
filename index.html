@@ -1,49 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veritas LifeOS | Redesign</title>
+    <title>Veritas LifeOS | Premium Redesign</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 </head>
 <body>
-    <div class="app-container">
-        <nav class="sidebar">
-            <div class="profile">
-                <div class="avatar"></div>
-                <span>LifeOS Admin</span>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-dot"></div>
+                <span>Veritas OS</span>
             </div>
-            <ul class="nav-links">
-                <li class="active">Today</li>
-                <li>Areas</li>
-                <li>Growth</li>
-                <li>Wealth</li>
-            </ul>
-        </nav>
+            
+            <nav class="nav-group">
+                <small>PLANNING</small>
+                <div class="nav-item active" onclick="showSection('today')">Today</div>
+                <div class="nav-item" onclick="showSection('upcoming')">Upcoming</div>
+            </nav>
 
-        <main class="content">
-            <header>
-                <h1>Good Morning.</h1>
-                <p class="subtitle">Focus on 3 main tasks today.</p>
+            <nav class="nav-group">
+                <small>SYSTEMS</small>
+                <div class="nav-item">Growth</div>
+                <div class="nav-item">Wealth</div>
+                <div class="nav-item">Knowledge</div>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="focus-header">
+                <h1 id="greeting">Good Morning.</h1>
+                <p id="focus-subtitle">Here is your intentional flow for today.</p>
             </header>
 
-            <section class="task-section">
+            <div class="task-container">
                 <div class="task-card" onclick="toggleTask(this)">
-                    <div class="checkbox"></div>
-                    <span class="task-text">Redesign Veritas Mission Control</span>
+                    <div class="check-wrapper">
+                        <div class="check-circle"></div>
+                    </div>
+                    <div class="task-info">
+                        <span class="task-title">Redesign Mission Control UI</span>
+                        <span class="task-meta">Project: Design System</span>
+                    </div>
                 </div>
-                <div class="task-card">
-                    <div class="checkbox"></div>
-                    <span class="task-text">Audit Q1 Financials</span>
+
+                <div class="task-card" onclick="toggleTask(this)">
+                    <div class="check-wrapper">
+                        <div class="check-circle"></div>
+                    </div>
+                    <div class="task-info">
+                        <span class="task-title">Review LifeOS Performance Metrics</span>
+                        <span class="task-meta">Project: Operations</span>
+                    </div>
                 </div>
-                <div class="task-card">
-                    <div class="checkbox"></div>
-                    <span class="task-text">Prepare LifeOS Pitch Deck</span>
+
+                <div class="task-card" onclick="toggleTask(this)">
+                    <div class="check-wrapper">
+                        <div class="check-circle"></div>
+                    </div>
+                    <div class="task-info">
+                        <span class="task-title">Deep Work: Q3 Strategy</span>
+                        <span class="task-meta">Project: Growth</span>
+                    </div>
                 </div>
-            </section>
+            </div>
         </main>
     </div>
+
+    <button class="theme-switch" id="themeBtn">
+        <span class="icon">🌓</span>
+    </button>
+
     <script src="script.js"></script>
 </body>
 </html>
