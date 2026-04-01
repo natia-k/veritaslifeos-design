@@ -1,0 +1,82 @@
+:root {
+    --bg: #F9F9FB;
+    --sidebar-bg: rgba(255, 255, 255, 0.7);
+    --text-main: #1A1A1E;
+    --accent: #007AFF; /* Things 3 Blue */
+    --border: rgba(0, 0, 0, 0.05);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em; /* The "Premium" secret */
+}
+
+body { background: var(--bg); color: var(--text-main); }
+
+.app-container { display: flex; height: 100vh; }
+
+/* Sidebar: Glassmorphism */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--border);
+    padding: 40px 20px;
+}
+
+.nav-links li {
+    list-style: none;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 500;
+    color: #666;
+}
+
+.nav-links li.active, .nav-links li:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--text-main);
+}
+
+/* Content Area: Atmospheric Minimalism */
+.content {
+    flex: 1;
+    padding: 80px 120px;
+    max-width: 900px;
+}
+
+h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+.subtitle { color: #888; margin-bottom: 40px; }
+
+/* Task Cards: Borderless Design */
+.task-card {
+    display: flex;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.task-card:hover { transform: translateX(5px); }
+
+.checkbox {
+    width: 22px; height: 22px;
+    border: 2px solid #DDD;
+    border-radius: 50%;
+    margin-right: 15px;
+    transition: 0.3s;
+}
+
+.task-card.completed .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.task-card.completed .task-text {
+    text-decoration: line-through;
+    color: #AAA;
+}
