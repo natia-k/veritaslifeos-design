@@ -3,101 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veritas LifeOS | Mission Control</title>
+    <title>VERITAS // OS</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="glow-mesh"></div>
-
     <div class="app-shell">
         <aside class="sidebar">
-            <div class="brand">
-                <div class="logo-dot"></div>
-                <span>VERITAS</span>
+            <div class="sidebar-top">
+                <div class="logo">V.</div>
+                <nav>
+                    <div class="nav-item active">CONTROL</div>
+                    <div class="nav-item">WEALTH</div>
+                    <div class="nav-item">KNOWLEDGE</div>
+                    <div class="nav-item">BIO-HACK</div>
+                </nav>
             </div>
-            <nav class="nav-group">
-                <div class="nav-item active">Dashboard</div>
-                <div class="nav-item">Areas of Life</div>
-                <div class="nav-item">Wealth Lab</div>
-                <div class="nav-item">Knowledge</div>
-                <div class="nav-item">Archive</div>
-            </nav>
-            <div class="sidebar-footer">
-                <button class="theme-toggle" id="themeBtn">APPEARANCE</button>
-            </div>
+            <button id="themeBtn" class="side-btn">DARK / LIGHT</button>
         </aside>
 
         <main class="main-content">
-            <header class="hero">
-                <div class="date-stamp">WEDNESDAY, APRIL 01</div>
-                <h1 id="greeting">System: Active.</h1>
-                
-                <div class="global-progress">
-                    <div class="progress-info">
-                        <span>Daily Capacity</span>
-                        <span>68%</span>
-                    </div>
-                    <div class="progress-bar"><div class="fill" style="width: 68%"></div></div>
-                </div>
-            </header>
+            <div class="top-nav">
+                <span class="breadcrumb">SYSTEM / MISSION CONTROL</span>
+                <span class="clock" id="clock">00:00:00</span>
+            </div>
 
-            <section class="grid-container">
-                <h2 class="section-label">Life Pillars</h2>
-                <div class="pillar-grid">
-                    <div class="pillar-card">
-                        <div class="pillar-icon">⚡</div>
-                        <div class="pillar-data">
-                            <h3>Growth</h3>
-                            <p>12 Habits Active</p>
-                        </div>
-                    </div>
-                    <div class="pillar-card">
-                        <div class="pillar-icon">💎</div>
-                        <div class="pillar-data">
-                            <h3>Wealth</h3>
-                            <p>$14.2k Revenue</p>
-                        </div>
-                    </div>
-                    <div class="pillar-card">
-                        <div class="pillar-icon">🦾</div>
-                        <div class="pillar-data">
-                            <h3>Vigor</h3>
-                            <p>Training Complete</p>
-                        </div>
-                    </div>
+            <section class="hero-section">
+                <h1>SYSTEM: <span class="glitch">OPTIMIZED</span></h1>
+                <div class="global-progress-container">
+                    <div class="progress-bar-main"><div class="fill" style="width: 74%"></div></div>
+                    <div class="progress-labels"><span>DAILY OUTPUT</span> <span>74%</span></div>
                 </div>
             </section>
 
-            <section class="sprint-container">
-                <h2 class="section-label">Active Sprints</h2>
-                <div class="task-list">
-                    <div class="task-row" onclick="toggleTask(this)">
-                        <div class="custom-check"></div>
-                        <div class="task-data">
-                            <span class="title">Finalize LifeOS Architecture</span>
-                            <span class="tag">Systems</span>
-                        </div>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="p-label">01 / GROWTH</div>
+                    <div class="p-value">12 ACTIVE</div>
+                    <div class="p-bar"><div class="p-fill" style="width: 80%"></div></div>
+                </div>
+                <div class="pillar-card">
+                    <div class="p-label">02 / WEALTH</div>
+                    <div class="p-value">$14,200.00</div>
+                    <div class="p-bar"><div class="p-fill" style="width: 45%"></div></div>
+                </div>
+                <div class="pillar-card">
+                    <div class="p-label">03 / MIND</div>
+                    <div class="p-value">SYNCHRONIZED</div>
+                    <div class="p-bar"><div class="p-fill" style="width: 100%"></div></div>
+                </div>
+            </div>
+
+            <section class="task-sprints">
+                <div class="section-title">ACTIVE SPRINTS</div>
+                <div class="task-table">
+                    <div class="task-item" onclick="toggleTask(this)">
+                        <div class="status-box"></div>
+                        <span class="t-name">INTEGRATE OS CORE ENGINE</span>
+                        <span class="t-tag">CRITICAL</span>
                     </div>
-                    <div class="task-row" onclick="toggleTask(this)">
-                        <div class="custom-check"></div>
-                        <div class="task-data">
-                            <span class="title">Quarterly Financial Audit</span>
-                            <span class="tag">Wealth</span>
-                        </div>
-                    </div>
-                    <div class="task-row" onclick="toggleTask(this)">
-                        <div class="custom-check"></div>
-                        <div class="task-data">
-                            <span class="title">Design Knowledge Database</span>
-                            <span class="tag">Brain</span>
-                        </div>
+                    <div class="task-item" onclick="toggleTask(this)">
+                        <div class="status-box"></div>
+                        <span class="t-name">WEALTH PROTOCOL AUDIT</span>
+                        <span class="t-tag">ROUTINE</span>
                     </div>
                 </div>
             </section>
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
