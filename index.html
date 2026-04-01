@@ -1,80 +1,96 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VERITAS // MISSION CONTROL</title>
+    <title>Veritas LifeOS | Mission Control</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="os-container">
+    <div class="admin-shell">
         <aside class="sidebar">
-            <div class="brand">V<span>OS</span></div>
-            <nav class="nav-links">
-                <div class="nav-item active">01 // COMMAND</div>
-                <div class="nav-item">02 // WEALTH</div>
-                <div class="nav-item">03 // GROWTH</div>
-                <div class="nav-item">04 // ARCHIVE</div>
-            </nav>
-            <div class="status-box">
-                <div class="status-line">SYS: ONLINE</div>
-                <div class="status-line" id="clock">00:00:00</div>
+            <div class="sidebar-header">
+                <div class="v-logo"></div>
+                <span>VERITAS OS</span>
             </div>
+            <nav class="side-nav">
+                <div class="nav-label">SYSTEM</div>
+                <a href="#" class="nav-item active">Mission Control</a>
+                <a href="#" class="nav-item">Action Zone</a>
+                <a href="#" class="nav-item">Wealth Manager</a>
+                <div class="nav-label">DATABASE</div>
+                <a href="#" class="nav-item">Second Brain</a>
+                <a href="#" class="nav-item">Archive</a>
+            </nav>
         </aside>
 
-        <main class="hud">
-            <header class="hud-header">
-                <div class="path">USER / ROOT / DASHBOARD</div>
-                <h1>SYSTEM <span class="accent-text">OPTIMIZED</span></h1>
+        <main class="content-area">
+            <header class="main-header">
+                <div class="breadcrumb">Workspace / Mission Control</div>
+                <h1>Mission Control</h1>
             </header>
 
-            <section class="metrics-bar">
-                <div class="metric">
-                    <span class="label">CAPACITY</span>
-                    <div class="progress-container"><div class="fill" style="width: 74%"></div></div>
-                    <span class="value">74%</span>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="m-title">Daily Throughput</span>
+                    <div class="m-value">72%</div>
+                    <div class="m-progress"><div class="m-bar" style="width: 72%"></div></div>
                 </div>
-            </section>
+                <div class="metric-card">
+                    <span class="m-title">System Status</span>
+                    <div class="m-value">OPTIMIZED</div>
+                    <div class="m-tag">Active</div>
+                </div>
+            </div>
 
-            <section class="pillar-grid">
-                <div class="card">
-                    <small>BLOCK_01</small>
-                    <h3>WEALTH</h3>
-                    <div class="card-stats">$14,200.50 / MONTH</div>
-                    <div class="mini-bar"><div class="fill" style="width: 40%"></div></div>
+            <div class="section-divider">Life Pillars</div>
+            <div class="pillar-container">
+                <div class="pillar-box">
+                    <div class="p-header">
+                        <span class="p-num">01</span>
+                        <h3>GROWTH</h3>
+                    </div>
+                    <p>Strategic mindset and skill acquisition protocols.</p>
+                    <div class="p-footer">14 Active Nodes</div>
                 </div>
-                <div class="card">
-                    <small>BLOCK_02</small>
-                    <h3>MIND</h3>
-                    <div class="card-stats">12 NODES ACTIVE</div>
-                    <div class="mini-bar"><div class="fill" style="width: 85%"></div></div>
+                <div class="pillar-box">
+                    <div class="p-header">
+                        <span class="p-num">02</span>
+                        <h3>WEALTH</h3>
+                    </div>
+                    <p>Asset management and capital flow tracking.</p>
+                    <div class="p-footer">Target: $15k/mo</div>
                 </div>
-                <div class="card">
-                    <small>BLOCK_03</small>
-                    <h3>BODY</h3>
-                    <div class="card-stats">PEAK PERFORMANCE</div>
-                    <div class="mini-bar"><div class="fill" style="width: 100%"></div></div>
+                <div class="pillar-box">
+                    <div class="p-header">
+                        <span class="p-num">03</span>
+                        <h3>VIGOR</h3>
+                    </div>
+                    <p>Physical optimization and biometric monitoring.</p>
+                    <div class="p-footer">Level 08</div>
                 </div>
-            </section>
+            </div>
 
-            <section class="operations">
-                <h2 class="section-title">ACTIVE_OPERATIONS</h2>
-                <div class="task-row" onclick="this.classList.toggle('done')">
-                    <div class="scanner"></div>
-                    <span class="task-id">OP_091</span>
-                    <span class="task-name">INTEGRATE NEURAL ARCHITECTURE</span>
-                    <span class="task-status">URGENT</span>
+            <div class="section-divider">Current Operations</div>
+            <div class="data-table">
+                <div class="table-head">
+                    <span>OPERATION</span>
+                    <span>STATUS</span>
+                    <span>ID</span>
                 </div>
-                <div class="task-row" onclick="this.classList.toggle('done')">
-                    <div class="scanner"></div>
-                    <span class="task-id">OP_092</span>
-                    <span class="task-name">AUDIT CAPITAL FLOWS</span>
-                    <span class="task-status">STABLE</span>
+                <div class="table-row">
+                    <span class="op-name">Neural Architecture Sync</span>
+                    <span class="op-status blue">PROCESSING</span>
+                    <span class="op-id">#8821</span>
                 </div>
-            </section>
+                <div class="table-row">
+                    <span class="op-name">Capital Flow Audit</span>
+                    <span class="op-status gray">PENDING</span>
+                    <span class="op-id">#8822</span>
+                </div>
+            </div>
         </main>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
