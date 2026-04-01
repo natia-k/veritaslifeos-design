@@ -3,70 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veritas LifeOS x Anytype</title>
+    <title>Veritas // Anytype Vault</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="anytype-theme">
+    <div class="bg-glow"></div>
+
     <div class="app-shell">
         <aside class="sidebar">
-            <div class="sidebar-content">
-                <div class="nav-section">
+            <div class="sidebar-header">
+                <div class="vault-icon"></div>
+                <span class="vault-name">Veritas Vault</span>
+            </div>
+            
+            <nav class="vault-nav">
+                <div class="nav-group">
                     <div class="nav-item active">Dashboard</div>
-                    <div class="nav-item">Areas</div>
-                    <div class="nav-item">Collections</div>
+                    <div class="nav-item">Favorites</div>
+                    <div class="nav-item">All Objects</div>
                 </div>
-                <div class="nav-section">
-                    <small>FAVORITES</small>
+                
+                <div class="nav-group">
+                    <div class="group-label">PILLARS</div>
                     <div class="nav-item">Wealth Lab</div>
                     <div class="nav-item">Growth Sync</div>
+                    <div class="nav-item">Vigor Protocol</div>
                 </div>
-            </div>
+            </nav>
         </aside>
 
-        <main class="main-canvas">
-            <div class="content-wrapper">
-                <header class="view-header">
-                    <h1>Mission Control</h1>
-                    <div class="progress-container">
-                        <div class="progress-label">Today's Progress — 65%</div>
-                        <div class="progress-track"><div class="progress-fill" style="width: 65%"></div></div>
-                    </div>
-                </header>
+        <main class="canvas">
+            <header class="canvas-header">
+                <div class="breadcrumb">Vault / Mission Control</div>
+                <h1>Mission Control</h1>
+            </header>
 
-                <section class="pillar-grid">
-                    <div class="pillar-card">
-                        <h3>Growth</h3>
-                        <p>12 Active Projects</p>
-                    </div>
-                    <div class="pillar-card">
-                        <h3>Wealth</h3>
-                        <p>On Track</p>
-                    </div>
-                    <div class="pillar-card">
-                        <h3>Vigor</h3>
-                        <p>Level 08</p>
-                    </div>
-                </section>
+            <section class="object-grid">
+                <div class="object-card">
+                    <div class="obj-tag">PILLAR</div>
+                    <h3>Growth</h3>
+                    <div class="obj-meta">12 Active Nodes</div>
+                    <div class="obj-progress"><div class="fill" style="width: 80%"></div></div>
+                </div>
+                <div class="object-card">
+                    <div class="obj-tag">FINANCE</div>
+                    <h3>Wealth</h3>
+                    <div class="obj-meta">Target: $15k/mo</div>
+                    <div class="obj-progress"><div class="fill" style="width: 45%"></div></div>
+                </div>
+                <div class="object-card">
+                    <div class="obj-tag">HEALTH</div>
+                    <h3>Vigor</h3>
+                    <div class="obj-meta">Status: Peak</div>
+                    <div class="obj-progress"><div class="fill" style="width: 100%"></div></div>
+                </div>
+            </section>
 
-                <section class="task-section">
+            <section class="set-view">
+                <div class="set-header">
                     <h2>Active Operations</h2>
-                    <div class="task-item" onclick="this.classList.toggle('completed')">
-                        <div class="checkbox"></div>
-                        <div class="task-info">
-                            <div class="task-title">Integrate OS Core Engine</div>
-                            <div class="task-meta">Systems • High Priority</div>
-                        </div>
+                    <button class="add-btn">+</button>
+                </div>
+                
+                <div class="set-table">
+                    <div class="set-row header">
+                        <span>Name</span>
+                        <span>Status</span>
+                        <span>Priority</span>
                     </div>
-                    <div class="task-item" onclick="this.classList.toggle('completed')">
-                        <div class="checkbox"></div>
-                        <div class="task-info">
-                            <div class="task-title">Quarterly Capital Flow Audit</div>
-                            <div class="task-meta">Wealth • Routine</div>
-                        </div>
+                    <div class="set-row">
+                        <span class="name">Integrate OS Engine</span>
+                        <span class="status-pill blue">Running</span>
+                        <span class="priority">Critical</span>
                     </div>
-                </section>
-            </div>
+                    <div class="set-row">
+                        <span class="name">Quarterly Audit</span>
+                        <span class="status-pill gray">Queued</span>
+                        <span class="priority">High</span>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 </body>
