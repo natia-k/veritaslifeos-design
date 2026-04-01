@@ -1,65 +1,114 @@
+/* --- 1. THE FOUNDATION (Premium Typography & Reset) --- */
+@import url('https://rsms.me/inter/inter.css');
+
 :root {
     /* Light Mode - Milk & Chalk */
     --bg: #F9F9FB;
-    --sidebar-bg: rgba(255, 255, 255, 0.4);
+    --sidebar-bg: rgba(255, 255, 255, 0.45);
+    --card-bg: #FFFFFF;
     --text-primary: #1A1A1E;
     --text-secondary: #8E8E93;
     --accent: #007AFF;
     --border: rgba(0, 0, 0, 0.06);
     --card-hover: rgba(255, 255, 255, 0.9);
+    --selection: rgba(0, 122, 255, 0.1);
 }
 
 [data-theme="dark"] {
     /* Dark Mode - Onyx & Charcoal */
     --bg: #0A0A0B;
-    --sidebar-bg: rgba(20, 20, 22, 0.5);
+    --sidebar-bg: rgba(20, 20, 22, 0.6);
+    --card-bg: #161618;
     --text-primary: #EEEEEE;
     --text-secondary: #888888;
     --accent: #0A84FF;
     --border: rgba(255, 255, 255, 0.08);
-    --card-hover: rgba(30, 30, 32, 0.4);
+    --card-hover: rgba(30, 30, 32, 0.5);
+    --selection: rgba(10, 132, 255, 0.2);
 }
 
 * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Inter', -apple-system, sans-serif;
-    letter-spacing: -0.022em; /* The premium "tight" look */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.022em; /* This is the secret to the "Apple" look */
 }
 
 body {
     background-color: var(--bg);
     color: var(--text-primary);
-    transition: background 0.4s ease, color 0.4s ease;
+    transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     height: 100vh;
 }
 
-/* Background Subtle Glow */
+/* Background Subtle "Aura" Glow */
 body::before {
-    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% 0%, var(--accent), transparent 30%);
-    opacity: 0.04; z-index: -1;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% -10%, var(--accent), transparent 40%);
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
 }
 
-.app-shell { display: flex; height: 100vh; }
+.app-shell {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
 
-/* Sidebar: Anytype Glass Effect */
+/* --- 2. SIDEBAR (Anytype Glassmorphism) --- */
 .sidebar {
     width: 260px;
+    min-width: 260px;
     background: var(--sidebar-bg);
-    backdrop-filter: blur(40px) saturate(160%);
-    -webkit-backdrop-filter: blur(40px) saturate(160%);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
     border-right: 1px solid var(--border);
-    padding: 40px 24px;
+    padding: 48px 24px;
     display: flex;
     flex-direction: column;
+    z-index: 10;
 }
 
-.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; font-weight: 700; font-size: 15px; }
-.logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 48px;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary);
+}
 
-.nav-group { margin-bottom: 32px; }
-.nav-group small { font-size: 10px; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 12px; letter-spacing: 0.06em; opacity: 0.8; }
+.logo-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--accent);
+}
+
+.nav-group {
+    margin-bottom: 36px;
+}
+
+.nav-group small {
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
 
 .nav-item {
     padding: 10px 14px;
@@ -68,51 +117,156 @@ body::before {
     font-size: 14px;
     font-weight: 500;
     color: var(--text-secondary);
-    transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
 }
 
-.nav-item:hover, .nav-item.active { background: var(--border); color: var(--text-primary); }
+.nav-item:hover {
+    background: var(--border);
+    color: var(--text-primary);
+}
 
-/* Main Content: Things 3 Minimalism */
-.main-content { flex: 1; padding: 80px 12% 0 12%; overflow-y: auto; }
-.focus-header { margin-bottom: 64px; }
-.focus-header h1 { font-size: 40px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.04em; }
-.focus-header p { color: var(--text-secondary); font-size: 18px; font-weight: 400; }
+.nav-item.active {
+    background: var(--border);
+    color: var(--text-primary);
+    font-weight: 600;
+}
 
-/* Tasks: Sunsama Spacing */
-.task-container { max-width: 680px; }
+/* --- 3. MAIN CONTENT (Things 3 Airiness) --- */
+.main-content {
+    flex: 1;
+    padding: 100px 12% 60px 12%;
+    overflow-y: auto;
+    position: relative;
+}
+
+.focus-header {
+    margin-bottom: 72px;
+    max-width: 700px;
+}
+
+.focus-header h1 {
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+}
+
+.focus-header p {
+    color: var(--text-secondary);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/* --- 4. TASK CARDS (Sunsama Logic + Things 3 Style) --- */
+.task-container {
+    max-width: 700px;
+    padding-bottom: 100px;
+}
+
 .task-card {
-    display: flex; gap: 18px; padding: 20px 14px;
+    display: flex;
+    gap: 20px;
+    padding: 24px 16px;
     border-bottom: 1px solid var(--border);
-    cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 16px;
+    align-items: center;
 }
 
 .task-card:hover {
     background: var(--card-hover);
-    transform: translateX(6px) translateY(-1px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    transform: translateX(8px) scale(1.01);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+}
+
+.check-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .check-circle {
-    width: 22px; height: 22px; border: 2.5px solid #D1D1D6;
-    border-radius: 50%; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 24px;
+    height: 24px;
+    border: 2px solid #D1D1D6;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: transparent;
 }
 
-[data-theme="dark"] .check-circle { border-color: #3A3A3C; }
+[data-theme="dark"] .check-circle {
+    border-color: #3A3A3C;
+}
 
-.task-card.completed .check-circle { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
-.task-card.completed .task-title { text-decoration: line-through; opacity: 0.3; }
+.task-card.completed .check-circle {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(0, 122, 255, 0.4);
+}
 
-.task-info { display: flex; flex-direction: column; justify-content: center; }
-.task-title { font-weight: 500; font-size: 16.5px; transition: 0.3s; }
-.task-meta { font-size: 12.5px; color: var(--text-secondary); margin-top: 4px; font-weight: 400; }
+.task-card.completed .task-title {
+    text-decoration: line-through;
+    opacity: 0.3;
+}
 
-/* Theme Switcher */
+.task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--text-primary);
+    transition: 0.3s;
+}
+
+.task-meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-weight: 400;
+}
+
+/* --- 5. INTERACTIVE ELEMENTS --- */
 .theme-switch {
-    position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px;
-    border-radius: 50%; border: 1px solid var(--border); background: var(--card-hover);
-    backdrop-filter: blur(10px); cursor: pointer; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1); transition: 0.3s;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card-hover);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 20px;
+    z-index: 100;
 }
-.theme-switch:hover { transform: scale(1.1) rotate(12deg); }
+
+.theme-switch:hover {
+    transform: scale(1.15) rotate(12deg);
+}
+
+/* Custom Scrollbar for Premium Feel */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 10px;
+}
