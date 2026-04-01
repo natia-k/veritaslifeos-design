@@ -1,82 +1,111 @@
 :root {
+    /* Light Mode Variables */
     --bg: #F9F9FB;
-    --sidebar-bg: rgba(255, 255, 255, 0.7);
-    --text-main: #1A1A1E;
-    --accent: #007AFF; /* Things 3 Blue */
-    --border: rgba(0, 0, 0, 0.05);
+    --sidebar-bg: rgba(255, 255, 255, 0.4);
+    --text-primary: #1A1A1E;
+    --text-secondary: #8E8E93;
+    --accent: #007AFF;
+    --border: rgba(0, 0, 0, 0.06);
+    --card-hover: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Variables (Onyx) */
+    --bg: #0A0A0B;
+    --sidebar-bg: rgba(20, 20, 22, 0.6);
+    --text-primary: #FFFFFF;
+    --text-secondary: #888888;
+    --accent: #0A84FF;
+    --border: rgba(255, 255, 255, 0.08);
+    --card-hover: rgba(30, 30, 32, 0.5);
 }
 
 * {
     margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: -0.02em; /* The "Premium" secret */
+    font-family: 'Inter', -apple-system, sans-serif;
+    letter-spacing: -0.022em;
 }
 
-body { background: var(--bg); color: var(--text-main); }
+body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
 
-.app-container { display: flex; height: 100vh; }
+/* Background "Aura" Effect */
+body::before {
+    content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 0%, var(--accent), transparent 25%);
+    opacity: 0.03; z-index: -1;
+}
 
-/* Sidebar: Glassmorphism */
+.app-shell { display: flex; height: 100vh; }
+
+/* Anytype Sidebar */
 .sidebar {
     width: 260px;
     background: var(--sidebar-bg);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(40px) saturate(150%);
+    -webkit-backdrop-filter: blur(40px) saturate(150%);
     border-right: 1px solid var(--border);
-    padding: 40px 20px;
+    padding: 40px 24px;
 }
 
-.nav-links li {
-    list-style: none;
-    padding: 12px 15px;
-    margin-bottom: 5px;
-    border-radius: 8px;
+.brand { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; font-weight: 700; }
+.logo-dot { width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+
+.nav-group { margin-bottom: 30px; }
+.nav-group small { font-size: 10px; color: var(--text-secondary); font-weight: 700; display: block; margin-bottom: 12px; letter-spacing: 0.05em; }
+
+.nav-item {
+    padding: 10px 14px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
+    font-size: 14px;
     font-weight: 500;
-    color: #666;
+    color: var(--text-secondary);
+    transition: 0.2s;
 }
 
-.nav-links li.active, .nav-links li:hover {
-    background: rgba(0, 0, 0, 0.04);
-    color: var(--text-main);
-}
+.nav-item:hover, .nav-item.active { background: var(--border); color: var(--text-primary); }
 
-/* Content Area: Atmospheric Minimalism */
-.content {
-    flex: 1;
-    padding: 80px 120px;
-    max-width: 900px;
-}
+/* Main Content: Things 3 Minimalism */
+.main-content { flex: 1; padding: 80px 10% 0 10%; overflow-y: auto; }
+.focus-header { margin-bottom: 60px; }
+.focus-header h1 { font-size: 38px; font-weight: 800; margin-bottom: 10px; }
+.focus-header p { color: var(--text-secondary); font-size: 18px; }
 
-h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
-.subtitle { color: #888; margin-bottom: 40px; }
-
-/* Task Cards: Borderless Design */
+/* Tasks */
+.task-container { max-width: 650px; }
 .task-card {
-    display: flex;
-    align-items: center;
-    padding: 18px 0;
+    display: flex; gap: 16px; padding: 18px 12px;
     border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: transform 0.1s ease;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 1, 0.2, 1);
+    border-radius: 12px;
 }
 
-.task-card:hover { transform: translateX(5px); }
-
-.checkbox {
-    width: 22px; height: 22px;
-    border: 2px solid #DDD;
-    border-radius: 50%;
-    margin-right: 15px;
-    transition: 0.3s;
+.task-card:hover {
+    background: var(--card-hover);
+    transform: translateX(6px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 
-.task-card.completed .checkbox {
-    background: var(--accent);
-    border-color: var(--accent);
+.check-circle {
+    width: 20px; height: 20px; border: 2px solid var(--text-secondary);
+    border-radius: 50%; transition: 0.3s;
 }
 
-.task-card.completed .task-text {
-    text-decoration: line-through;
-    color: #AAA;
+.task-card.completed .check-circle { background: var(--accent); border-color: var(--accent); }
+.task-card.completed .task-title { text-decoration: line-through; opacity: 0.4; }
+
+.task-info { display: flex; flex-direction: column; }
+.task-title { font-weight: 500; font-size: 16px; }
+.task-meta { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+/* Theme Switcher */
+.theme-switch {
+    position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+    border-radius: 50%; border: none; background: var(--card-hover);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
