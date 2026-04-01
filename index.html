@@ -3,70 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VERITAS // OS</title>
+    <title>VERITAS // MISSION CONTROL</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-shell">
+    <div class="os-container">
         <aside class="sidebar">
-            <div class="sidebar-top">
-                <div class="logo">V.</div>
-                <nav>
-                    <div class="nav-item active">CONTROL</div>
-                    <div class="nav-item">WEALTH</div>
-                    <div class="nav-item">KNOWLEDGE</div>
-                    <div class="nav-item">BIO-HACK</div>
-                </nav>
+            <div class="brand">V<span>OS</span></div>
+            <nav class="nav-links">
+                <div class="nav-item active">01 // COMMAND</div>
+                <div class="nav-item">02 // WEALTH</div>
+                <div class="nav-item">03 // GROWTH</div>
+                <div class="nav-item">04 // ARCHIVE</div>
+            </nav>
+            <div class="status-box">
+                <div class="status-line">SYS: ONLINE</div>
+                <div class="status-line" id="clock">00:00:00</div>
             </div>
-            <button id="themeBtn" class="side-btn">DARK / LIGHT</button>
         </aside>
 
-        <main class="main-content">
-            <div class="top-nav">
-                <span class="breadcrumb">SYSTEM / MISSION CONTROL</span>
-                <span class="clock" id="clock">00:00:00</span>
-            </div>
+        <main class="hud">
+            <header class="hud-header">
+                <div class="path">USER / ROOT / DASHBOARD</div>
+                <h1>SYSTEM <span class="accent-text">OPTIMIZED</span></h1>
+            </header>
 
-            <section class="hero-section">
-                <h1>SYSTEM: <span class="glitch">OPTIMIZED</span></h1>
-                <div class="global-progress-container">
-                    <div class="progress-bar-main"><div class="fill" style="width: 74%"></div></div>
-                    <div class="progress-labels"><span>DAILY OUTPUT</span> <span>74%</span></div>
+            <section class="metrics-bar">
+                <div class="metric">
+                    <span class="label">CAPACITY</span>
+                    <div class="progress-container"><div class="fill" style="width: 74%"></div></div>
+                    <span class="value">74%</span>
                 </div>
             </section>
 
-            <div class="pillar-grid">
-                <div class="pillar-card">
-                    <div class="p-label">01 / GROWTH</div>
-                    <div class="p-value">12 ACTIVE</div>
-                    <div class="p-bar"><div class="p-fill" style="width: 80%"></div></div>
+            <section class="pillar-grid">
+                <div class="card">
+                    <small>BLOCK_01</small>
+                    <h3>WEALTH</h3>
+                    <div class="card-stats">$14,200.50 / MONTH</div>
+                    <div class="mini-bar"><div class="fill" style="width: 40%"></div></div>
                 </div>
-                <div class="pillar-card">
-                    <div class="p-label">02 / WEALTH</div>
-                    <div class="p-value">$14,200.00</div>
-                    <div class="p-bar"><div class="p-fill" style="width: 45%"></div></div>
+                <div class="card">
+                    <small>BLOCK_02</small>
+                    <h3>MIND</h3>
+                    <div class="card-stats">12 NODES ACTIVE</div>
+                    <div class="mini-bar"><div class="fill" style="width: 85%"></div></div>
                 </div>
-                <div class="pillar-card">
-                    <div class="p-label">03 / MIND</div>
-                    <div class="p-value">SYNCHRONIZED</div>
-                    <div class="p-bar"><div class="p-fill" style="width: 100%"></div></div>
+                <div class="card">
+                    <small>BLOCK_03</small>
+                    <h3>BODY</h3>
+                    <div class="card-stats">PEAK PERFORMANCE</div>
+                    <div class="mini-bar"><div class="fill" style="width: 100%"></div></div>
                 </div>
-            </div>
+            </section>
 
-            <section class="task-sprints">
-                <div class="section-title">ACTIVE SPRINTS</div>
-                <div class="task-table">
-                    <div class="task-item" onclick="toggleTask(this)">
-                        <div class="status-box"></div>
-                        <span class="t-name">INTEGRATE OS CORE ENGINE</span>
-                        <span class="t-tag">CRITICAL</span>
-                    </div>
-                    <div class="task-item" onclick="toggleTask(this)">
-                        <div class="status-box"></div>
-                        <span class="t-name">WEALTH PROTOCOL AUDIT</span>
-                        <span class="t-tag">ROUTINE</span>
-                    </div>
+            <section class="operations">
+                <h2 class="section-title">ACTIVE_OPERATIONS</h2>
+                <div class="task-row" onclick="this.classList.toggle('done')">
+                    <div class="scanner"></div>
+                    <span class="task-id">OP_091</span>
+                    <span class="task-name">INTEGRATE NEURAL ARCHITECTURE</span>
+                    <span class="task-status">URGENT</span>
+                </div>
+                <div class="task-row" onclick="this.classList.toggle('done')">
+                    <div class="scanner"></div>
+                    <span class="task-id">OP_092</span>
+                    <span class="task-name">AUDIT CAPITAL FLOWS</span>
+                    <span class="task-status">STABLE</span>
                 </div>
             </section>
         </main>
