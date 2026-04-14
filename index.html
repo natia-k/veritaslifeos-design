@@ -3,1160 +3,569 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veritas Life OS</title>
-  <meta name="description" content="Veritas Life OS — A premium operating system for modern life management." />
-
+  <title>Veritas Life OS — v2</title>
+  <meta name="description" content="Veritas Life OS — premium operating system for modern life management." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #07090d;
-      --bg-secondary: #0b0f15;
-      --panel: rgba(15, 19, 27, 0.72);
-      --panel-strong: rgba(18, 23, 32, 0.88);
-      --panel-soft: rgba(255, 255, 255, 0.035);
-      --text: #f3f5f7;
-      --text-muted: rgba(243, 245, 247, 0.62);
-      --text-faint: rgba(243, 245, 247, 0.38);
-      --border: rgba(255, 255, 255, 0.09);
-      --border-strong: rgba(255, 255, 255, 0.14);
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-      --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.22);
-
-      --accent: #7c8cff;
-      --accent-rgb: 124, 140, 255;
-      --accent-2: #aeb8ff;
-
-      --surface-glow:
-        radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.16), transparent 26%),
-        radial-gradient(circle at 80% 25%, rgba(var(--accent-rgb), 0.09), transparent 24%);
-
-      --hero-glow:
-        radial-gradient(circle at 72% 24%, rgba(var(--accent-rgb), 0.22), transparent 23%),
-        radial-gradient(circle at 58% 42%, rgba(255,255,255,0.055), transparent 20%),
-        radial-gradient(circle at 50% 70%, rgba(var(--accent-rgb), 0.10), transparent 24%);
-
-      --button-bg: linear-gradient(
-        180deg,
-        rgba(var(--accent-rgb), 0.22),
-        rgba(255,255,255,0.05)
-      );
-
-      --noise-opacity: 0.03;
-      --grid-opacity: 0.06;
-      --glass-blur: 18px;
-      --radius-xl: 30px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --max-width: 1280px;
+    :root{
+      --bg:#07090d;
+      --bg-2:#0b0f16;
+      --surface:rgba(14,18,25,.68);
+      --surface-2:rgba(18,23,32,.82);
+      --surface-3:rgba(255,255,255,.035);
+      --text:#f3f5f7;
+      --muted:rgba(243,245,247,.62);
+      --faint:rgba(243,245,247,.36);
+      --border:rgba(255,255,255,.08);
+      --border-2:rgba(255,255,255,.14);
+      --accent:#7c8cff;
+      --accent-rgb:124,140,255;
+      --accent-soft:rgba(124,140,255,.16);
+      --shadow:0 20px 60px rgba(0,0,0,.32);
+      --shadow-soft:0 10px 30px rgba(0,0,0,.2);
+      --blur:18px;
+      --grid-opacity:.06;
+      --noise-opacity:.025;
+      --max:1280px;
+      --radius-xl:32px;
+      --radius-lg:24px;
+      --radius-md:18px;
     }
 
-    html[data-theme="light"] {
-      --bg: #f5f7fb;
-      --bg-secondary: #edf1f7;
-      --panel: rgba(255, 255, 255, 0.70);
-      --panel-strong: rgba(255, 255, 255, 0.88);
-      --panel-soft: rgba(15, 23, 42, 0.022);
-      --text: #111827;
-      --text-muted: rgba(17, 24, 39, 0.66);
-      --text-faint: rgba(17, 24, 39, 0.36);
-      --border: rgba(15, 23, 42, 0.08);
-      --border-strong: rgba(15, 23, 42, 0.14);
-      --shadow: 0 24px 70px rgba(16, 24, 40, 0.10);
-      --shadow-soft: 0 12px 30px rgba(16, 24, 40, 0.07);
-
-      --surface-glow:
-        radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.12), transparent 26%),
-        radial-gradient(circle at 80% 25%, rgba(var(--accent-rgb), 0.06), transparent 24%);
-
-      --hero-glow:
-        radial-gradient(circle at 72% 24%, rgba(var(--accent-rgb), 0.14), transparent 23%),
-        radial-gradient(circle at 58% 42%, rgba(255,255,255,0.35), transparent 20%),
-        radial-gradient(circle at 50% 70%, rgba(var(--accent-rgb), 0.08), transparent 24%);
-
-      --button-bg: linear-gradient(
-        180deg,
-        rgba(var(--accent-rgb), 0.18),
-        rgba(255,255,255,0.65)
-      );
-
-      --noise-opacity: 0.018;
-      --grid-opacity: 0.05;
+    html[data-mode="business"]{
+      --accent:#8fa585;
+      --accent-rgb:143,165,133;
+      --accent-soft:rgba(143,165,133,.16);
     }
 
-    html[data-mode="business"] {
-      --accent: #8fa585;
-      --accent-rgb: 143, 165, 133;
-      --accent-2: #b2c2aa;
+    html[data-theme="light"]{
+      --bg:#f4f6fa;
+      --bg-2:#edf1f7;
+      --surface:rgba(255,255,255,.72);
+      --surface-2:rgba(255,255,255,.9);
+      --surface-3:rgba(15,23,42,.025);
+      --text:#121822;
+      --muted:rgba(18,24,34,.64);
+      --faint:rgba(18,24,34,.38);
+      --border:rgba(15,23,42,.08);
+      --border-2:rgba(15,23,42,.14);
+      --shadow:0 20px 60px rgba(20,28,40,.08);
+      --shadow-soft:0 10px 30px rgba(20,28,40,.06);
+      --grid-opacity:.05;
+      --noise-opacity:.012;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      color: var(--text);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",sans-serif;
+      color:var(--text);
       background:
-        var(--hero-glow),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 100%);
-      min-height: 100vh;
-      transition:
-        background 0.35s ease,
-        color 0.35s ease;
-      overflow-x: hidden;
+        radial-gradient(circle at 75% 12%, rgba(var(--accent-rgb),.18), transparent 22%),
+        radial-gradient(circle at 15% 18%, rgba(var(--accent-rgb),.08), transparent 22%),
+        linear-gradient(180deg,var(--bg),var(--bg-2));
+      transition:background .35s ease,color .35s ease;
+      overflow-x:hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .wrap{width:min(var(--max),calc(100% - 32px));margin:0 auto;position:relative;z-index:2}
+    .bg-layer{
+      position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
     }
-
-    .page-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-    }
-
-    .page-bg::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .bg-layer::before{
+      content:"";
+      position:absolute; inset:0;
       background-image:
         linear-gradient(rgba(127,127,127,var(--grid-opacity)) 1px, transparent 1px),
         linear-gradient(90deg, rgba(127,127,127,var(--grid-opacity)) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(circle at center, black 34%, transparent 88%);
-      -webkit-mask-image: radial-gradient(circle at center, black 34%, transparent 88%);
+      background-size:42px 42px;
+      mask-image:radial-gradient(circle at center, black 34%, transparent 88%);
+      -webkit-mask-image:radial-gradient(circle at center, black 34%, transparent 88%);
+    }
+    .bg-layer::after{
+      content:"";
+      position:absolute; inset:-120%;
+      background-image:radial-gradient(circle, rgba(255,255,255,.85) .45px, transparent .8px);
+      background-size:7px 7px;
+      opacity:var(--noise-opacity);
+      animation:noise 10s linear infinite;
+    }
+    @keyframes noise{
+      0%{transform:translate(0,0)}
+      25%{transform:translate(-2%,1%)}
+      50%{transform:translate(1%,-2%)}
+      75%{transform:translate(-1%,2%)}
+      100%{transform:translate(0,0)}
     }
 
-    .page-bg::after {
-      content: "";
-      position: absolute;
-      inset: -120%;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.8) 0.4px, transparent 0.8px);
-      background-size: 7px 7px;
-      opacity: var(--noise-opacity);
-      animation: noiseShift 10s linear infinite;
-    }
-
-    @keyframes noiseShift {
-      0%   { transform: translate(0, 0); }
-      25%  { transform: translate(-2%, 1%); }
-      50%  { transform: translate(1%, -2%); }
-      75%  { transform: translate(-1%, 2%); }
-      100% { transform: translate(0, 0); }
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      width: min(var(--max-width), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .glass {
+    .glass{
       background:
-        var(--surface-glow),
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border: 1px solid var(--border);
-      backdrop-filter: blur(var(--glass-blur)) saturate(130%);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(130%);
-      box-shadow: var(--shadow-soft);
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      backdrop-filter:blur(var(--blur)) saturate(130%);
+      -webkit-backdrop-filter:blur(var(--blur)) saturate(130%);
+      box-shadow:var(--shadow-soft);
     }
 
-    .glass-strong {
+    .glass-strong{
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-      border: 1px solid var(--border);
-      backdrop-filter: blur(calc(var(--glass-blur) + 2px)) saturate(145%);
-      -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 2px)) saturate(145%);
-      box-shadow: var(--shadow);
+        radial-gradient(circle at 80% 20%, rgba(var(--accent-rgb),.08), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.022));
+      border:1px solid var(--border);
+      backdrop-filter:blur(calc(var(--blur) + 2px)) saturate(138%);
+      -webkit-backdrop-filter:blur(calc(var(--blur) + 2px)) saturate(138%);
+      box-shadow:var(--shadow);
     }
 
-    .muted {
-      color: var(--text-muted);
+    .tiny{
+      display:inline-flex; align-items:center; gap:9px;
+      font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--faint);
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background:rgba(var(--accent-rgb),.95);
+      box-shadow:0 0 16px rgba(var(--accent-rgb),.55);
     }
 
-    .faint {
-      color: var(--text-faint);
+    .nav{
+      position:sticky; top:16px; z-index:30; padding-top:16px;
     }
-
-    .accent {
-      color: var(--accent);
+    .nav-shell{
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:14px 18px; border-radius:24px;
     }
-
-    .tiny-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-faint);
+    .brand{
+      display:flex; align-items:center; gap:12px;
     }
-
-    .tiny-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(var(--accent-rgb), 0.9);
-      box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.55);
-    }
-
-    .nav {
-      position: sticky;
-      top: 18px;
-      z-index: 30;
-      padding-top: 18px;
-    }
-
-    .nav-shell {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 18px;
-      border-radius: 24px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      position: relative;
-      overflow: hidden;
+    .mark{
+      width:42px; height:42px; border-radius:14px;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.26), transparent 30%),
-        linear-gradient(180deg, rgba(var(--accent-rgb), 0.26), rgba(255,255,255,0.04));
-      border: 1px solid var(--border);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.24), transparent 30%),
+        linear-gradient(180deg, rgba(var(--accent-rgb),.24), rgba(255,255,255,.04));
+      border:1px solid var(--border);
+      position:relative; overflow:hidden;
+    }
+    .mark::before{
+      content:"";
+      position:absolute; inset:11px;
+      border:1px solid rgba(255,255,255,.45);
+      border-radius:7px;
+      transform:rotate(45deg);
+    }
+    .brand strong{display:block; font-size:14px}
+    .brand span{display:block; font-size:12px; color:var(--faint); margin-top:2px}
+    .nav-links{
+      display:flex; gap:28px; font-size:14px; color:var(--muted);
+    }
+    .nav-links a:hover{color:var(--text)}
+    .controls{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+
+    .switch{
+      display:inline-flex; gap:4px; padding:4px; border-radius:999px;
+      border:1px solid var(--border); background:var(--surface);
+    }
+    .switch button{
+      border:0; background:transparent; color:var(--muted);
+      padding:8px 12px; border-radius:999px; cursor:pointer;
+      font-size:12px; font-weight:600; transition:.22s ease;
+    }
+    .switch button.active{
+      background:rgba(255,255,255,.08); color:var(--text);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    html[data-theme="light"] .switch button.active{
+      background:rgba(15,23,42,.06);
     }
 
-    .brand-mark::before {
-      content: "";
-      width: 18px;
-      height: 18px;
-      border-radius: 7px;
-      border: 1px solid rgba(255,255,255,0.5);
-      transform: rotate(45deg);
-      display: block;
+    .hero{
+      display:grid; grid-template-columns:1.02fr .98fr; gap:36px;
+      align-items:center; padding:52px 0 34px;
+    }
+    .hero-copy{max-width:660px}
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:999px; background:var(--surface);
+      border:1px solid var(--border); color:var(--muted);
+      font-size:12px; font-weight:500;
+    }
+    h1{
+      margin:18px 0 0;
+      font-size:clamp(48px,7vw,84px);
+      line-height:.93; letter-spacing:-.06em; font-weight:700;
+    }
+    h1 span{display:block; color:color-mix(in srgb, var(--text) 78%, transparent)}
+    .hero-copy p{
+      margin:22px 0 0; max-width:610px;
+      font-size:18px; line-height:1.72; color:var(--muted);
+    }
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;
+    }
+    .btn, .btn-secondary{
+      min-height:50px; padding:0 18px; border-radius:16px;
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid var(--border); font-size:14px; font-weight:600;
+      transition:.22s ease;
+    }
+    .btn{
+      background:linear-gradient(180deg, rgba(var(--accent-rgb),.22), rgba(255,255,255,.05));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 12px 30px rgba(var(--accent-rgb),.14);
+    }
+    .btn-secondary{background:var(--surface)}
+    .btn:hover,.btn-secondary:hover{
+      transform:translateY(-2px); border-color:var(--border-2);
     }
 
-    .brand-copy strong {
-      display: block;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
+    .hero-toggles{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
 
-    .brand-copy span {
-      display: block;
-      font-size: 12px;
-      color: var(--text-faint);
-      margin-top: 2px;
+    .hero-visual{
+      position:relative; min-height:660px; display:flex; align-items:center; justify-content:center;
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 14px;
-      color: var(--text-muted);
-    }
-
-    .nav-links a {
-      transition: color 0.2s ease, opacity 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .theme-toggle,
-    .mode-toggle {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: var(--text-muted);
-      border-radius: 999px;
-      padding: 4px;
-      gap: 4px;
-    }
-
-    .theme-toggle button,
-    .mode-toggle button {
-      border: 0;
-      background: transparent;
-      color: inherit;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font: inherit;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .theme-toggle button.active,
-    .mode-toggle button.active {
-      color: var(--text);
-      background: rgba(255,255,255,0.08);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
-    }
-
-    html[data-theme="light"] .theme-toggle button.active,
-    html[data-theme="light"] .mode-toggle button.active {
-      background: rgba(15,23,42,0.06);
-    }
-
-    .primary-btn,
-    .secondary-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 18px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      font-size: 14px;
-      font-weight: 600;
-      transition:
-        transform 0.22s ease,
-        border-color 0.22s ease,
-        background 0.22s ease,
-        box-shadow 0.22s ease;
-    }
-
-    .primary-btn {
-      background: var(--button-bg);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.14),
-        0 10px 30px rgba(var(--accent-rgb), 0.14);
-    }
-
-    .secondary-btn {
-      background: var(--panel);
-    }
-
-    .primary-btn:hover,
-    .secondary-btn:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-strong);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.04fr 0.96fr;
-      align-items: center;
-      gap: 38px;
-      padding: 52px 0 34px;
-    }
-
-    .hero-copy {
-      max-width: 680px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: var(--text-muted);
-      font-size: 12px;
-      font-weight: 500;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .hero h1 {
-      margin: 18px 0 0;
-      font-size: clamp(48px, 7vw, 82px);
-      line-height: 0.94;
-      letter-spacing: -0.055em;
-      font-weight: 700;
-    }
-
-    .hero h1 span {
-      display: block;
-      color: color-mix(in srgb, var(--text) 78%, transparent);
-    }
-
-    .hero p {
-      margin: 22px 0 0;
-      font-size: 18px;
-      line-height: 1.7;
-      color: var(--text-muted);
-      max-width: 610px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .hero-toggles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .hero-visual {
-      position: relative;
-      min-height: 640px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-orb {
-      position: absolute;
-      inset: 6% 6% 4% 10%;
-      border-radius: 42px;
+    .orb{
+      position:absolute; inset:4% 4% 5% 6%;
       background:
-        radial-gradient(circle at 56% 24%, rgba(var(--accent-rgb), 0.30), transparent 22%),
-        radial-gradient(circle at 42% 48%, rgba(255,255,255,0.10), transparent 18%),
-        radial-gradient(circle at 58% 76%, rgba(var(--accent-rgb), 0.14), transparent 20%);
-      filter: blur(16px);
-      opacity: 0.95;
+        radial-gradient(circle at 62% 16%, rgba(var(--accent-rgb),.28), transparent 22%),
+        radial-gradient(circle at 48% 44%, rgba(255,255,255,.08), transparent 18%),
+        radial-gradient(circle at 58% 76%, rgba(var(--accent-rgb),.12), transparent 22%);
+      filter:blur(18px); border-radius:42px;
     }
 
-    .dashboard-shell {
-      position: relative;
-      width: min(100%, 590px);
-      border-radius: 32px;
-      padding: 18px;
+    .scene{
+      position:relative; width:min(100%,600px); height:600px;
     }
 
-    .dashboard-core {
-      border-radius: 24px;
-      padding: 18px;
+    .float-card{
+      position:absolute; border-radius:28px; overflow:hidden;
+    }
+
+    .main-dashboard{
+      inset:68px 30px 40px 34px; padding:18px;
+    }
+
+    .dashboard-core{
+      height:100%; border-radius:22px; overflow:hidden; position:relative;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
+      border:1px solid var(--border);
     }
 
-    .dashboard-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
+    .dashboard-head{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px; border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.02);
     }
 
-    .window-dots {
-      display: flex;
-      gap: 6px;
+    .window-dots{display:flex; gap:6px}
+    .window-dots span{
+      width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.16);
     }
+    html[data-theme="light"] .window-dots span{background:rgba(15,23,42,.14)}
 
-    .window-dots span {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.15);
+    .dashboard-pill{
+      padding:7px 10px; border-radius:999px;
+      font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+      border:1px solid var(--border); color:var(--faint); background:var(--surface);
     }
 
-    html[data-theme="light"] .window-dots span {
-      background: rgba(15,23,42,0.14);
+    .dashboard-body{
+      display:grid; grid-template-columns:1.08fr .92fr; gap:14px; padding:14px;
+      height:calc(100% - 58px);
     }
-
-    .dashboard-pill {
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--text-faint);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: var(--panel);
-    }
-
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 14px;
-    }
-
-    .stack {
-      display: grid;
-      gap: 14px;
-    }
-
-    .mini-card {
-      border-radius: 20px;
-      padding: 16px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.018));
-      min-height: 128px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mini-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -20% -40% auto;
-      width: 160px;
-      height: 160px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.16), transparent 64%);
-      filter: blur(20px);
-    }
-
-    .mini-card h4,
-    .feature-card h3,
-    .section-title {
-      margin: 0;
-    }
-
-    .mini-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .mini-label {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-faint);
-    }
-
-    .mini-value {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-    }
-
-    .progress {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      overflow: hidden;
-      margin-top: 12px;
-      position: relative;
-    }
-
-    html[data-theme="light"] .progress {
-      background: rgba(15,23,42,0.06);
-    }
-
-    .progress > span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(
-        90deg,
-        rgba(var(--accent-rgb), 0.95),
-        rgba(var(--accent-rgb), 0.45)
-      );
-    }
-
-    .tiny-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .tiny-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .tiny-badge {
-      padding: 5px 9px;
-      border-radius: 999px;
-      font-size: 11px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-    }
-
-    .feature-section {
-      padding: 52px 0 24px;
-    }
-
-    .section-heading {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .section-heading h2 {
-      margin: 12px 0 0;
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-    }
-
-    .section-heading p {
-      margin: 16px 0 0;
-      color: var(--text-muted);
-      line-height: 1.75;
-      font-size: 16px;
-      max-width: 660px;
-    }
-
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-    }
-
-    .feature-card {
-      position: relative;
-      padding: 22px;
-      border-radius: 28px;
-      min-height: 280px;
-      overflow: hidden;
-      transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--border-strong);
-      box-shadow:
-        var(--shadow),
-        0 0 0 1px rgba(var(--accent-rgb), 0.08);
-    }
-
-    .feature-card.large {
-      min-height: 340px;
-    }
-
-    .feature-1 { grid-column: span 7; }
-    .feature-2 { grid-column: span 5; }
-    .feature-3 { grid-column: span 5; }
-    .feature-4 { grid-column: span 7; }
-
-    .feature-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .icon-shell {
-      width: 50px;
-      height: 50px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(var(--accent-rgb), 0.18), rgba(255,255,255,0.03));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
-      flex: 0 0 auto;
-    }
-
-    .feature-no {
-      font-size: 12px;
-      color: var(--text-faint);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .feature-card h3 {
-      font-size: 24px;
-      line-height: 1.08;
-      letter-spacing: -0.04em;
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 420px;
+    .stack{display:grid; gap:14px}
+    .mini{
+      border-radius:20px; padding:16px; min-height:124px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
+      border:1px solid var(--border); position:relative; overflow:hidden;
     }
-
-    .viz {
-      margin-top: 22px;
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.016));
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .viz::after {
-      content: "";
-      position: absolute;
-      right: -12%;
-      bottom: -28%;
-      width: 190px;
-      height: 190px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.12), transparent 62%);
-      filter: blur(18px);
-      pointer-events: none;
-    }
-
-    .viz-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .viz-title {
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-faint);
+    .mini::after{
+      content:""; position:absolute; right:-18%; bottom:-35%;
+      width:170px; height:170px; border-radius:999px;
+      background:radial-gradient(circle, rgba(var(--accent-rgb),.12), transparent 64%);
+      filter:blur(22px);
     }
-
-    .crm-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-    }
-
-    .metric-box,
-    .list-box {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 14px;
+    .mini-top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px;
+      font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
     }
-
-    .metric-box strong {
-      display: block;
-      font-size: 30px;
-      letter-spacing: -0.05em;
-      margin-top: 10px;
-    }
-
-    .avatars {
-      display: flex;
-      margin-top: 10px;
+    .big-num{
+      font-size:28px; font-weight:700; letter-spacing:-.05em;
     }
-
-    .avatars span {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      margin-left: -6px;
-      border: 2px solid color-mix(in srgb, var(--bg) 90%, transparent);
-      background:
-        linear-gradient(180deg, rgba(var(--accent-rgb), 0.32), rgba(255,255,255,0.08));
+    .progress{
+      margin-top:12px; height:8px; border-radius:999px;
+      background:rgba(255,255,255,.06); overflow:hidden;
     }
-
-    .avatars span:first-child {
-      margin-left: 0;
+    html[data-theme="light"] .progress{background:rgba(15,23,42,.06)}
+    .progress span{
+      display:block; height:100%; border-radius:inherit;
+      background:linear-gradient(90deg, rgba(var(--accent-rgb),.96), rgba(var(--accent-rgb),.38));
     }
 
-    .tiny-bars {
-      display: grid;
-      gap: 9px;
-      margin-top: 10px;
+    .tiny-list{display:grid; gap:10px; margin-top:12px}
+    .row{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      font-size:13px; color:var(--muted);
     }
-
-    .tiny-bars div {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      overflow: hidden;
+    .badge{
+      padding:5px 9px; border-radius:999px; border:1px solid var(--border);
+      font-size:11px; color:var(--text); background:rgba(255,255,255,.04);
     }
 
-    .tiny-bars div span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(
-        90deg,
-        rgba(var(--accent-rgb), 0.95),
-        rgba(var(--accent-rgb), 0.32)
-      );
+    .side-panel{
+      width:210px; height:156px; top:8px; right:8px; padding:14px;
+      transform:rotate(3deg);
     }
 
-    .research-block {
-      display: grid;
-      gap: 12px;
+    .bottom-panel{
+      width:230px; height:132px; left:-6px; bottom:4px; padding:14px;
+      transform:rotate(-4deg);
     }
 
-    .input-line,
-    .signal-card,
-    .summary-card,
-    .forum-cluster,
-    .goal-chart {
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
+    .floating-title{
+      font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
     }
 
-    .input-line {
-      height: 46px;
-      display: flex;
-      align-items: center;
-      padding: 0 14px;
-      font-size: 13px;
-      color: var(--text-faint);
+    .metric-line{
+      margin-top:12px; display:flex; align-items:end; gap:8px;
     }
-
-    .signal-card,
-    .summary-card,
-    .forum-cluster,
-    .goal-chart {
-      padding: 14px;
+    .metric-line strong{
+      font-size:34px; line-height:1; letter-spacing:-.06em;
     }
-
-    .signal-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 13px;
-      margin-top: 12px;
-      color: var(--text-muted);
+    .small-bars{display:grid; gap:8px; margin-top:12px}
+    .small-bars div{
+      height:8px; border-radius:999px; background:rgba(255,255,255,.06); overflow:hidden;
     }
-
-    .score {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.05em;
+    .small-bars div span{
+      display:block; height:100%; border-radius:inherit;
+      background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.3));
     }
 
-    .goal-bars {
-      display: flex;
-      align-items: end;
-      gap: 9px;
-      height: 118px;
-      margin-top: 16px;
+    .feature-section{padding:56px 0 22px}
+    .section-head{max-width:760px; margin-bottom:28px}
+    .section-head h2{
+      margin:12px 0 0; font-size:clamp(34px,4vw,56px);
+      line-height:1.02; letter-spacing:-.05em;
     }
-
-    .goal-bars span {
-      flex: 1;
-      border-radius: 14px 14px 6px 6px;
-      background: rgba(255,255,255,0.06);
-      position: relative;
-      overflow: hidden;
+    .section-head p{
+      margin:16px 0 0; max-width:650px;
+      color:var(--muted); line-height:1.76; font-size:16px;
     }
 
-    .goal-bars span::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 60%;
-      background: linear-gradient(
-        180deg,
-        rgba(var(--accent-rgb), 0.85),
-        rgba(var(--accent-rgb), 0.25)
-      );
-      border-radius: inherit;
+    .bento{
+      display:grid; grid-template-columns:repeat(12,1fr); gap:16px;
     }
-
-    .goal-bars span:nth-child(1) { height: 44px; }
-    .goal-bars span:nth-child(2) { height: 68px; }
-    .goal-bars span:nth-child(3) { height: 88px; }
-    .goal-bars span:nth-child(4) { height: 112px; }
-
-    .forum-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
+    .card{
+      position:relative; overflow:hidden;
+      border-radius:28px; padding:22px;
+      transition:.25s ease;
     }
-
-    .cluster-bubbles {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
+    .card:hover{
+      transform:translateY(-5px);
+      border-color:var(--border-2);
+      box-shadow:var(--shadow), 0 0 0 1px rgba(var(--accent-rgb),.08);
     }
-
-    .cluster-bubbles span {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.045);
-      font-size: 12px;
-      color: var(--text-muted);
+    .card h3{
+      margin:0 0 10px; font-size:24px; line-height:1.08; letter-spacing:-.04em;
     }
-
-    .system-section,
-    .cta-section {
-      padding: 34px 0 40px;
+    .card p{
+      margin:0; color:var(--muted); font-size:14px; line-height:1.7; max-width:430px;
     }
-
-    .system-card,
-    .cta-card {
-      border-radius: 30px;
-      padding: 28px;
+    .card-top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:18px;
+    }
+    .iconbox{
+      width:50px; height:50px; border-radius:18px; display:grid; place-items:center;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(var(--accent-rgb),.18), rgba(255,255,255,.03));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
     }
+    .card-no{font-size:12px; color:var(--faint); letter-spacing:.16em; text-transform:uppercase}
 
-    .system-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: start;
-    }
+    .crm{grid-column:span 7; min-height:350px}
+    .research{grid-column:span 5; min-height:350px}
+    .goals{grid-column:span 5; min-height:316px}
+    .forums{grid-column:span 7; min-height:316px}
 
-    .system-layout h2 {
-      margin: 10px 0 0;
-      font-size: clamp(34px, 4vw, 50px);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
+    .viz{
+      margin-top:22px; border-radius:22px; padding:16px; position:relative; overflow:hidden;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
     }
-
-    .system-copy p {
-      margin: 0 0 14px;
-      color: var(--text-muted);
-      line-height: 1.8;
+    .viz::after{
+      content:""; position:absolute; right:-12%; bottom:-30%;
+      width:190px; height:190px; border-radius:999px;
+      background:radial-gradient(circle, rgba(var(--accent-rgb),.12), transparent 62%);
+      filter:blur(18px);
     }
-
-    .system-points {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 26px;
+    .viz-top{
+      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:16px;
     }
-
-    .point {
-      border-radius: 22px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 18px;
+    .viz-title{
+      font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
     }
 
-    .point strong {
-      display: block;
-      font-size: 16px;
-      margin: 12px 0 8px;
-      letter-spacing: -0.03em;
+    .crm-grid{
+      display:grid; grid-template-columns:1.08fr .92fr; gap:12px;
     }
-
-    .point p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-muted);
+    .panel{
+      border-radius:18px; padding:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
     }
-
-    .cta-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .panel strong{
+      display:block; font-size:30px; letter-spacing:-.05em; margin-top:10px;
     }
-
-    .cta-card h2 {
-      margin: 10px 0 0;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.04;
-      letter-spacing: -0.05em;
-      max-width: 720px;
+    .avatars{display:flex; margin-top:10px}
+    .avatars span{
+      width:28px; height:28px; border-radius:999px; margin-left:-6px;
+      border:2px solid color-mix(in srgb, var(--bg) 90%, transparent);
+      background:linear-gradient(180deg, rgba(var(--accent-rgb),.32), rgba(255,255,255,.08));
     }
-
-    .footer {
-      padding: 12px 0 34px;
-      color: var(--text-faint);
-      font-size: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+    .avatars span:first-child{margin-left:0}
+    .barstack{display:grid; gap:9px; margin-top:10px}
+    .barstack div{
+      height:8px; border-radius:999px; background:rgba(255,255,255,.05); overflow:hidden;
     }
-
-    .symbol {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex: 0 0 auto;
+    .barstack div span{
+      display:block; height:100%; border-radius:inherit;
+      background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.28));
     }
 
-    .symbol.lg {
-      width: 20px;
-      height: 20px;
+    .research-stack{display:grid; gap:12px}
+    .searchline,.block{
+      border-radius:18px; border:1px solid var(--border); background:rgba(255,255,255,.03);
     }
-
-    @media (max-width: 1120px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 42px;
-      }
-
-      .hero-visual {
-        min-height: 540px;
-      }
-
-      .dashboard-shell {
-        margin: 0 auto;
-      }
-
-      .feature-1,
-      .feature-2,
-      .feature-3,
-      .feature-4 {
-        grid-column: span 12;
-      }
-
-      .system-layout,
-      .cta-card {
-        grid-template-columns: 1fr;
-        display: grid;
-      }
-
-      .system-points {
-        grid-template-columns: 1fr;
-      }
+    .searchline{
+      height:46px; display:flex; align-items:center; padding:0 14px;
+      font-size:13px; color:var(--faint);
     }
-
-    @media (max-width: 860px) {
-      .wrap {
-        width: min(var(--max-width), calc(100% - 24px));
-      }
-
-      .nav-shell {
-        flex-wrap: wrap;
-        row-gap: 14px;
-      }
-
-      .nav-links {
-        order: 3;
-        width: 100%;
-        justify-content: space-between;
-        gap: 14px;
-        font-size: 13px;
-      }
-
-      .nav-actions {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-
-      .dashboard-grid,
-      .crm-grid,
-      .forum-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero h1 {
-        font-size: clamp(42px, 14vw, 62px);
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .feature-card,
-      .feature-card.large {
-        min-height: auto;
-      }
-
-      .cta-card {
-        padding: 24px;
-      }
-
-      .footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .block{padding:14px}
+    .signal{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      margin-top:12px; color:var(--muted); font-size:13px;
     }
-
-    @media (max-width: 560px) {
-      .theme-toggle,
-      .mode-toggle {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .theme-toggle button,
-      .mode-toggle button {
-        flex: 1;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .primary-btn,
-      .secondary-btn {
-        width: 100%;
-      }
-
-      .hero-visual {
-        min-height: 460px;
-      }
-
-      .dashboard-shell {
-        padding: 14px;
-      }
+    .score{font-size:28px; font-weight:700; letter-spacing:-.05em}
 
-      .dashboard-core,
-      .feature-card,
-      .system-card {
-        padding: 18px;
-      }
+    .goal-chart{padding:14px; border-radius:18px; border:1px solid var(--border); background:rgba(255,255,255,.03)}
+    .bars{
+      display:flex; align-items:end; gap:9px; height:118px; margin-top:16px;
+    }
+    .bars span{
+      flex:1; border-radius:14px 14px 6px 6px; background:rgba(255,255,255,.06); overflow:hidden; position:relative;
+    }
+    .bars span::after{
+      content:""; position:absolute; inset:auto 0 0 0; border-radius:inherit;
+      background:linear-gradient(180deg, rgba(var(--accent-rgb),.85), rgba(var(--accent-rgb),.24));
+    }
+    .bars span:nth-child(1){height:44px}
+    .bars span:nth-child(1)::after{height:58%}
+    .bars span:nth-child(2){height:68px}
+    .bars span:nth-child(2)::after{height:66%}
+    .bars span:nth-child(3){height:88px}
+    .bars span:nth-child(3)::after{height:74%}
+    .bars span:nth-child(4){height:112px}
+    .bars span:nth-child(4)::after{height:82%}
+
+    .forums-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}
+    .bubbles{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .bubbles span{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-height:30px; padding:0 12px; border-radius:999px;
+      border:1px solid var(--border); background:rgba(255,255,255,.045);
+      font-size:12px; color:var(--muted);
+    }
+
+    .system-section,.cta-section{padding:36px 0 42px}
+    .system-card,.cta-card{padding:28px; border-radius:30px}
+    .system-layout{
+      display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;
+    }
+    .system-layout h2,.cta-card h2{
+      margin:10px 0 0; font-size:clamp(34px,4vw,50px); line-height:1.02; letter-spacing:-.05em;
+    }
+    .system-copy p{
+      margin:0 0 14px; color:var(--muted); line-height:1.8;
+    }
+    .points{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px}
+    .point{
+      border-radius:22px; border:1px solid var(--border); background:rgba(255,255,255,.03); padding:18px;
+    }
+    .point strong{
+      display:block; font-size:16px; margin:12px 0 8px; letter-spacing:-.03em;
+    }
+    .point p{
+      margin:0; color:var(--muted); font-size:14px; line-height:1.7;
+    }
+
+    .cta-card{
+      display:flex; align-items:center; justify-content:space-between; gap:20px;
+    }
+
+    footer{
+      padding:12px 0 34px; color:var(--faint); font-size:13px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+
+    .icon{
+      width:18px; height:18px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;
+      flex:0 0 auto;
+    }
+    .icon.lg{width:20px;height:20px}
+
+    @media (max-width:1120px){
+      .hero{grid-template-columns:1fr; padding-top:42px}
+      .hero-visual{min-height:560px}
+      .scene{height:540px}
+      .crm,.research,.goals,.forums{grid-column:span 12}
+      .system-layout,.cta-card{display:grid; grid-template-columns:1fr}
+      .points{grid-template-columns:1fr}
+    }
+
+    @media (max-width:860px){
+      .wrap{width:min(var(--max),calc(100% - 24px))}
+      .nav-shell{flex-wrap:wrap; row-gap:14px}
+      .nav-links{order:3; width:100%; justify-content:space-between; gap:14px; font-size:13px}
+      .controls{width:100%; justify-content:space-between}
+      .dashboard-body,.crm-grid,.forums-grid{grid-template-columns:1fr}
+      .hero-visual{min-height:480px}
+      .scene{height:470px}
+      .main-dashboard{inset:54px 14px 24px 16px}
+      .side-panel{width:180px; height:144px}
+      .bottom-panel{width:200px; height:124px}
+    }
+
+    @media (max-width:560px){
+      .switch{width:100%; justify-content:space-between}
+      .switch button{flex:1}
+      .hero-actions{flex-direction:column}
+      .btn,.btn-secondary{width:100%}
+      h1{font-size:clamp(42px,14vw,60px)}
+      .hero-copy p{font-size:16px}
+      .scene{height:430px}
+      .side-panel{display:none}
+      .bottom-panel{display:none}
+      .dashboard-body{height:auto}
+      .main-dashboard{inset:10px 0 0 0}
+      .system-card,.cta-card,.card,.main-dashboard{padding:18px}
+      footer{flex-direction:column; align-items:flex-start}
     }
   </style>
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>
+  <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="wrap">
     <header class="nav">
       <div class="nav-shell glass">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <div class="brand-copy">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
             <strong>Veritas</strong>
             <span>Life OS</span>
           </div>
@@ -1168,13 +577,13 @@
           <a href="#access">Access</a>
         </nav>
 
-        <div class="nav-actions">
-          <div class="mode-toggle glass" aria-label="Mode switch">
+        <div class="controls">
+          <div class="switch glass" data-switch="mode">
             <button type="button" class="mode-btn active" data-mode="personal">Personal</button>
             <button type="button" class="mode-btn" data-mode="business">Business</button>
           </div>
 
-          <div class="theme-toggle glass" aria-label="Theme switch">
+          <div class="switch glass" data-switch="theme">
             <button type="button" class="theme-btn active" data-theme="dark">Dark</button>
             <button type="button" class="theme-btn" data-theme="light">Light</button>
           </div>
@@ -1186,36 +595,36 @@
       <section class="hero">
         <div class="hero-copy">
           <div class="eyebrow">
-            <span class="tiny-dot"></span>
+            <span class="dot"></span>
             Premium operating system for modern life management
           </div>
 
           <h1>
-            Everything important.
-            <span>One intelligent system.</span>
+            Run your life
+            <span>like a system.</span>
           </h1>
 
           <p>
-            Veritas Life OS brings priorities, trusted relationships, research, and execution into one premium interface designed to help modern personal and professional lives run with more clarity.
+            Veritas brings priorities, trusted people, research, and execution into one calm, premium interface built for modern personal and professional complexity.
           </p>
 
           <div class="hero-actions">
-            <a href="#access" class="primary-btn">
+            <a href="#access" class="btn">
               Request access
-              <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
                 <path d="M13 5l7 7-7 7"></path>
               </svg>
             </a>
-            <a href="#features" class="secondary-btn">See the system</a>
+            <a href="#features" class="btn-secondary">See the system</a>
           </div>
 
           <div class="hero-toggles">
-            <div class="mode-toggle glass" aria-label="Mode switch duplicate">
+            <div class="switch glass">
               <button type="button" class="mode-btn active" data-mode="personal">Personal mode</button>
               <button type="button" class="mode-btn" data-mode="business">Business mode</button>
             </div>
-            <div class="theme-toggle glass" aria-label="Theme switch duplicate">
+            <div class="switch glass">
               <button type="button" class="theme-btn active" data-theme="dark">Dark</button>
               <button type="button" class="theme-btn" data-theme="light">Light</button>
             </div>
@@ -1223,105 +632,129 @@
         </div>
 
         <div class="hero-visual">
-          <div class="hero-orb" aria-hidden="true"></div>
+          <div class="orb" aria-hidden="true"></div>
 
-          <div class="dashboard-shell glass-strong">
-            <div class="dashboard-core">
-              <div class="dashboard-topbar">
-                <div class="window-dots" aria-hidden="true">
-                  <span></span><span></span><span></span>
+          <div class="scene">
+            <div class="float-card main-dashboard glass-strong">
+              <div class="dashboard-core">
+                <div class="dashboard-head">
+                  <div class="window-dots" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="dashboard-pill">Veritas control layer</div>
                 </div>
-                <div class="dashboard-pill">Veritas control layer</div>
+
+                <div class="dashboard-body">
+                  <div class="stack">
+                    <div class="mini">
+                      <div class="mini-top">
+                        <span>Weekly priorities</span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
+                        </svg>
+                      </div>
+                      <div class="big-num">3 critical</div>
+                      <div class="progress"><span style="width:74%"></span></div>
+                      <div class="tiny-list">
+                        <div class="row"><span>Decision review</span><span class="badge">Today</span></div>
+                        <div class="row"><span>Provider shortlist</span><span class="badge">Live</span></div>
+                      </div>
+                    </div>
+
+                    <div class="mini">
+                      <div class="mini-top">
+                        <span>Trusted network</span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="9.5" cy="7" r="4"></circle>
+                          <path d="M20 8v6"></path>
+                          <path d="M23 11h-6"></path>
+                        </svg>
+                      </div>
+                      <div class="big-num">12 priority</div>
+                      <div class="tiny-list">
+                        <div class="row"><span>High-trust contacts</span><span class="badge">Updated</span></div>
+                        <div class="row"><span>Warm introductions</span><span class="badge">4</span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="stack">
+                    <div class="mini">
+                      <div class="mini-top">
+                        <span>AI research</span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M12 2v4"></path>
+                          <path d="M12 18v4"></path>
+                          <path d="M4.93 4.93l2.83 2.83"></path>
+                          <path d="M16.24 16.24l2.83 2.83"></path>
+                          <path d="M2 12h4"></path>
+                          <path d="M18 12h4"></path>
+                          <path d="M4.93 19.07l2.83-2.83"></path>
+                          <path d="M16.24 7.76l2.83-2.83"></path>
+                          <circle cx="12" cy="12" r="4"></circle>
+                        </svg>
+                      </div>
+                      <div class="row"><span>Signal quality</span><strong class="big-num" style="font-size:26px">86</strong></div>
+                      <div class="progress"><span style="width:86%"></span></div>
+                      <div class="tiny-list">
+                        <div class="row"><span>3 vetted providers</span><span class="badge">Verified</span></div>
+                      </div>
+                    </div>
+
+                    <div class="mini">
+                      <div class="mini-top">
+                        <span>Goals</span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <circle cx="12" cy="12" r="9"></circle>
+                          <circle cx="12" cy="12" r="4"></circle>
+                          <path d="M12 3v3"></path>
+                          <path d="M21 12h-3"></path>
+                        </svg>
+                      </div>
+                      <div class="big-num">74%</div>
+                      <div class="progress"><span style="width:74%"></span></div>
+                      <div class="tiny-list">
+                        <div class="row"><span>Quarterly target</span><span class="badge">On track</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
 
-              <div class="dashboard-grid">
-                <div class="stack">
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">Weekly priorities</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
-                      </svg>
-                    </div>
-                    <div class="mini-value">3 critical</div>
-                    <div class="progress"><span style="width: 74%;"></span></div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>Decision review</span><span class="tiny-badge">Today</span></div>
-                      <div class="tiny-row"><span>Provider shortlist</span><span class="tiny-badge">Live</span></div>
-                    </div>
-                  </div>
-
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">Trusted network</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9.5" cy="7" r="4"></circle>
-                        <path d="M20 8v6"></path>
-                        <path d="M23 11h-6"></path>
-                      </svg>
-                    </div>
-                    <div class="mini-value">12 priority</div>
-                    <div class="avatars" aria-hidden="true">
-                      <span></span><span></span><span></span><span></span>
-                    </div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>High-trust contacts</span><span class="tiny-badge">Updated</span></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="stack">
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">AI research</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 2v4"></path>
-                        <path d="M12 18v4"></path>
-                        <path d="M4.93 4.93l2.83 2.83"></path>
-                        <path d="M16.24 16.24l2.83 2.83"></path>
-                        <path d="M2 12h4"></path>
-                        <path d="M18 12h4"></path>
-                        <path d="M4.93 19.07l2.83-2.83"></path>
-                        <path d="M16.24 7.76l2.83-2.83"></path>
-                        <circle cx="12" cy="12" r="4"></circle>
-                      </svg>
-                    </div>
-                    <div class="tiny-row"><span>Signal quality</span><strong class="score">86</strong></div>
-                    <div class="progress"><span style="width: 86%;"></span></div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>3 matched providers</span><span class="tiny-badge">Verified</span></div>
-                    </div>
-                  </div>
-
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">Goals</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 3v3"></path>
-                        <path d="M21 12h-3"></path>
-                      </svg>
-                    </div>
-                    <div class="mini-value">74%</div>
-                    <div class="progress"><span style="width: 74%;"></span></div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>Quarterly target</span><span class="tiny-badge">On track</span></div>
-                    </div>
-                  </div>
-                </div>
+            <div class="float-card side-panel glass">
+              <div class="floating-title">Research signal</div>
+              <div class="metric-line">
+                <strong>86</strong>
+                <span class="muted">confidence</span>
               </div>
+              <div class="small-bars">
+                <div><span style="width:82%"></span></div>
+                <div><span style="width:68%"></span></div>
+                <div><span style="width:91%"></span></div>
+              </div>
+            </div>
 
+            <div class="float-card bottom-panel glass">
+              <div class="floating-title">Trusted cluster</div>
+              <div class="metric-line">
+                <strong>12</strong>
+                <span class="muted">priority people</span>
+              </div>
+              <div class="small-bars">
+                <div><span style="width:78%"></span></div>
+                <div><span style="width:58%"></span></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section id="features" class="feature-section">
-        <div class="section-heading">
-          <div class="tiny-label">
-            <span class="tiny-dot"></span>
+        <div class="section-head">
+          <div class="tiny">
+            <span class="dot"></span>
             Core tools
           </div>
           <h2>A modular system for decisions, relationships, and follow-through.</h2>
@@ -1331,155 +764,149 @@
         </div>
 
         <div class="bento">
-          <article class="feature-card feature-1 large glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
+          <article class="card crm glass-strong">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg class="icon lg" viewBox="0 0 24 24">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
               </div>
-              <div class="feature-no">01</div>
+              <div class="card-no">01</div>
             </div>
             <h3>Personal CRM</h3>
-            <p>
-              Organize relationships, log touchpoints, and keep the people who matter visible through a clean trust-based system.
-            </p>
+            <p>Organize relationships, track touchpoints, and keep the people who matter visible inside a trust-based system.</p>
 
             <div class="viz">
               <div class="viz-top">
                 <div class="viz-title">Relationship layer</div>
-                <div class="tiny-badge">12 active</div>
+                <div class="badge">12 active</div>
               </div>
 
               <div class="crm-grid">
-                <div class="metric-box">
-                  <div class="mini-label">Priority people</div>
+                <div class="panel">
+                  <div class="viz-title">Priority people</div>
                   <strong>12</strong>
                   <div class="avatars" aria-hidden="true">
                     <span></span><span></span><span></span><span></span><span></span>
                   </div>
                 </div>
-                <div class="list-box">
-                  <div class="mini-label">Recent touchpoints</div>
-                  <div class="tiny-bars">
-                    <div><span style="width: 78%;"></span></div>
-                    <div><span style="width: 56%;"></span></div>
-                    <div><span style="width: 84%;"></span></div>
+
+                <div class="panel">
+                  <div class="viz-title">Recent touchpoints</div>
+                  <div class="barstack">
+                    <div><span style="width:78%"></span></div>
+                    <div><span style="width:56%"></span></div>
+                    <div><span style="width:84%"></span></div>
                   </div>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="feature-card feature-2 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
+          <article class="card research glass-strong">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg class="icon lg" viewBox="0 0 24 24">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                 </svg>
               </div>
-              <div class="feature-no">02</div>
+              <div class="card-no">02</div>
             </div>
             <h3>AI News Researcher</h3>
-            <p>
-              Turn noise into signal with summarized updates, provider analysis, and high-quality research context.
-            </p>
+            <p>Turn noise into signal with summarized updates, provider analysis, and high-quality research context.</p>
 
             <div class="viz">
               <div class="viz-top">
                 <div class="viz-title">Signal engine</div>
-                <div class="tiny-badge">Live scan</div>
+                <div class="badge">Live scan</div>
               </div>
 
-              <div class="research-block">
-                <div class="input-line">Search topic, region, provider, legal issue…</div>
-                <div class="signal-card">
-                  <div class="mini-label">Research score</div>
-                  <div class="signal-row">
+              <div class="research-stack">
+                <div class="searchline">Search topic, region, provider, legal issue…</div>
+
+                <div class="block">
+                  <div class="viz-title">Research score</div>
+                  <div class="signal">
                     <span>Confidence</span>
                     <strong class="score">86</strong>
                   </div>
-                  <div class="progress"><span style="width: 86%;"></span></div>
+                  <div class="progress"><span style="width:86%"></span></div>
                 </div>
-                <div class="summary-card">
-                  <div class="mini-label">Summary</div>
-                  <div class="tiny-row" style="margin-top:10px;">
+
+                <div class="block">
+                  <div class="viz-title">Summary</div>
+                  <div class="row" style="margin-top:10px;">
                     <span>3 vetted providers surfaced</span>
-                    <span class="tiny-badge">High fit</span>
+                    <span class="badge">High fit</span>
                   </div>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="feature-card feature-3 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
+          <article class="card goals glass-strong">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg class="icon lg" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="9"></circle>
                   <circle cx="12" cy="12" r="5"></circle>
                   <path d="M12 7v5l3 3"></path>
                 </svg>
               </div>
-              <div class="feature-no">03</div>
+              <div class="card-no">03</div>
             </div>
             <h3>Goal Tracker</h3>
-            <p>
-              Move from intention to progress with measurable milestones, reviews, and system-level accountability.
-            </p>
+            <p>Move from intention to progress with measurable milestones, reviews, and system-level accountability.</p>
 
             <div class="viz">
               <div class="viz-top">
                 <div class="viz-title">Execution velocity</div>
-                <div class="tiny-badge">Q2</div>
+                <div class="badge">Q2</div>
               </div>
 
               <div class="goal-chart">
-                <div class="mini-label">Progress curve</div>
-                <div class="goal-bars" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                <div class="viz-title">Progress curve</div>
+                <div class="bars" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
                 </div>
               </div>
             </div>
           </article>
 
-          <article class="feature-card feature-4 large glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
+          <article class="card forums glass-strong">
+            <div class="card-top">
+              <div class="iconbox" aria-hidden="true">
+                <svg class="icon lg" viewBox="0 0 24 24">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </div>
-              <div class="feature-no">04</div>
+              <div class="card-no">04</div>
             </div>
             <h3>Community Forums</h3>
-            <p>
-              Participate in curated discussions, topic spaces, and trusted groups without losing signal quality or context.
-            </p>
+            <p>Participate in curated discussions and trusted topic spaces without losing signal quality or context.</p>
 
             <div class="viz">
               <div class="viz-top">
                 <div class="viz-title">Knowledge network</div>
-                <div class="tiny-badge">2.4k members</div>
+                <div class="badge">2.4k members</div>
               </div>
 
-              <div class="forum-grid">
-                <div class="forum-cluster">
-                  <div class="mini-label">Active threads</div>
-                  <strong style="display:block;font-size:28px;letter-spacing:-0.05em;margin-top:10px;">146</strong>
+              <div class="forums-grid">
+                <div class="panel">
+                  <div class="viz-title">Active threads</div>
+                  <strong>146</strong>
                 </div>
-                <div class="forum-cluster">
-                  <div class="mini-label">Private groups</div>
-                  <strong style="display:block;font-size:28px;letter-spacing:-0.05em;margin-top:10px;">08</strong>
+
+                <div class="panel">
+                  <div class="viz-title">Private groups</div>
+                  <strong>08</strong>
                 </div>
-                <div class="forum-cluster">
-                  <div class="mini-label">Clusters</div>
-                  <div class="cluster-bubbles">
+
+                <div class="panel">
+                  <div class="viz-title">Clusters</div>
+                  <div class="bubbles">
                     <span>Legal</span>
                     <span>Health</span>
                     <span>Career</span>
@@ -1496,26 +923,22 @@
         <div class="system-card glass-strong">
           <div class="system-layout">
             <div>
-              <div class="tiny-label">
-                <span class="tiny-dot"></span>
+              <div class="tiny">
+                <span class="dot"></span>
                 Why it feels different
               </div>
               <h2>Built like infrastructure, not another lifestyle app.</h2>
             </div>
 
             <div class="system-copy">
-              <p>
-                Veritas Life OS is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.
-              </p>
-              <p>
-                The result is calmer, clearer, and more capable than fragmented tools designed for isolated tasks.
-              </p>
+              <p>Veritas Life OS is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.</p>
+              <p>The result is calmer, clearer, and more capable than fragmented tools designed for isolated tasks.</p>
             </div>
           </div>
 
-          <div class="system-points">
+          <div class="points">
             <div class="point">
-              <svg class="symbol lg accent" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="icon lg" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--accent)">
                 <rect x="3" y="3" width="7" height="7" rx="2"></rect>
                 <rect x="14" y="3" width="7" height="7" rx="2"></rect>
                 <rect x="14" y="14" width="7" height="7" rx="2"></rect>
@@ -1526,7 +949,7 @@
             </div>
 
             <div class="point">
-              <svg class="symbol lg accent" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="icon lg" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--accent)">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
               <strong>Private by design</strong>
@@ -1534,7 +957,7 @@
             </div>
 
             <div class="point">
-              <svg class="symbol lg accent" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="icon lg" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--accent)">
                 <path d="M12 2v4"></path>
                 <path d="M12 18v4"></path>
                 <path d="M4.93 4.93l2.83 2.83"></path>
@@ -1555,22 +978,22 @@
       <section id="access" class="cta-section">
         <div class="cta-card glass-strong">
           <div>
-            <div class="tiny-label">
-              <span class="tiny-dot"></span>
+            <div class="tiny">
+              <span class="dot"></span>
               Early access
             </div>
             <h2>Bring structure, trust, and clarity back into the way you run life.</h2>
           </div>
 
-          <div style="display:flex;gap:14px;flex-wrap:wrap;">
-            <a href="#" class="primary-btn">Join waitlist</a>
-            <a href="#" class="secondary-btn">Book intro</a>
+          <div style="display:flex; gap:14px; flex-wrap:wrap;">
+            <a href="#" class="btn">Join waitlist</a>
+            <a href="#" class="btn-secondary">Book intro</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
+    <footer>
       <span>Veritas Life OS</span>
       <span>Premium operating system for modern life management</span>
     </footer>
@@ -1579,46 +1002,53 @@
   <script>
     (function () {
       const root = document.documentElement;
-      const themeButtons = document.querySelectorAll(".theme-btn");
-      const modeButtons = document.querySelectorAll(".mode-btn");
+      const themeBtns = document.querySelectorAll(".theme-btn");
+      const modeBtns = document.querySelectorAll(".mode-btn");
+
+      function syncButtons(type, value) {
+        const buttons = type === "theme" ? themeBtns : modeBtns;
+        buttons.forEach(btn => {
+          const match = type === "theme"
+            ? btn.dataset.theme === value
+            : btn.dataset.mode === value;
+          btn.classList.toggle("active", match);
+        });
+      }
 
       function setTheme(theme, save = true) {
         root.setAttribute("data-theme", theme);
-        themeButtons.forEach((btn) => {
-          btn.classList.toggle("active", btn.dataset.theme === theme);
-        });
+        syncButtons("theme", theme);
         if (save) localStorage.setItem("veritas-theme", theme);
       }
 
       function setMode(mode, save = true) {
         root.setAttribute("data-mode", mode);
-        modeButtons.forEach((btn) => {
-          btn.classList.toggle("active", btn.dataset.mode === mode);
-        });
+        syncButtons("mode", mode);
         if (save) localStorage.setItem("veritas-mode", mode);
       }
 
       const savedTheme = localStorage.getItem("veritas-theme");
       const savedMode = localStorage.getItem("veritas-mode");
-
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
       setTheme(savedTheme || (prefersDark ? "dark" : "light"), false);
       setMode(savedMode || "personal", false);
 
-      themeButtons.forEach((btn) => {
+      themeBtns.forEach(btn => {
         btn.addEventListener("click", () => setTheme(btn.dataset.theme));
       });
 
-      modeButtons.forEach((btn) => {
+      modeBtns.forEach(btn => {
         btn.addEventListener("click", () => setMode(btn.dataset.mode));
       });
 
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-        const stored = localStorage.getItem("veritas-theme");
-        if (!stored) {
-          setTheme(e.matches ? "dark" : "light", false);
-        }
-      });
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      if (media.addEventListener) {
+        media.addEventListener("change", e => {
+          const stored = localStorage.getItem("veritas-theme");
+          if (!stored) setTheme(e.matches ? "dark" : "light", false);
+        });
+      }
     })();
   </script>
 </body>
