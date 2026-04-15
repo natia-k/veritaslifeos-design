@@ -106,5 +106,25 @@
     }
   );
 
-  featureCards.forEach((card) => revealObserver.observe(card));
+ featureCards.forEach((card) => revealObserver.observe(card));
+})();
+
+(() => {
+  const bento = document.querySelector(".bento");
+  const workspaceTrigger = document.getElementById("workspaceTrigger");
+
+  if (!bento || !workspaceTrigger) return;
+
+  let workspaceMode = false;
+
+  workspaceTrigger.addEventListener("click", () => {
+    workspaceMode = !workspaceMode;
+
+    bento.classList.toggle("workspace-mode", workspaceMode);
+
+    document.querySelectorAll(".feature-card").forEach((card, index) => {
+      card.draggable = workspaceMode;
+      card.style.order = index + 1;
+    });
+  });
 })();
