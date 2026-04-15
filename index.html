@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veritas Life OS</title>
-  <meta name="description" content="Veritas Life OS — premium operating system for modern life management." />
+  <meta name="description" content="Veritas Life OS — a private system for relationships, research, priorities, and execution." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,44 +12,47 @@
   <style>
     :root{
       --bg:#07090d;
-      --bg-2:#0b0f16;
-      --bg-3:#101622;
+      --bg-2:#0c1017;
+      --bg-3:#111722;
 
       --surface:rgba(14,18,26,.72);
       --surface-2:rgba(18,24,34,.88);
       --surface-3:rgba(255,255,255,.035);
 
       --text:#f5f7fb;
-      --muted:rgba(245,247,251,.66);
+      --muted:rgba(245,247,251,.64);
       --faint:rgba(245,247,251,.38);
 
       --border:rgba(255,255,255,.08);
       --border-2:rgba(255,255,255,.14);
 
-      --accent:#5d6bff;
-      --accent-rgb:93,107,255;
-      --accent-soft:rgba(93,107,255,.16);
+      --accent:#5b6dff;
+      --accent-rgb:91,109,255;
+      --accent-soft:rgba(91,109,255,.16);
 
       --shadow:0 30px 80px rgba(0,0,0,.38);
-      --shadow-soft:0 12px 30px rgba(0,0,0,.22);
+      --shadow-soft:0 10px 30px rgba(0,0,0,.22);
 
-      --noise-opacity:.015;
       --grid-opacity:.045;
+      --noise-opacity:.014;
+      --blur:20px;
 
       --max:1320px;
-      --blur:20px;
+      --radius-xl:36px;
+      --radius-lg:28px;
+      --radius-md:20px;
     }
 
     html[data-mode="business"]{
-      --accent:#7f9776;
-      --accent-rgb:127,151,118;
-      --accent-soft:rgba(127,151,118,.16);
+      --accent:#7f9778;
+      --accent-rgb:127,151,120;
+      --accent-soft:rgba(127,151,120,.16);
     }
 
     html[data-theme="light"]{
-      --bg:#edf1f6;
-      --bg-2:#e7ecf3;
-      --bg-3:#dde4ee;
+      --bg:#eef2f7;
+      --bg-2:#e7edf4;
+      --bg-3:#dde5ef;
 
       --surface:rgba(255,255,255,.78);
       --surface-2:rgba(255,255,255,.92);
@@ -65,29 +68,44 @@
       --shadow:0 22px 55px rgba(17,24,39,.08);
       --shadow-soft:0 8px 22px rgba(17,24,39,.05);
 
+      --grid-opacity:.034;
       --noise-opacity:.008;
-      --grid-opacity:.035;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
       font-family:"Inter",sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 78% 20%, rgba(var(--accent-rgb),.10), transparent 17%),
-        radial-gradient(circle at 20% 12%, rgba(var(--accent-rgb),.04), transparent 18%),
+        radial-gradient(circle at 76% 18%, rgba(var(--accent-rgb),.10), transparent 16%),
+        radial-gradient(circle at 20% 10%, rgba(var(--accent-rgb),.04), transparent 18%),
         linear-gradient(180deg,var(--bg),var(--bg-2) 48%, var(--bg-3));
       overflow-x:hidden;
       transition:background .35s ease,color .35s ease;
     }
 
-    a{text-decoration:none;color:inherit}
-    button{font:inherit}
-    svg{display:block}
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
 
-    .bg{
+    button{
+      font:inherit;
+    }
+
+    svg{
+      display:block;
+    }
+
+    .bg-layer{
       position:fixed;
       inset:0;
       pointer-events:none;
@@ -95,7 +113,7 @@
       overflow:hidden;
     }
 
-    .bg::before{
+    .bg-layer::before{
       content:"";
       position:absolute;
       inset:0;
@@ -107,7 +125,7 @@
       -webkit-mask-image:radial-gradient(circle at center, black 34%, transparent 86%);
     }
 
-    .bg::after{
+    .bg-layer::after{
       content:"";
       position:absolute;
       inset:-120%;
@@ -173,10 +191,26 @@
       box-shadow:0 0 16px rgba(var(--accent-rgb),.55);
     }
 
+    .icon{
+      width:18px;
+      height:18px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.8;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+      flex:0 0 auto;
+    }
+
+    .icon.lg{
+      width:20px;
+      height:20px;
+    }
+
     .nav{
       position:sticky;
       top:16px;
-      z-index:40;
+      z-index:50;
       padding-top:16px;
     }
 
@@ -290,11 +324,11 @@
 
     .hero{
       display:grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap:32px;
+      grid-template-columns:.95fr 1.05fr;
+      gap:34px;
       align-items:center;
       min-height:calc(100vh - 110px);
-      padding:40px 0 20px;
+      padding:40px 0 26px;
     }
 
     .hero-copy{
@@ -323,7 +357,7 @@
       line-height:.90;
       letter-spacing:-.07em;
       font-weight:700;
-      max-width:640px;
+      max-width:680px;
     }
 
     h1 span{
@@ -333,7 +367,7 @@
 
     .hero-copy p{
       margin:24px 0 0;
-      max-width:540px;
+      max-width:560px;
       font-size:19px;
       line-height:1.68;
       color:var(--muted);
@@ -408,6 +442,7 @@
         radial-gradient(circle at 50% 78%, rgba(var(--accent-rgb),.10), transparent 18%);
       filter:blur(26px);
       opacity:.95;
+      pointer-events:none;
     }
 
     .scene{
@@ -425,6 +460,10 @@
     .main-shell{
       inset:60px 28px 28px 70px;
       padding:18px;
+      transform:perspective(1800px) rotateY(-8deg) rotateX(4deg);
+      transform-style:preserve-3d;
+      transition:transform .25s ease;
+      will-change:transform;
     }
 
     .main-core{
@@ -490,7 +529,7 @@
     .dashboard{
       padding:18px;
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
+      grid-template-columns:1.05fr .95fr;
       gap:16px;
       height:calc(100% - 62px);
     }
@@ -602,7 +641,7 @@
 
     .network-strip{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:1fr 1fr;
       gap:12px;
       margin-top:12px;
     }
@@ -628,7 +667,9 @@
       background:linear-gradient(180deg, rgba(var(--accent-rgb),.30), rgba(255,255,255,.07));
     }
 
-    .avatars span:first-child{margin-left:0}
+    .avatars span:first-child{
+      margin-left:0;
+    }
 
     .bars{
       display:grid;
@@ -652,53 +693,6 @@
       height:100%;
       border-radius:inherit;
       background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.28));
-    }
-
-    .float{
-      width:240px;
-      min-height:160px;
-      padding:18px;
-    }
-
-    .float.right{
-      top:46px;
-      right:0;
-      transform:rotate(2deg);
-    }
-
-    .float.left{
-      left:0;
-      bottom:24px;
-      transform:rotate(-2deg);
-      width:250px;
-      min-height:150px;
-    }
-
-    .float .label{
-      font-size:11px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:var(--faint);
-    }
-
-    .metric{
-      display:flex;
-      align-items:flex-end;
-      gap:8px;
-      margin-top:14px;
-    }
-
-    .metric strong{
-      font-size:48px;
-      line-height:1;
-      letter-spacing:-.07em;
-      color:var(--text);
-    }
-
-    .metric span{
-      font-size:15px;
-      color:var(--muted);
-      margin-bottom:6px;
     }
 
     .feature-section{
@@ -854,7 +848,8 @@
       gap:12px;
     }
 
-    .searchline,.block{
+    .searchline,
+    .block{
       border-radius:18px;
       border:1px solid var(--border);
       background:rgba(255,255,255,.03);
@@ -869,7 +864,9 @@
       color:var(--faint);
     }
 
-    .block{padding:14px}
+    .block{
+      padding:14px;
+    }
 
     .signal{
       display:flex;
@@ -1036,22 +1033,6 @@
       gap:12px;
     }
 
-    .icon{
-      width:18px;
-      height:18px;
-      stroke:currentColor;
-      fill:none;
-      stroke-width:1.8;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      flex:0 0 auto;
-    }
-
-    .icon.lg{
-      width:20px;
-      height:20px;
-    }
-
     @media (max-width:1180px){
       .hero{
         grid-template-columns:1fr;
@@ -1067,11 +1048,16 @@
         height:610px;
       }
 
+      .main-shell{
+        transform:none !important;
+      }
+
       .crm,.research,.goals,.forums{
         grid-column:span 12;
       }
 
-      .system-layout,.cta-card{
+      .system-layout,
+      .cta-card{
         display:grid;
         grid-template-columns:1fr;
       }
@@ -1122,18 +1108,6 @@
       .main-shell{
         inset:40px 10px 20px 26px;
       }
-
-      .float.right{
-        width:190px;
-        min-height:140px;
-        top:10px;
-      }
-
-      .float.left{
-        width:200px;
-        min-height:132px;
-        left:-4px;
-      }
     }
 
     @media (max-width:560px){
@@ -1150,7 +1124,8 @@
         flex-direction:column;
       }
 
-      .btn,.btn-secondary{
+      .btn,
+      .btn-secondary{
         width:100%;
       }
 
@@ -1166,15 +1141,13 @@
         height:430px;
       }
 
-      .float{
-        display:none;
-      }
-
       .main-shell{
         inset:0;
       }
 
-      .system-card,.cta-card,.card{
+      .system-card,
+      .cta-card,
+      .card{
         padding:18px;
       }
 
@@ -1186,7 +1159,7 @@
   </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
+  <div class="bg-layer" aria-hidden="true"></div>
 
   <div class="wrap">
     <header class="nav">
@@ -1224,21 +1197,20 @@
         <div class="hero-copy">
           <div class="eyebrow">
             <span class="dot"></span>
-            Premium operating system for modern life management
+            Private system for relationships, research, priorities, and execution
           </div>
 
           <h1>
-            Everything important.
-            <span>One clear system.</span>
+            Run life with
+            <span>clarity and control.</span>
           </h1>
 
-          <p>
-            Veritas brings priorities, trusted relationships, research, and execution into one deliberate interface built for personal and professional complexity.
+          <p id="hero-subline">
+            A personal intelligence layer for trusted decisions, key relationships, research, and follow-through — unified in one deliberate interface.
           </p>
 
           <div class="hero-actions">
-            <a href="#access" class="btn">
-              Request access
+            <a href="#access" class="btn">Request access
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
                 <path d="M13 5l7 7-7 7"></path>
@@ -1264,7 +1236,7 @@
           <div class="hero-glow" aria-hidden="true"></div>
 
           <div class="scene">
-            <div class="panel main-shell glass-strong">
+            <div class="panel main-shell glass-strong" id="hero-panel">
               <div class="main-core">
                 <div class="windowbar">
                   <div class="window-dots" aria-hidden="true">
@@ -1278,17 +1250,17 @@
                     <div class="mini left-tall">
                       <div>
                         <div class="mini-top">
-                          <span>Weekly priorities</span>
+                          <span id="hero-priority-label">Weekly priorities</span>
                           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
                           </svg>
                         </div>
-                        <div class="big">3</div>
-                        <div class="mid" style="margin-top:4px;">critical priorities</div>
-                        <div class="progress"><span style="width:78%"></span></div>
+                        <div class="big" id="hero-priority-number">3</div>
+                        <div class="mid" id="hero-priority-text" style="margin-top:4px;">critical priorities</div>
+                        <div class="progress"><span id="hero-priority-progress" style="width:78%"></span></div>
                       </div>
 
-                      <div class="rows">
+                      <div class="rows" id="hero-priority-rows">
                         <div class="row"><span>Decision review</span><span class="badge">Today</span></div>
                         <div class="row"><span>Provider shortlist</span><span class="badge">Live</span></div>
                         <div class="row"><span>Escalation track</span><span class="badge">2 pending</span></div>
@@ -1297,7 +1269,7 @@
 
                     <div class="mini">
                       <div class="mini-top">
-                        <span>Trusted network</span>
+                        <span id="hero-network-label">Trusted network</span>
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                           <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
                           <circle cx="9.5" cy="7" r="4"></circle>
@@ -1310,9 +1282,9 @@
                         <div class="network-box">
                           <div class="tiny" style="letter-spacing:.14em; font-size:10px;">
                             <span class="dot" style="width:6px;height:6px;"></span>
-                            Priority people
+                            <span id="network-box-label-1">Priority people</span>
                           </div>
-                          <div class="mid" style="margin-top:8px;">12</div>
+                          <div class="mid" id="network-box-value-1" style="margin-top:8px;">12</div>
                           <div class="avatars" aria-hidden="true">
                             <span></span><span></span><span></span><span></span><span></span>
                           </div>
@@ -1321,7 +1293,7 @@
                         <div class="network-box">
                           <div class="tiny" style="letter-spacing:.14em; font-size:10px;">
                             <span class="dot" style="width:6px;height:6px;"></span>
-                            Recent touchpoints
+                            <span id="network-box-label-2">Recent touchpoints</span>
                           </div>
                           <div class="bars">
                             <div><span style="width:78%"></span></div>
@@ -1336,7 +1308,7 @@
                   <div class="stack">
                     <div class="mini">
                       <div class="mini-top">
-                        <span>AI research</span>
+                        <span id="hero-research-label">AI research</span>
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                           <path d="M12 2v4"></path>
                           <path d="M12 18v4"></path>
@@ -1351,13 +1323,13 @@
                       </div>
 
                       <div class="row" style="margin-top:6px;">
-                        <span>Signal quality</span>
-                        <strong class="score">86</strong>
+                        <span id="hero-research-sub">Signal quality</span>
+                        <strong class="score" id="hero-research-score">86</strong>
                       </div>
 
-                      <div class="progress"><span style="width:86%"></span></div>
+                      <div class="progress"><span id="hero-research-progress" style="width:86%"></span></div>
 
-                      <div class="rows">
+                      <div class="rows" id="hero-research-rows">
                         <div class="row"><span>3 vetted providers</span><span class="badge">Verified</span></div>
                         <div class="row"><span>2 reports summarized</span><span class="badge">Fresh</span></div>
                       </div>
@@ -1365,7 +1337,7 @@
 
                     <div class="mini">
                       <div class="mini-top">
-                        <span>Goals</span>
+                        <span id="hero-goals-label">Goals</span>
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                           <circle cx="12" cy="12" r="9"></circle>
                           <circle cx="12" cy="12" r="4"></circle>
@@ -1374,10 +1346,10 @@
                         </svg>
                       </div>
 
-                      <div class="mid">74% on track</div>
-                      <div class="progress"><span style="width:74%"></span></div>
+                      <div class="mid" id="hero-goals-text">74% on track</div>
+                      <div class="progress"><span id="hero-goals-progress" style="width:74%"></span></div>
 
-                      <div class="rows">
+                      <div class="rows" id="hero-goals-rows">
                         <div class="row"><span>Quarterly target</span><span class="badge">On track</span></div>
                         <div class="row"><span>Review cadence</span><span class="badge">Weekly</span></div>
                       </div>
@@ -1385,13 +1357,13 @@
 
                     <div class="mini">
                       <div class="mini-top">
-                        <span>Forum clusters</span>
+                        <span id="hero-forum-label">Forum clusters</span>
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                         </svg>
                       </div>
 
-                      <div class="rows">
+                      <div class="rows" id="hero-forum-rows">
                         <div class="row"><span>Legal</span><span class="badge">34 threads</span></div>
                         <div class="row"><span>Career</span><span class="badge">18 threads</span></div>
                         <div class="row"><span>Family</span><span class="badge">12 threads</span></div>
@@ -1399,31 +1371,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="panel float right glass">
-              <div class="label">Research signal</div>
-              <div class="metric">
-                <strong>86</strong>
-                <span>confidence</span>
-              </div>
-              <div class="bars" style="margin-top:16px;">
-                <div><span style="width:82%"></span></div>
-                <div><span style="width:68%"></span></div>
-                <div><span style="width:91%"></span></div>
-              </div>
-            </div>
-
-            <div class="panel float left glass">
-              <div class="label">Trusted cluster</div>
-              <div class="metric">
-                <strong>12</strong>
-                <span>priority people</span>
-              </div>
-              <div class="bars" style="margin-top:16px;">
-                <div><span style="width:78%"></span></div>
-                <div><span style="width:58%"></span></div>
               </div>
             </div>
           </div>
@@ -1674,7 +1621,7 @@
 
     <footer>
       <span>Veritas Life OS</span>
-      <span>Premium operating system for modern life management</span>
+      <span>Private intelligence layer for real life</span>
     </footer>
   </div>
 
@@ -1683,6 +1630,80 @@
       const root = document.documentElement;
       const themeBtns = document.querySelectorAll(".theme-btn");
       const modeBtns = document.querySelectorAll(".mode-btn");
+      const heroPanel = document.getElementById("hero-panel");
+
+      const modeContent = {
+        personal: {
+          subline:
+            "A personal intelligence layer for trusted decisions, key relationships, research, and follow-through — unified in one deliberate interface.",
+          priorityLabel: "Weekly priorities",
+          priorityNumber: "3",
+          priorityText: "critical priorities",
+          priorityRows: [
+            ["Decision review", "Today"],
+            ["Provider shortlist", "Live"],
+            ["Escalation track", "2 pending"]
+          ],
+          networkLabel: "Trusted network",
+          networkBox1Label: "Priority people",
+          networkBox1Value: "12",
+          networkBox2Label: "Recent touchpoints",
+          researchLabel: "AI research",
+          researchSub: "Signal quality",
+          researchScore: "86",
+          researchRows: [
+            ["3 vetted providers", "Verified"],
+            ["2 reports summarized", "Fresh"]
+          ],
+          goalsLabel: "Goals",
+          goalsText: "74% on track",
+          goalsRows: [
+            ["Quarterly target", "On track"],
+            ["Review cadence", "Weekly"]
+          ],
+          forumLabel: "Forum clusters",
+          forumRows: [
+            ["Legal", "34 threads"],
+            ["Career", "18 threads"],
+            ["Family", "12 threads"]
+          ]
+        },
+        business: {
+          subline:
+            "A private operating layer for executive priorities, deal flow, research, trusted networks, and measurable follow-through.",
+          priorityLabel: "Executive priorities",
+          priorityNumber: "5",
+          priorityText: "active initiatives",
+          priorityRows: [
+            ["Board prep", "Tomorrow"],
+            ["Partner shortlist", "Live"],
+            ["Hiring review", "3 open"]
+          ],
+          networkLabel: "Executive network",
+          networkBox1Label: "Key relationships",
+          networkBox1Value: "18",
+          networkBox2Label: "Recent outreach",
+          researchLabel: "Market research",
+          researchSub: "Signal quality",
+          researchScore: "91",
+          researchRows: [
+            ["4 market briefs", "Updated"],
+            ["2 vendor scans", "Live"]
+          ],
+          goalsLabel: "KPI tracking",
+          goalsText: "81% on target",
+          goalsRows: [
+            ["Quarterly KPI", "On track"],
+            ["Review cadence", "Monday"]
+          ],
+          forumLabel: "Workstreams",
+          forumRows: [
+            ["Pipeline", "22 items"],
+            ["Hiring", "9 items"],
+            ["Ops", "14 items"]
+          ]
+        }
+      };
 
       function syncButtons(type, value) {
         const buttons = type === "theme" ? themeBtns : modeBtns;
@@ -1694,6 +1715,45 @@
         });
       }
 
+      function renderRows(containerId, rows) {
+        const el = document.getElementById(containerId);
+        if (!el) return;
+        el.innerHTML = rows.map(([left, right]) => `
+          <div class="row"><span>${left}</span><span class="badge">${right}</span></div>
+        `).join("");
+      }
+
+      function applyModeContent(mode) {
+        const c = modeContent[mode];
+
+        document.getElementById("hero-subline").textContent = c.subline;
+        document.getElementById("hero-priority-label").textContent = c.priorityLabel;
+        document.getElementById("hero-priority-number").textContent = c.priorityNumber;
+        document.getElementById("hero-priority-text").textContent = c.priorityText;
+        document.getElementById("hero-network-label").textContent = c.networkLabel;
+        document.getElementById("network-box-label-1").textContent = c.networkBox1Label;
+        document.getElementById("network-box-value-1").textContent = c.networkBox1Value;
+        document.getElementById("network-box-label-2").textContent = c.networkBox2Label;
+        document.getElementById("hero-research-label").textContent = c.researchLabel;
+        document.getElementById("hero-research-sub").textContent = c.researchSub;
+        document.getElementById("hero-research-score").textContent = c.researchScore;
+        document.getElementById("hero-goals-label").textContent = c.goalsLabel;
+        document.getElementById("hero-goals-text").textContent = c.goalsText;
+        document.getElementById("hero-forum-label").textContent = c.forumLabel;
+
+        renderRows("hero-priority-rows", c.priorityRows);
+        renderRows("hero-research-rows", c.researchRows);
+        renderRows("hero-goals-rows", c.goalsRows);
+        renderRows("hero-forum-rows", c.forumRows);
+
+        document.getElementById("hero-priority-progress").style.width =
+          mode === "business" ? "82%" : "78%";
+        document.getElementById("hero-research-progress").style.width =
+          mode === "business" ? "91%" : "86%";
+        document.getElementById("hero-goals-progress").style.width =
+          mode === "business" ? "81%" : "74%";
+      }
+
       function setTheme(theme, save = true) {
         root.setAttribute("data-theme", theme);
         syncButtons("theme", theme);
@@ -1703,6 +1763,7 @@
       function setMode(mode, save = true) {
         root.setAttribute("data-mode", mode);
         syncButtons("mode", mode);
+        applyModeContent(mode);
         if (save) localStorage.setItem("veritas-mode", mode);
       }
 
@@ -1726,6 +1787,29 @@
         media.addEventListener("change", e => {
           const stored = localStorage.getItem("veritas-theme");
           if (!stored) setTheme(e.matches ? "dark" : "light", false);
+        });
+      }
+
+      if (window.innerWidth > 1180 && heroPanel) {
+        const scene = heroPanel.parentElement;
+
+        scene.addEventListener("mousemove", (e) => {
+          const rect = scene.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+          const rotateY = -8 + x * 8;
+          const rotateX = 4 - y * 7;
+          const translateX = x * 10;
+          const translateY = y * -8;
+
+          heroPanel.style.transform =
+            `perspective(1800px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateX(${translateX}px) translateY(${translateY}px)`;
+        });
+
+        scene.addEventListener("mouseleave", () => {
+          heroPanel.style.transform =
+            "perspective(1800px) rotateY(-8deg) rotateX(4deg) translateX(0px) translateY(0px)";
         });
       }
     })();
