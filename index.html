@@ -4,1187 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veritas Life OS</title>
-  <meta name="description" content="Veritas Life OS — a private system for relationships, research, priorities, and execution." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#07090d;
-      --bg-2:#0c1017;
-      --bg-3:#111722;
-
-      --surface:rgba(14,18,26,.72);
-      --surface-2:rgba(18,24,34,.88);
-      --surface-3:rgba(255,255,255,.035);
-
-      --text:#f5f7fb;
-      --muted:rgba(245,247,251,.64);
-      --faint:rgba(245,247,251,.38);
-
-      --border:rgba(255,255,255,.08);
-      --border-2:rgba(255,255,255,.14);
-
-      --accent:#5b6dff;
-      --accent-rgb:91,109,255;
-      --accent-soft:rgba(91,109,255,.16);
-
-      --shadow:0 30px 80px rgba(0,0,0,.38);
-      --shadow-soft:0 10px 30px rgba(0,0,0,.22);
-
-      --grid-opacity:.045;
-      --noise-opacity:.014;
-      --blur:20px;
-
-      --max:1320px;
-      --radius-xl:36px;
-      --radius-lg:28px;
-      --radius-md:20px;
-    }
-
-    html[data-mode="business"]{
-      --accent:#7f9778;
-      --accent-rgb:127,151,120;
-      --accent-soft:rgba(127,151,120,.16);
-    }
-
-    html[data-theme="light"]{
-      --bg:#eef2f7;
-      --bg-2:#e7edf4;
-      --bg-3:#dde5ef;
-
-      --surface:rgba(255,255,255,.78);
-      --surface-2:rgba(255,255,255,.92);
-      --surface-3:rgba(17,24,39,.03);
-
-      --text:#101722;
-      --muted:rgba(16,23,34,.68);
-      --faint:rgba(16,23,34,.42);
-
-      --border:rgba(17,24,39,.08);
-      --border-2:rgba(17,24,39,.14);
-
-      --shadow:0 22px 55px rgba(17,24,39,.08);
-      --shadow-soft:0 8px 22px rgba(17,24,39,.05);
-
-      --grid-opacity:.034;
-      --noise-opacity:.008;
-    }
-
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      margin:0;
-      font-family:"Inter",sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 76% 18%, rgba(var(--accent-rgb),.10), transparent 16%),
-        radial-gradient(circle at 20% 10%, rgba(var(--accent-rgb),.04), transparent 18%),
-        linear-gradient(180deg,var(--bg),var(--bg-2) 48%, var(--bg-3));
-      overflow-x:hidden;
-      transition:background .35s ease,color .35s ease;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    button{
-      font:inherit;
-    }
-
-    svg{
-      display:block;
-    }
-
-    .bg-layer{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
-      overflow:hidden;
-    }
-
-    .bg-layer::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background-image:
-        linear-gradient(rgba(127,127,127,var(--grid-opacity)) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(127,127,127,var(--grid-opacity)) 1px, transparent 1px);
-      background-size:44px 44px;
-      mask-image:radial-gradient(circle at center, black 34%, transparent 86%);
-      -webkit-mask-image:radial-gradient(circle at center, black 34%, transparent 86%);
-    }
-
-    .bg-layer::after{
-      content:"";
-      position:absolute;
-      inset:-120%;
-      background-image:radial-gradient(circle, rgba(255,255,255,.8) .45px, transparent .8px);
-      background-size:7px 7px;
-      opacity:var(--noise-opacity);
-      animation:noiseShift 11s linear infinite;
-    }
-
-    @keyframes noiseShift{
-      0%{transform:translate(0,0)}
-      25%{transform:translate(-2%,1%)}
-      50%{transform:translate(1%,-2%)}
-      75%{transform:translate(-1%,2%)}
-      100%{transform:translate(0,0)}
-    }
-
-    .wrap{
-      width:min(var(--max), calc(100% - 32px));
-      margin:0 auto;
-      position:relative;
-      z-index:2;
-    }
-
-    .glass{
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid var(--border);
-      backdrop-filter:blur(var(--blur)) saturate(130%);
-      -webkit-backdrop-filter:blur(var(--blur)) saturate(130%);
-      box-shadow:var(--shadow-soft);
-    }
-
-    .glass-strong{
-      background:
-        radial-gradient(circle at 82% 18%, rgba(var(--accent-rgb),.08), transparent 26%),
-        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
-      border:1px solid var(--border);
-      backdrop-filter:blur(calc(var(--blur) + 2px)) saturate(135%);
-      -webkit-backdrop-filter:blur(calc(var(--blur) + 2px)) saturate(135%);
-      box-shadow:var(--shadow);
-    }
-
-    html[data-theme="light"] .glass,
-    html[data-theme="light"] .glass-strong{
-      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.70));
-    }
-
-    .tiny{
-      display:inline-flex;
-      align-items:center;
-      gap:9px;
-      font-size:11px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color:var(--faint);
-    }
-
-    .dot{
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:rgba(var(--accent-rgb),.95);
-      box-shadow:0 0 16px rgba(var(--accent-rgb),.55);
-    }
-
-    .icon{
-      width:18px;
-      height:18px;
-      stroke:currentColor;
-      fill:none;
-      stroke-width:1.8;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      flex:0 0 auto;
-    }
-
-    .icon.lg{
-      width:20px;
-      height:20px;
-    }
-
-    .nav{
-      position:sticky;
-      top:16px;
-      z-index:50;
-      padding-top:16px;
-    }
-
-    .nav-shell{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:14px 18px;
-      border-radius:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
-      border:1px solid var(--border);
-      box-shadow:var(--shadow-soft);
-      backdrop-filter:blur(18px) saturate(125%);
-      -webkit-backdrop-filter:blur(18px) saturate(125%);
-    }
-
-    html[data-theme="light"] .nav-shell{
-      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.68));
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .mark{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 28%),
-        linear-gradient(180deg, rgba(var(--accent-rgb),.22), rgba(255,255,255,.03));
-      flex:0 0 auto;
-    }
-
-    .mark::before{
-      content:"";
-      position:absolute;
-      inset:11px;
-      border:1px solid rgba(255,255,255,.34);
-      border-radius:7px;
-      transform:rotate(45deg);
-    }
-
-    .brand strong{
-      display:block;
-      font-size:14px;
-      line-height:1.1;
-    }
-
-    .brand span{
-      display:block;
-      font-size:12px;
-      color:var(--faint);
-      margin-top:2px;
-    }
-
-    .nav-links{
-      display:flex;
-      gap:28px;
-      font-size:14px;
-      color:var(--muted);
-    }
-
-    .nav-links a:hover{
-      color:var(--text);
-    }
-
-    .controls{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .switch{
-      display:inline-flex;
-      gap:4px;
-      padding:4px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--surface);
-    }
-
-    .switch button{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      padding:8px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:12px;
-      font-weight:600;
-      transition:.22s ease;
-    }
-
-    .switch button.active{
-      background:rgba(255,255,255,.08);
-      color:var(--text);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
-    }
-
-    html[data-theme="light"] .switch button.active{
-      background:rgba(16,23,34,.06);
-    }
-
-    .hero{
-      display:grid;
-      grid-template-columns:.95fr 1.05fr;
-      gap:34px;
-      align-items:center;
-      min-height:calc(100vh - 110px);
-      padding:40px 0 26px;
-    }
-
-    .hero-copy{
-      max-width:620px;
-      position:relative;
-      z-index:2;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:var(--surface);
-      color:var(--muted);
-      font-size:12px;
-      font-weight:500;
-      box-shadow:var(--shadow-soft);
-    }
-
-    h1{
-      margin:18px 0 0;
-      font-size:clamp(58px,8vw,104px);
-      line-height:.90;
-      letter-spacing:-.07em;
-      font-weight:700;
-      max-width:680px;
-    }
-
-    h1 span{
-      display:block;
-      color:color-mix(in srgb, var(--text) 70%, transparent);
-    }
-
-    .hero-copy p{
-      margin:24px 0 0;
-      max-width:560px;
-      font-size:19px;
-      line-height:1.68;
-      color:var(--muted);
-    }
-
-    .hero-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-      margin-top:30px;
-    }
-
-    .btn,
-    .btn-secondary{
-      min-height:52px;
-      padding:0 18px;
-      border-radius:16px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      border:1px solid var(--border);
-      font-size:14px;
-      font-weight:600;
-      transition:.22s ease;
-    }
-
-    .btn{
-      background:linear-gradient(180deg, rgba(var(--accent-rgb),.16), rgba(255,255,255,.03));
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.12),
-        0 10px 24px rgba(var(--accent-rgb),.10);
-      color:var(--text);
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-    }
-
-    html[data-theme="light"] .btn-secondary{
-      background:rgba(16,23,34,.035);
-    }
-
-    .btn:hover,
-    .btn-secondary:hover{
-      transform:translateY(-2px);
-      border-color:var(--border-2);
-    }
-
-    .hero-toggles{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:22px;
-    }
-
-    .hero-visual{
-      position:relative;
-      min-height:760px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .hero-glow{
-      position:absolute;
-      inset:6% 2% 6% 10%;
-      border-radius:48px;
-      background:
-        radial-gradient(circle at 62% 26%, rgba(var(--accent-rgb),.20), transparent 17%),
-        radial-gradient(circle at 52% 54%, rgba(255,255,255,.05), transparent 16%),
-        radial-gradient(circle at 50% 78%, rgba(var(--accent-rgb),.10), transparent 18%);
-      filter:blur(26px);
-      opacity:.95;
-      pointer-events:none;
-    }
-
-    .scene{
-      position:relative;
-      width:min(100%, 760px);
-      height:720px;
-    }
-
-    .panel{
-      position:absolute;
-      border-radius:34px;
-      overflow:hidden;
-    }
-
-    .main-shell{
-      inset:60px 28px 28px 70px;
-      padding:18px;
-      transform:perspective(1800px) rotateY(-8deg) rotateX(4deg);
-      transform-style:preserve-3d;
-      transition:transform .25s ease;
-      will-change:transform;
-    }
-
-    .main-core{
-      height:100%;
-      border-radius:28px;
-      border:1px solid var(--border);
-      overflow:hidden;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      position:relative;
-    }
-
-    .main-core::after{
-      content:"";
-      position:absolute;
-      right:-10%;
-      top:16%;
-      width:280px;
-      height:280px;
-      border-radius:999px;
-      background:radial-gradient(circle, rgba(var(--accent-rgb),.16), transparent 66%);
-      filter:blur(24px);
-      pointer-events:none;
-    }
-
-    .windowbar{
-      height:62px;
-      padding:0 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--border);
-      background:rgba(255,255,255,.02);
-    }
-
-    .window-dots{
-      display:flex;
-      gap:6px;
-    }
-
-    .window-dots span{
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.16);
-    }
-
-    html[data-theme="light"] .window-dots span{
-      background:rgba(17,24,39,.14);
-    }
-
-    .pill{
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      font-size:11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--faint);
-      background:var(--surface);
-    }
-
-    .dashboard{
-      padding:18px;
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:16px;
-      height:calc(100% - 62px);
-    }
-
-    .stack{
-      display:grid;
-      gap:16px;
-    }
-
-    .mini{
-      border-radius:24px;
-      border:1px solid var(--border);
-      padding:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.016));
-      position:relative;
-      overflow:hidden;
-    }
-
-    .mini::after{
-      content:"";
-      position:absolute;
-      right:-18%;
-      bottom:-35%;
-      width:180px;
-      height:180px;
-      border-radius:999px;
-      background:radial-gradient(circle, rgba(var(--accent-rgb),.12), transparent 64%);
-      filter:blur(20px);
-    }
-
-    .mini-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:14px;
-      font-size:11px;
-      letter-spacing:.15em;
-      text-transform:uppercase;
-      color:var(--faint);
-    }
-
-    .big{
-      font-size:42px;
-      line-height:1;
-      letter-spacing:-.06em;
-      font-weight:700;
-      color:var(--text);
-    }
-
-    .mid{
-      font-size:30px;
-      line-height:1.05;
-      letter-spacing:-.05em;
-      font-weight:700;
-      color:var(--text);
-    }
-
-    .progress{
-      height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      overflow:hidden;
-      margin-top:14px;
-    }
-
-    html[data-theme="light"] .progress{
-      background:rgba(17,24,39,.06);
-    }
-
-    .progress span{
-      display:block;
-      height:100%;
-      border-radius:inherit;
-      background:linear-gradient(90deg, rgba(var(--accent-rgb),.96), rgba(var(--accent-rgb),.34));
-    }
-
-    .rows{
-      display:grid;
-      gap:10px;
-      margin-top:14px;
-    }
-
-    .row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .badge{
-      padding:5px 9px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      font-size:11px;
-      white-space:nowrap;
-    }
-
-    .left-tall{
-      min-height:320px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .network-strip{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-
-    .network-box{
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-      padding:14px;
-    }
-
-    .avatars{
-      display:flex;
-      margin-top:10px;
-    }
-
-    .avatars span{
-      width:30px;
-      height:30px;
-      border-radius:999px;
-      margin-left:-7px;
-      border:2px solid color-mix(in srgb, var(--bg) 90%, transparent);
-      background:linear-gradient(180deg, rgba(var(--accent-rgb),.30), rgba(255,255,255,.07));
-    }
-
-    .avatars span:first-child{
-      margin-left:0;
-    }
-
-    .bars{
-      display:grid;
-      gap:9px;
-      margin-top:12px;
-    }
-
-    .bars div{
-      height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.06);
-      overflow:hidden;
-    }
-
-    html[data-theme="light"] .bars div{
-      background:rgba(17,24,39,.06);
-    }
-
-    .bars div span{
-      display:block;
-      height:100%;
-      border-radius:inherit;
-      background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.28));
-    }
-
-    .feature-section{
-      padding:34px 0 24px;
-    }
-
-    .section-head{
-      max-width:760px;
-      margin-bottom:28px;
-    }
-
-    .section-head h2{
-      margin:12px 0 0;
-      font-size:clamp(34px,4vw,56px);
-      line-height:1.02;
-      letter-spacing:-.05em;
-    }
-
-    .section-head p{
-      margin:16px 0 0;
-      max-width:650px;
-      color:var(--muted);
-      line-height:1.76;
-      font-size:16px;
-    }
-
-    .bento{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:16px;
-    }
-
-    .card{
-      position:relative;
-      overflow:hidden;
-      border-radius:28px;
-      padding:22px;
-      transition:.25s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-5px);
-      border-color:var(--border-2);
-      box-shadow:var(--shadow), 0 0 0 1px rgba(var(--accent-rgb),.08);
-    }
-
-    .card-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom:18px;
-    }
-
-    .iconbox{
-      width:50px;
-      height:50px;
-      border-radius:18px;
-      display:grid;
-      place-items:center;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(var(--accent-rgb),.18), rgba(255,255,255,.03));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
-    }
-
-    .card-no{
-      font-size:12px;
-      color:var(--faint);
-      letter-spacing:.16em;
-      text-transform:uppercase;
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:24px;
-      line-height:1.08;
-      letter-spacing:-.04em;
-    }
-
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-      max-width:430px;
-    }
-
-    .crm{grid-column:span 7; min-height:350px}
-    .research{grid-column:span 5; min-height:350px}
-    .goals{grid-column:span 5; min-height:316px}
-    .forums{grid-column:span 7; min-height:316px}
-
-    .viz{
-      margin-top:22px;
-      border-radius:22px;
-      padding:16px;
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
-    }
-
-    .viz::after{
-      content:"";
-      position:absolute;
-      right:-12%;
-      bottom:-30%;
-      width:200px;
-      height:200px;
-      border-radius:999px;
-      background:radial-gradient(circle, rgba(var(--accent-rgb),.10), transparent 62%);
-      filter:blur(18px);
-    }
-
-    .viz-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:16px;
-    }
-
-    .viz-title{
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--faint);
-    }
-
-    .crm-grid{
-      display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:12px;
-    }
-
-    .inner{
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-      padding:14px;
-    }
-
-    .inner strong{
-      display:block;
-      font-size:30px;
-      letter-spacing:-.05em;
-      margin-top:10px;
-      color:var(--text);
-    }
-
-    .research-stack{
-      display:grid;
-      gap:12px;
-    }
-
-    .searchline,
-    .block{
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-    }
-
-    .searchline{
-      height:46px;
-      display:flex;
-      align-items:center;
-      padding:0 14px;
-      font-size:13px;
-      color:var(--faint);
-    }
-
-    .block{
-      padding:14px;
-    }
-
-    .signal{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-top:12px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .score{
-      font-size:28px;
-      font-weight:700;
-      letter-spacing:-.05em;
-      color:var(--text);
-    }
-
-    .goal-chart{
-      padding:14px;
-      border-radius:18px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-    }
-
-    .goal-bars{
-      display:flex;
-      align-items:end;
-      gap:9px;
-      height:118px;
-      margin-top:16px;
-    }
-
-    .goal-bars span{
-      flex:1;
-      border-radius:14px 14px 6px 6px;
-      background:rgba(255,255,255,.06);
-      overflow:hidden;
-      position:relative;
-    }
-
-    html[data-theme="light"] .goal-bars span{
-      background:rgba(17,24,39,.06);
-    }
-
-    .goal-bars span::after{
-      content:"";
-      position:absolute;
-      inset:auto 0 0 0;
-      border-radius:inherit;
-      background:linear-gradient(180deg, rgba(var(--accent-rgb),.85), rgba(var(--accent-rgb),.24));
-    }
-
-    .goal-bars span:nth-child(1){height:44px}
-    .goal-bars span:nth-child(1)::after{height:58%}
-    .goal-bars span:nth-child(2){height:68px}
-    .goal-bars span:nth-child(2)::after{height:66%}
-    .goal-bars span:nth-child(3){height:88px}
-    .goal-bars span:nth-child(3)::after{height:74%}
-    .goal-bars span:nth-child(4){height:112px}
-    .goal-bars span:nth-child(4)::after{height:82%}
-
-    .forums-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr 1fr;
-      gap:12px;
-    }
-
-    .bubbles{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:12px;
-    }
-
-    .bubbles span{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:30px;
-      padding:0 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.045);
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    .system-section,
-    .cta-section{
-      padding:36px 0 42px;
-    }
-
-    .system-card,
-    .cta-card{
-      padding:28px;
-      border-radius:30px;
-    }
-
-    .system-layout{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:24px;
-      align-items:start;
-    }
-
-    .system-layout h2,
-    .cta-card h2{
-      margin:10px 0 0;
-      font-size:clamp(34px,4vw,50px);
-      line-height:1.02;
-      letter-spacing:-.05em;
-    }
-
-    .system-copy p{
-      margin:0 0 14px;
-      color:var(--muted);
-      line-height:1.8;
-    }
-
-    .points{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      margin-top:26px;
-    }
-
-    .point{
-      border-radius:22px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.03);
-      padding:18px;
-    }
-
-    .point strong{
-      display:block;
-      font-size:16px;
-      margin:12px 0 8px;
-      letter-spacing:-.03em;
-      color:var(--text);
-    }
-
-    .point p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-    }
-
-    .cta-card{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    footer{
-      padding:12px 0 34px;
-      color:var(--faint);
-      font-size:13px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    @media (max-width:1180px){
-      .hero{
-        grid-template-columns:1fr;
-        min-height:auto;
-        padding-top:42px;
-      }
-
-      .hero-visual{
-        min-height:620px;
-      }
-
-      .scene{
-        height:610px;
-      }
-
-      .main-shell{
-        transform:none !important;
-      }
-
-      .crm,.research,.goals,.forums{
-        grid-column:span 12;
-      }
-
-      .system-layout,
-      .cta-card{
-        display:grid;
-        grid-template-columns:1fr;
-      }
-
-      .points{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width:860px){
-      .wrap{
-        width:min(var(--max), calc(100% - 24px));
-      }
-
-      .nav-shell{
-        flex-wrap:wrap;
-        row-gap:14px;
-      }
-
-      .nav-links{
-        order:3;
-        width:100%;
-        justify-content:space-between;
-        gap:14px;
-        font-size:13px;
-      }
-
-      .controls{
-        width:100%;
-        justify-content:space-between;
-      }
-
-      .dashboard,
-      .crm-grid,
-      .forums-grid,
-      .network-strip{
-        grid-template-columns:1fr;
-      }
-
-      .hero-visual{
-        min-height:520px;
-      }
-
-      .scene{
-        height:500px;
-      }
-
-      .main-shell{
-        inset:40px 10px 20px 26px;
-      }
-    }
-
-    @media (max-width:560px){
-      .switch{
-        width:100%;
-        justify-content:space-between;
-      }
-
-      .switch button{
-        flex:1;
-      }
-
-      .hero-actions{
-        flex-direction:column;
-      }
-
-      .btn,
-      .btn-secondary{
-        width:100%;
-      }
-
-      h1{
-        font-size:clamp(44px,15vw,64px);
-      }
-
-      .hero-copy p{
-        font-size:16px;
-      }
-
-      .scene{
-        height:430px;
-      }
-
-      .main-shell{
-        inset:0;
-      }
-
-      .system-card,
-      .cta-card,
-      .card{
-        padding:18px;
-      }
-
-      footer{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-    }
-  </style>
+  <meta
+    name="description"
+    content="Veritas Life OS — a private intelligence layer for relationships, research, priorities, and execution."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="bg-layer" aria-hidden="true"></div>
 
-  <div class="wrap">
-    <header class="nav">
+  <div class="site-wrap">
+    <header class="site-header">
       <div class="nav-shell">
-        <div class="brand">
-          <div class="mark" aria-hidden="true"></div>
-          <div>
+        <a href="#" class="brand" aria-label="Veritas Life OS home">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-copy">
             <strong>Veritas</strong>
             <span>Life OS</span>
-          </div>
-        </div>
+          </span>
+        </a>
 
-        <nav class="nav-links" aria-label="Primary">
+        <nav class="main-nav" aria-label="Primary">
           <a href="#features">Features</a>
           <a href="#system">System</a>
           <a href="#access">Access</a>
         </nav>
 
-        <div class="controls">
-          <div class="switch glass">
+        <div class="nav-controls">
+          <div class="toggle-group" aria-label="Mode">
             <button type="button" class="mode-btn active" data-mode="personal">Personal</button>
             <button type="button" class="mode-btn" data-mode="business">Business</button>
           </div>
 
-          <div class="switch glass">
+          <div class="toggle-group" aria-label="Theme">
             <button type="button" class="theme-btn active" data-theme="dark">Dark</button>
             <button type="button" class="theme-btn" data-theme="light">Light</button>
           </div>
@@ -1196,36 +54,41 @@
       <section class="hero">
         <div class="hero-copy">
           <div class="eyebrow">
-            <span class="dot"></span>
-            Private system for relationships, research, priorities, and execution
+            <span class="eyebrow-dot"></span>
+            <span id="eyebrow-text">
+              Private system for relationships, research, priorities, and execution
+            </span>
           </div>
 
-          <h1>
+          <h1 class="hero-title">
             Run life with
-            <span>clarity and control.</span>
+            <span>clarity.</span>
+            <span>control.</span>
           </h1>
 
-          <p id="hero-subline">
+          <p class="hero-subline" id="hero-subline">
             A personal intelligence layer for trusted decisions, key relationships, research, and follow-through — unified in one deliberate interface.
           </p>
 
           <div class="hero-actions">
-            <a href="#access" class="btn">Request access
+            <a href="#access" class="btn btn-primary">
+              Request access
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 12h14"></path>
                 <path d="M13 5l7 7-7 7"></path>
               </svg>
             </a>
-            <a href="#features" class="btn-secondary">See the system</a>
+
+            <a href="#features" class="btn btn-secondary">See the system</a>
           </div>
 
-          <div class="hero-toggles">
-            <div class="switch glass">
+          <div class="hero-inline-controls">
+            <div class="toggle-group">
               <button type="button" class="mode-btn active" data-mode="personal">Personal mode</button>
               <button type="button" class="mode-btn" data-mode="business">Business mode</button>
             </div>
 
-            <div class="switch glass">
+            <div class="toggle-group">
               <button type="button" class="theme-btn active" data-theme="dark">Dark</button>
               <button type="button" class="theme-btn" data-theme="light">Light</button>
             </div>
@@ -1235,152 +98,129 @@
         <div class="hero-visual">
           <div class="hero-glow" aria-hidden="true"></div>
 
-          <div class="scene">
-            <div class="panel main-shell glass-strong" id="hero-panel">
-              <div class="main-core">
-                <div class="windowbar">
+          <div class="product-stage" id="product-stage">
+            <div class="product-shell" id="product-shell">
+              <div class="product-window">
+                <div class="window-topbar">
                   <div class="window-dots" aria-hidden="true">
                     <span></span><span></span><span></span>
                   </div>
-                  <div class="pill">Veritas control layer</div>
+                  <div class="window-chip">Veritas control layer</div>
                 </div>
 
-                <div class="dashboard">
-                  <div class="stack">
-                    <div class="mini left-tall">
-                      <div>
-                        <div class="mini-top">
-                          <span id="hero-priority-label">Weekly priorities</span>
-                          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
-                          </svg>
-                        </div>
-                        <div class="big" id="hero-priority-number">3</div>
-                        <div class="mid" id="hero-priority-text" style="margin-top:4px;">critical priorities</div>
-                        <div class="progress"><span id="hero-priority-progress" style="width:78%"></span></div>
-                      </div>
-
-                      <div class="rows" id="hero-priority-rows">
-                        <div class="row"><span>Decision review</span><span class="badge">Today</span></div>
-                        <div class="row"><span>Provider shortlist</span><span class="badge">Live</span></div>
-                        <div class="row"><span>Escalation track</span><span class="badge">2 pending</span></div>
-                      </div>
+                <div class="dashboard-grid">
+                  <section class="ui-card ui-card-large">
+                    <div class="ui-label" id="priority-label">Weekly priorities</div>
+                    <div class="ui-big-number" id="priority-number">3</div>
+                    <div class="ui-title" id="priority-title">critical priorities</div>
+                    <div class="progress-bar">
+                      <span id="priority-progress"></span>
                     </div>
 
-                    <div class="mini">
-                      <div class="mini-top">
-                        <span id="hero-network-label">Trusted network</span>
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-                          <circle cx="9.5" cy="7" r="4"></circle>
-                          <path d="M20 8v6"></path>
-                          <path d="M23 11h-6"></path>
-                        </svg>
+                    <div class="data-list" id="priority-list">
+                      <div class="data-row"><span>Decision review</span><span class="chip">Today</span></div>
+                      <div class="data-row"><span>Provider shortlist</span><span class="chip">Live</span></div>
+                      <div class="data-row"><span>Escalation track</span><span class="chip">2 pending</span></div>
+                    </div>
+                  </section>
+
+                  <section class="ui-card">
+                    <div class="ui-card-head">
+                      <div class="ui-label" id="research-label">AI research</div>
+                      <svg class="icon subtle" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2v4"></path>
+                        <path d="M12 18v4"></path>
+                        <path d="M4.93 4.93l2.83 2.83"></path>
+                        <path d="M16.24 16.24l2.83 2.83"></path>
+                        <path d="M2 12h4"></path>
+                        <path d="M18 12h4"></path>
+                        <path d="M4.93 19.07l2.83-2.83"></path>
+                        <path d="M16.24 7.76l2.83-2.83"></path>
+                        <circle cx="12" cy="12" r="4"></circle>
+                      </svg>
+                    </div>
+
+                    <div class="metric-row">
+                      <span id="research-sub">Signal quality</span>
+                      <strong id="research-score">86</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                      <span id="research-progress"></span>
+                    </div>
+
+                    <div class="data-list" id="research-list">
+                      <div class="data-row"><span>3 vetted providers</span><span class="chip">Verified</span></div>
+                      <div class="data-row"><span>2 reports summarized</span><span class="chip">Fresh</span></div>
+                    </div>
+                  </section>
+
+                  <section class="ui-card">
+                    <div class="ui-label" id="network-label">Trusted network</div>
+
+                    <div class="network-blocks">
+                      <div class="network-box">
+                        <div class="mini-label" id="network-box-1-label">Priority people</div>
+                        <strong id="network-box-1-value">12</strong>
+                        <div class="avatar-stack" aria-hidden="true">
+                          <span></span><span></span><span></span><span></span><span></span>
+                        </div>
                       </div>
 
-                      <div class="network-strip">
-                        <div class="network-box">
-                          <div class="tiny" style="letter-spacing:.14em; font-size:10px;">
-                            <span class="dot" style="width:6px;height:6px;"></span>
-                            <span id="network-box-label-1">Priority people</span>
-                          </div>
-                          <div class="mid" id="network-box-value-1" style="margin-top:8px;">12</div>
-                          <div class="avatars" aria-hidden="true">
-                            <span></span><span></span><span></span><span></span><span></span>
-                          </div>
-                        </div>
-
-                        <div class="network-box">
-                          <div class="tiny" style="letter-spacing:.14em; font-size:10px;">
-                            <span class="dot" style="width:6px;height:6px;"></span>
-                            <span id="network-box-label-2">Recent touchpoints</span>
-                          </div>
-                          <div class="bars">
-                            <div><span style="width:78%"></span></div>
-                            <div><span style="width:56%"></span></div>
-                            <div><span style="width:84%"></span></div>
-                          </div>
+                      <div class="network-box">
+                        <div class="mini-label" id="network-box-2-label">Recent touchpoints</div>
+                        <div class="micro-bars" aria-hidden="true">
+                          <span style="width: 82%"></span>
+                          <span style="width: 58%"></span>
+                          <span style="width: 76%"></span>
                         </div>
                       </div>
+                    </div>
+                  </section>
+
+                  <section class="ui-card">
+                    <div class="ui-label" id="goals-label">Goals</div>
+                    <div class="ui-title tight" id="goals-title">74% on track</div>
+                    <div class="progress-bar">
+                      <span id="goals-progress"></span>
+                    </div>
+
+                    <div class="data-list" id="goals-list">
+                      <div class="data-row"><span>Quarterly target</span><span class="chip">On track</span></div>
+                      <div class="data-row"><span>Review cadence</span><span class="chip">Weekly</span></div>
+                    </div>
+                  </section>
+                </div>
+
+                <section class="bottom-strip">
+                  <div class="strip-card">
+                    <div class="mini-label" id="forum-label">Forum clusters</div>
+                    <div class="strip-list" id="forum-list">
+                      <div class="data-row"><span>Legal</span><span class="chip">34 threads</span></div>
+                      <div class="data-row"><span>Career</span><span class="chip">18 threads</span></div>
+                      <div class="data-row"><span>Family</span><span class="chip">12 threads</span></div>
                     </div>
                   </div>
 
-                  <div class="stack">
-                    <div class="mini">
-                      <div class="mini-top">
-                        <span id="hero-research-label">AI research</span>
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M12 2v4"></path>
-                          <path d="M12 18v4"></path>
-                          <path d="M4.93 4.93l2.83 2.83"></path>
-                          <path d="M16.24 16.24l2.83 2.83"></path>
-                          <path d="M2 12h4"></path>
-                          <path d="M18 12h4"></path>
-                          <path d="M4.93 19.07l2.83-2.83"></path>
-                          <path d="M16.24 7.76l2.83-2.83"></path>
-                          <circle cx="12" cy="12" r="4"></circle>
-                        </svg>
-                      </div>
-
-                      <div class="row" style="margin-top:6px;">
-                        <span id="hero-research-sub">Signal quality</span>
-                        <strong class="score" id="hero-research-score">86</strong>
-                      </div>
-
-                      <div class="progress"><span id="hero-research-progress" style="width:86%"></span></div>
-
-                      <div class="rows" id="hero-research-rows">
-                        <div class="row"><span>3 vetted providers</span><span class="badge">Verified</span></div>
-                        <div class="row"><span>2 reports summarized</span><span class="badge">Fresh</span></div>
-                      </div>
-                    </div>
-
-                    <div class="mini">
-                      <div class="mini-top">
-                        <span id="hero-goals-label">Goals</span>
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <circle cx="12" cy="12" r="9"></circle>
-                          <circle cx="12" cy="12" r="4"></circle>
-                          <path d="M12 3v3"></path>
-                          <path d="M21 12h-3"></path>
-                        </svg>
-                      </div>
-
-                      <div class="mid" id="hero-goals-text">74% on track</div>
-                      <div class="progress"><span id="hero-goals-progress" style="width:74%"></span></div>
-
-                      <div class="rows" id="hero-goals-rows">
-                        <div class="row"><span>Quarterly target</span><span class="badge">On track</span></div>
-                        <div class="row"><span>Review cadence</span><span class="badge">Weekly</span></div>
-                      </div>
-                    </div>
-
-                    <div class="mini">
-                      <div class="mini-top">
-                        <span id="hero-forum-label">Forum clusters</span>
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                      </div>
-
-                      <div class="rows" id="hero-forum-rows">
-                        <div class="row"><span>Legal</span><span class="badge">34 threads</span></div>
-                        <div class="row"><span>Career</span><span class="badge">18 threads</span></div>
-                        <div class="row"><span>Family</span><span class="badge">12 threads</span></div>
-                      </div>
+                  <div class="strip-card signal-card">
+                    <div class="mini-label">Live system state</div>
+                    <div class="signal-stack" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
                     </div>
                   </div>
-                </div>
+                </section>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="features" class="feature-section">
-        <div class="section-head">
-          <div class="tiny">
-            <span class="dot"></span>
+      <section id="features" class="section">
+        <div class="section-heading">
+          <div class="tiny-label">
+            <span class="eyebrow-dot"></span>
             Core tools
           </div>
           <h2>A modular system for decisions, relationships, and follow-through.</h2>
@@ -1389,430 +229,106 @@
           </p>
         </div>
 
-        <div class="bento">
-          <article class="card crm glass-strong">
-            <div class="card-top">
-              <div class="iconbox" aria-hidden="true">
-                <svg class="icon lg" viewBox="0 0 24 24">
+        <div class="feature-grid">
+          <article class="feature-card feature-wide">
+            <div class="feature-card-top">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                   <circle cx="12" cy="7" r="4"></circle>
                 </svg>
               </div>
-              <div class="card-no">01</div>
+              <span class="feature-no">01</span>
             </div>
             <h3>Personal CRM</h3>
             <p>Track the people who matter, organize continuity, and keep high-trust relationships active without mental clutter.</p>
-
-            <div class="viz">
-              <div class="viz-top">
-                <div class="viz-title">Relationship layer</div>
-                <div class="badge">12 active</div>
-              </div>
-
-              <div class="crm-grid">
-                <div class="inner">
-                  <div class="viz-title">Priority people</div>
-                  <strong>12</strong>
-                  <div class="avatars" aria-hidden="true">
-                    <span></span><span></span><span></span><span></span><span></span>
-                  </div>
-                </div>
-
-                <div class="inner">
-                  <div class="viz-title">Recent touchpoints</div>
-                  <div class="bars">
-                    <div><span style="width:78%"></span></div>
-                    <div><span style="width:56%"></span></div>
-                    <div><span style="width:84%"></span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </article>
 
-          <article class="card research glass-strong">
-            <div class="card-top">
-              <div class="iconbox" aria-hidden="true">
-                <svg class="icon lg" viewBox="0 0 24 24">
+          <article class="feature-card">
+            <div class="feature-card-top">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
                 </svg>
               </div>
-              <div class="card-no">02</div>
+              <span class="feature-no">02</span>
             </div>
             <h3>AI News Researcher</h3>
             <p>Turn noise into signal with summarized updates, provider analysis, and research context grounded in relevance.</p>
-
-            <div class="viz">
-              <div class="viz-top">
-                <div class="viz-title">Signal engine</div>
-                <div class="badge">Live scan</div>
-              </div>
-
-              <div class="research-stack">
-                <div class="searchline">Search topic, region, provider, legal issue…</div>
-
-                <div class="block">
-                  <div class="viz-title">Research score</div>
-                  <div class="signal">
-                    <span>Confidence</span>
-                    <strong class="score">86</strong>
-                  </div>
-                  <div class="progress"><span style="width:86%"></span></div>
-                </div>
-
-                <div class="block">
-                  <div class="viz-title">Summary</div>
-                  <div class="row" style="margin-top:10px;">
-                    <span>3 vetted providers surfaced</span>
-                    <span class="badge">High fit</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </article>
 
-          <article class="card goals glass-strong">
-            <div class="card-top">
-              <div class="iconbox" aria-hidden="true">
-                <svg class="icon lg" viewBox="0 0 24 24">
+          <article class="feature-card">
+            <div class="feature-card-top">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx="12" cy="12" r="9"></circle>
                   <circle cx="12" cy="12" r="5"></circle>
                   <path d="M12 7v5l3 3"></path>
                 </svg>
               </div>
-              <div class="card-no">03</div>
+              <span class="feature-no">03</span>
             </div>
             <h3>Goal Tracker</h3>
             <p>Move from intention to progress with measurable milestones, reviews, and system-level accountability.</p>
-
-            <div class="viz">
-              <div class="viz-top">
-                <div class="viz-title">Execution velocity</div>
-                <div class="badge">Q2</div>
-              </div>
-
-              <div class="goal-chart">
-                <div class="viz-title">Progress curve</div>
-                <div class="goal-bars" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span>
-                </div>
-              </div>
-            </div>
           </article>
 
-          <article class="card forums glass-strong">
-            <div class="card-top">
-              <div class="iconbox" aria-hidden="true">
-                <svg class="icon lg" viewBox="0 0 24 24">
+          <article class="feature-card feature-wide">
+            <div class="feature-card-top">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </div>
-              <div class="card-no">04</div>
+              <span class="feature-no">04</span>
             </div>
             <h3>Community Forums</h3>
             <p>Participate in curated discussions and trusted topic spaces without losing signal quality or context.</p>
-
-            <div class="viz">
-              <div class="viz-top">
-                <div class="viz-title">Knowledge network</div>
-                <div class="badge">2.4k members</div>
-              </div>
-
-              <div class="forums-grid">
-                <div class="inner">
-                  <div class="viz-title">Active threads</div>
-                  <strong>146</strong>
-                </div>
-
-                <div class="inner">
-                  <div class="viz-title">Private groups</div>
-                  <strong>08</strong>
-                </div>
-
-                <div class="inner">
-                  <div class="viz-title">Clusters</div>
-                  <div class="bubbles">
-                    <span>Legal</span>
-                    <span>Health</span>
-                    <span>Career</span>
-                    <span>Family</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </article>
         </div>
       </section>
 
-      <section id="system" class="system-section">
-        <div class="system-card glass-strong">
-          <div class="system-layout">
-            <div>
-              <div class="tiny">
-                <span class="dot"></span>
-                Why it feels different
-              </div>
-              <h2>Built like infrastructure, not another lifestyle app.</h2>
+      <section id="system" class="section">
+        <div class="system-shell">
+          <div class="section-heading compact">
+            <div class="tiny-label">
+              <span class="eyebrow-dot"></span>
+              Why it feels different
             </div>
-
-            <div class="system-copy">
-              <p>Veritas is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.</p>
-              <p>The result is calmer, clearer, and more capable than fragmented tools designed for isolated tasks.</p>
-            </div>
+            <h2>Built like infrastructure, not another lifestyle app.</h2>
           </div>
 
-          <div class="points">
-            <div class="point">
-              <svg class="icon lg" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--accent)">
-                <rect x="3" y="3" width="7" height="7" rx="2"></rect>
-                <rect x="14" y="3" width="7" height="7" rx="2"></rect>
-                <rect x="14" y="14" width="7" height="7" rx="2"></rect>
-                <rect x="3" y="14" width="7" height="7" rx="2"></rect>
-              </svg>
-              <strong>Unified interface</strong>
-              <p>One premium system for priorities, trusted people, research, and follow-through.</p>
-            </div>
-
-            <div class="point">
-              <svg class="icon lg" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--accent)">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-              <strong>Private by design</strong>
-              <p>Calm, structured interfaces built around trust, discretion, and signal quality.</p>
-            </div>
-
-            <div class="point">
-              <svg class="icon lg" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--accent)">
-                <path d="M12 2v4"></path>
-                <path d="M12 18v4"></path>
-                <path d="M4.93 4.93l2.83 2.83"></path>
-                <path d="M16.24 16.24l2.83 2.83"></path>
-                <path d="M2 12h4"></path>
-                <path d="M18 12h4"></path>
-                <path d="M4.93 19.07l2.83-2.83"></path>
-                <path d="M16.24 7.76l2.83-2.83"></path>
-                <circle cx="12" cy="12" r="4"></circle>
-              </svg>
-              <strong>AI with restraint</strong>
-              <p>Use intelligence to clarify decisions, not to overload the interface with noise.</p>
-            </div>
+          <div class="system-copy">
+            <p>Veritas is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.</p>
+            <p>The result is calmer, clearer, and more capable than fragmented tools designed for isolated tasks.</p>
           </div>
         </div>
       </section>
 
-      <section id="access" class="cta-section">
-        <div class="cta-card glass-strong">
+      <section id="access" class="section">
+        <div class="cta-shell">
           <div>
-            <div class="tiny">
-              <span class="dot"></span>
+            <div class="tiny-label">
+              <span class="eyebrow-dot"></span>
               Early access
             </div>
             <h2>Bring structure, trust, and clarity back into the way you run life.</h2>
           </div>
 
-          <div style="display:flex; gap:14px; flex-wrap:wrap;">
-            <a href="#" class="btn">Join waitlist</a>
-            <a href="#" class="btn-secondary">Book intro</a>
+          <div class="cta-actions">
+            <a href="#" class="btn btn-primary">Join waitlist</a>
+            <a href="#" class="btn btn-secondary">Book intro</a>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
       <span>Veritas Life OS</span>
       <span>Private intelligence layer for real life</span>
     </footer>
   </div>
 
-  <script>
-    (function () {
-      const root = document.documentElement;
-      const themeBtns = document.querySelectorAll(".theme-btn");
-      const modeBtns = document.querySelectorAll(".mode-btn");
-      const heroPanel = document.getElementById("hero-panel");
-
-      const modeContent = {
-        personal: {
-          subline:
-            "A personal intelligence layer for trusted decisions, key relationships, research, and follow-through — unified in one deliberate interface.",
-          priorityLabel: "Weekly priorities",
-          priorityNumber: "3",
-          priorityText: "critical priorities",
-          priorityRows: [
-            ["Decision review", "Today"],
-            ["Provider shortlist", "Live"],
-            ["Escalation track", "2 pending"]
-          ],
-          networkLabel: "Trusted network",
-          networkBox1Label: "Priority people",
-          networkBox1Value: "12",
-          networkBox2Label: "Recent touchpoints",
-          researchLabel: "AI research",
-          researchSub: "Signal quality",
-          researchScore: "86",
-          researchRows: [
-            ["3 vetted providers", "Verified"],
-            ["2 reports summarized", "Fresh"]
-          ],
-          goalsLabel: "Goals",
-          goalsText: "74% on track",
-          goalsRows: [
-            ["Quarterly target", "On track"],
-            ["Review cadence", "Weekly"]
-          ],
-          forumLabel: "Forum clusters",
-          forumRows: [
-            ["Legal", "34 threads"],
-            ["Career", "18 threads"],
-            ["Family", "12 threads"]
-          ]
-        },
-        business: {
-          subline:
-            "A private operating layer for executive priorities, deal flow, research, trusted networks, and measurable follow-through.",
-          priorityLabel: "Executive priorities",
-          priorityNumber: "5",
-          priorityText: "active initiatives",
-          priorityRows: [
-            ["Board prep", "Tomorrow"],
-            ["Partner shortlist", "Live"],
-            ["Hiring review", "3 open"]
-          ],
-          networkLabel: "Executive network",
-          networkBox1Label: "Key relationships",
-          networkBox1Value: "18",
-          networkBox2Label: "Recent outreach",
-          researchLabel: "Market research",
-          researchSub: "Signal quality",
-          researchScore: "91",
-          researchRows: [
-            ["4 market briefs", "Updated"],
-            ["2 vendor scans", "Live"]
-          ],
-          goalsLabel: "KPI tracking",
-          goalsText: "81% on target",
-          goalsRows: [
-            ["Quarterly KPI", "On track"],
-            ["Review cadence", "Monday"]
-          ],
-          forumLabel: "Workstreams",
-          forumRows: [
-            ["Pipeline", "22 items"],
-            ["Hiring", "9 items"],
-            ["Ops", "14 items"]
-          ]
-        }
-      };
-
-      function syncButtons(type, value) {
-        const buttons = type === "theme" ? themeBtns : modeBtns;
-        buttons.forEach(btn => {
-          const match = type === "theme"
-            ? btn.dataset.theme === value
-            : btn.dataset.mode === value;
-          btn.classList.toggle("active", match);
-        });
-      }
-
-      function renderRows(containerId, rows) {
-        const el = document.getElementById(containerId);
-        if (!el) return;
-        el.innerHTML = rows.map(([left, right]) => `
-          <div class="row"><span>${left}</span><span class="badge">${right}</span></div>
-        `).join("");
-      }
-
-      function applyModeContent(mode) {
-        const c = modeContent[mode];
-
-        document.getElementById("hero-subline").textContent = c.subline;
-        document.getElementById("hero-priority-label").textContent = c.priorityLabel;
-        document.getElementById("hero-priority-number").textContent = c.priorityNumber;
-        document.getElementById("hero-priority-text").textContent = c.priorityText;
-        document.getElementById("hero-network-label").textContent = c.networkLabel;
-        document.getElementById("network-box-label-1").textContent = c.networkBox1Label;
-        document.getElementById("network-box-value-1").textContent = c.networkBox1Value;
-        document.getElementById("network-box-label-2").textContent = c.networkBox2Label;
-        document.getElementById("hero-research-label").textContent = c.researchLabel;
-        document.getElementById("hero-research-sub").textContent = c.researchSub;
-        document.getElementById("hero-research-score").textContent = c.researchScore;
-        document.getElementById("hero-goals-label").textContent = c.goalsLabel;
-        document.getElementById("hero-goals-text").textContent = c.goalsText;
-        document.getElementById("hero-forum-label").textContent = c.forumLabel;
-
-        renderRows("hero-priority-rows", c.priorityRows);
-        renderRows("hero-research-rows", c.researchRows);
-        renderRows("hero-goals-rows", c.goalsRows);
-        renderRows("hero-forum-rows", c.forumRows);
-
-        document.getElementById("hero-priority-progress").style.width =
-          mode === "business" ? "82%" : "78%";
-        document.getElementById("hero-research-progress").style.width =
-          mode === "business" ? "91%" : "86%";
-        document.getElementById("hero-goals-progress").style.width =
-          mode === "business" ? "81%" : "74%";
-      }
-
-      function setTheme(theme, save = true) {
-        root.setAttribute("data-theme", theme);
-        syncButtons("theme", theme);
-        if (save) localStorage.setItem("veritas-theme", theme);
-      }
-
-      function setMode(mode, save = true) {
-        root.setAttribute("data-mode", mode);
-        syncButtons("mode", mode);
-        applyModeContent(mode);
-        if (save) localStorage.setItem("veritas-mode", mode);
-      }
-
-      const savedTheme = localStorage.getItem("veritas-theme");
-      const savedMode = localStorage.getItem("veritas-mode");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-      setTheme(savedTheme || (prefersDark ? "dark" : "light"), false);
-      setMode(savedMode || "personal", false);
-
-      themeBtns.forEach(btn => {
-        btn.addEventListener("click", () => setTheme(btn.dataset.theme));
-      });
-
-      modeBtns.forEach(btn => {
-        btn.addEventListener("click", () => setMode(btn.dataset.mode));
-      });
-
-      const media = window.matchMedia("(prefers-color-scheme: dark)");
-      if (media.addEventListener) {
-        media.addEventListener("change", e => {
-          const stored = localStorage.getItem("veritas-theme");
-          if (!stored) setTheme(e.matches ? "dark" : "light", false);
-        });
-      }
-
-      if (window.innerWidth > 1180 && heroPanel) {
-        const scene = heroPanel.parentElement;
-
-        scene.addEventListener("mousemove", (e) => {
-          const rect = scene.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-          const rotateY = -8 + x * 8;
-          const rotateX = 4 - y * 7;
-          const translateX = x * 10;
-          const translateY = y * -8;
-
-          heroPanel.style.transform =
-            `perspective(1800px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateX(${translateX}px) translateY(${translateY}px)`;
-        });
-
-        scene.addEventListener("mouseleave", () => {
-          heroPanel.style.transform =
-            "perspective(1800px) rotateY(-8deg) rotateX(4deg) translateX(0px) translateY(0px)";
-        });
-      }
-    })();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
