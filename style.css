@@ -1262,4 +1262,26 @@ html[data-theme="light"] .goal-bars span {
     0 18px 48px rgba(var(--accent-rgb), 0.2),
     0 0 0 1px rgba(var(--accent-rgb), 0.22);
 }
+  .public-hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-copy {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.center-copy .tiny-label,
+.center-copy .eyebrow {
+  justify-content: center;
+}
+
+.center-copy .hero-actions,
+.center-copy .cta-actions {
+  justify-content: center;
+}
 } 
