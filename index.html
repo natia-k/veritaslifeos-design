@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page-bg" aria-hidden="true"></div>xx
+  <div class="page-bg" aria-hidden="true"></div>
 
   <div class="site-shell">
     <header class="topbar">
@@ -97,6 +97,8 @@
           <div class="hero__glow" aria-hidden="true"></div>
 
           <div class="product-stage" id="product-stage">
+            <div class="product-backdrop"></div>
+
             <div class="product-window glass-strong" id="product-window">
               <div class="product-window__chrome">
                 <div class="chrome-dots" aria-hidden="true">
@@ -106,9 +108,9 @@
               </div>
 
               <div class="product-window__body">
-                <div class="dashboard-grid">
-                  <section class="module module--hero">
-                    <div class="module__head">
+                <div class="hero-panels">
+                  <section class="hero-panel hero-panel--lead">
+                    <div class="hero-panel__head">
                       <span id="module-priority-label">Weekly priorities</span>
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
@@ -129,8 +131,8 @@
                     </div>
                   </section>
 
-                  <section class="module">
-                    <div class="module__head">
+                  <section class="hero-panel">
+                    <div class="hero-panel__head">
                       <span id="module-research-label">AI research</span>
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M12 2v4"></path>
@@ -160,39 +162,8 @@
                     </div>
                   </section>
 
-                  <section class="module">
-                    <div class="module__head">
-                      <span id="module-network-label">Trusted network</span>
-                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9.5" cy="7" r="4"></circle>
-                        <path d="M20 8v6"></path>
-                        <path d="M23 11h-6"></path>
-                      </svg>
-                    </div>
-
-                    <div class="split-cards">
-                      <div class="subcard">
-                        <div class="subcard__label" id="network-label-1">Priority people</div>
-                        <div class="subcard__value" id="network-value-1">12</div>
-                        <div class="avatar-row" aria-hidden="true">
-                          <span></span><span></span><span></span><span></span><span></span>
-                        </div>
-                      </div>
-
-                      <div class="subcard">
-                        <div class="subcard__label" id="network-label-2">Recent touchpoints</div>
-                        <div class="mini-bars" aria-hidden="true">
-                          <div><span style="width: 78%"></span></div>
-                          <div><span style="width: 56%"></span></div>
-                          <div><span style="width: 84%"></span></div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section class="module">
-                    <div class="module__head">
+                  <section class="hero-panel">
+                    <div class="hero-panel__head">
                       <span id="module-goals-label">Goals</span>
                       <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="12" r="9"></circle>
@@ -213,23 +184,36 @@
                       <div class="list__row"><span>Review cadence</span><span class="badge">Weekly</span></div>
                     </div>
                   </section>
+                </div>
 
-                  <section class="module module--wide">
-                    <div class="module__head">
-                      <span id="module-forum-label">Forum clusters</span>
-                      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                      </svg>
+                <div class="hero-bottom-strip">
+                  <div class="mini-chip">
+                    <span class="mini-chip__label" id="network-label-1">Priority people</span>
+                    <strong id="network-value-1">12</strong>
+                  </div>
+                  <div class="mini-chip">
+                    <span class="mini-chip__label" id="network-label-2">Recent touchpoints</span>
+                    <div class="mini-bars" aria-hidden="true">
+                      <div><span style="width: 78%"></span></div>
+                      <div><span style="width: 56%"></span></div>
                     </div>
-
-                    <div class="list" id="module-forum-list">
-                      <div class="list__row"><span>Legal</span><span class="badge">34 threads</span></div>
-                      <div class="list__row"><span>Career</span><span class="badge">18 threads</span></div>
-                      <div class="list__row"><span>Family</span><span class="badge">12 threads</span></div>
+                  </div>
+                  <div class="mini-chip mini-chip--wide">
+                    <span class="mini-chip__label" id="module-forum-label">Forum clusters</span>
+                    <div class="mini-tags" id="module-forum-tags">
+                      <span>Legal</span>
+                      <span>Career</span>
+                      <span>Family</span>
                     </div>
-                  </section>
+                  </div>
                 </div>
               </div>
+            </div>
+
+            <div class="signal-card glass">
+              <span class="signal-card__label" id="signal-card-label">Live signal</span>
+              <strong id="signal-card-score">86</strong>
+              <p id="signal-card-copy">confidence across active recommendations</p>
             </div>
           </div>
         </div>
