@@ -110,6 +110,17 @@ html[data-mode="business"] {
     radial-gradient(circle at 50% 70%, rgba(174, 184, 255, 0.10), transparent 22%);
 }
 
+.business-only {
+  display: none;
+}
+
+html[data-mode="business"] .personal-only {
+  display: none;
+}
+
+html[data-mode="business"] .business-only {
+  display: block;
+}
 html[data-density="calm"] {
   --space-section: 64px;
   --space-card: 18px;
