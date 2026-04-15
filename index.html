@@ -1,556 +1,79 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light" data-mode="personal" data-accent="cream" data-density="balanced">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veritas Life OS</title>
-  <meta name="description" content="Veritas Life OS — a premium operating system for modern life management." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="page-bg" aria-hidden="true"></div>
-
-  <div class="wrap">
-    <header class="nav">
-      <div class="nav-shell glass">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <div class="brand-copy">
-            <strong>Veritas</strong>
-            <span>Life OS</span>
-          </div>
-        </div>
-
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#features">Features</a>
-          <a href="#system">System</a>
-          <a href="#access">Access</a>
-        </nav>
-
-       <button class="secondary-btn workspace-trigger" type="button" id="workspaceTrigger" aria-pressed="false">
-  <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="12" cy="12" r="3"></circle>
-    <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.65 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9.01 4.6 1.7 1.7 0 0 0 10.05 3V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 8.99c.26.63.87 1.04 1.56 1.04H21a2 2 0 1 1 0 4h-.09c-.69 0-1.3.41-1.51 1.04z"></path>
-  </svg>
-  Configure Workspace
-</button>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <span class="tiny-dot"></span>
-            Private intelligence layer for real life
-          </div>
-
-          <h1>
-            Everything important.
-            <span>One clear system.</span>
-          </h1>
-
-          <p>
-            Veritas Life OS brings priorities, trusted relationships, research, and execution into one premium interface designed to help modern personal and professional lives run with more clarity.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#access" class="primary-btn">
-              Request access
-              <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14"></path>
-                <path d="M13 5l7 7-7 7"></path>
-              </svg>
-            </a>
-            <a href="#features" class="secondary-btn">See the system</a>
-            <button class="secondary-btn workspace-trigger" type="button" id="workspaceTrigger" aria-pressed="false">
-  <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="12" cy="12" r="3"></circle>
-    <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.04 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.04H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.65 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9.01 4.6 1.7 1.7 0 0 0 10.05 3V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 8.99c.26.63.87 1.04 1.56 1.04H21a2 2 0 1 1 0 4h-.09c-.69 0-1.3.41-1.51 1.04z"></path>
-  </svg>
-  Configure Workspace
-</button>
-          </div>
-
-          <div class="hero-inline-settings">
-            <div class="mini-toggle-row">
-              <button class="mini-setting-btn active" data-setting="theme" data-value="light" type="button">Light</button>
-              <button class="mini-setting-btn" data-setting="theme" data-value="dark" type="button">Dark</button>
-            </div>
-            <div class="mini-toggle-row">
-              <button class="mini-setting-btn active" data-setting="mode" data-value="personal" type="button">Personal</button>
-              <button class="mini-setting-btn" data-setting="mode" data-value="business" type="button">Business</button>
-            </div>
-            <div class="mini-toggle-row">
-              <button class="mini-setting-btn" data-setting="density" data-value="calm" type="button">Calm</button>
-              <button class="mini-setting-btn active" data-setting="density" data-value="balanced" type="button">Balanced</button>
-              <button class="mini-setting-btn" data-setting="density" data-value="dense" type="button">Dense</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="hero-orb" aria-hidden="true"></div>
-
-          <aside class="settings-panel glass" id="settingsPanel" aria-label="Appearance and workspace settings" hidden>
-            <div class="settings-panel__head">
-              <div>
-                <div class="tiny-label">
-                  <span class="tiny-dot"></span>
-                  Personalize workspace
-                </div>
-                <h3>Shape your control layer</h3>
-              </div>
-              <button class="settings-close" type="button" id="settingsClose" aria-label="Close settings">×</button>
-            </div>
-
-            <div class="settings-group">
-              <span class="settings-label">Theme</span>
-              <div class="toggle-row">
-                <button class="setting-btn active" data-setting="theme" data-value="light" type="button">Light</button>
-                <button class="setting-btn" data-setting="theme" data-value="dark" type="button">Dark</button>
-              </div>
-            </div>
-
-            <div class="settings-group">
-              <span class="settings-label">Mode</span>
-              <div class="toggle-row">
-                <button class="setting-btn active" data-setting="mode" data-value="personal" type="button">Personal</button>
-                <button class="setting-btn" data-setting="mode" data-value="business" type="button">Business</button>
-              </div>
-            </div>
-
-            <div class="settings-group">
-              <span class="settings-label">Accent</span>
-              <div class="toggle-row">
-                <button class="setting-btn active" data-setting="accent" data-value="cream" type="button">Cream</button>
-                <button class="setting-btn" data-setting="accent" data-value="peach" type="button">Peach</button>
-                <button class="setting-btn" data-setting="accent" data-value="blue" type="button">Blue</button>
-                <button class="setting-btn" data-setting="accent" data-value="violet" type="button">Violet</button>
-              </div>
-            </div>
-
-            <div class="settings-group">
-              <span class="settings-label">Workspace</span>
-              <div class="toggle-row">
-                <button class="setting-btn" data-setting="density" data-value="calm" type="button">Calm</button>
-                <button class="setting-btn active" data-setting="density" data-value="balanced" type="button">Balanced</button>
-                <button class="setting-btn" data-setting="density" data-value="dense" type="button">Dense</button>
-              </div>
-            </div>
-          </aside>
-
-          <div class="dashboard-shell glass-strong">
-            <div class="dashboard-core">
-              <div class="dashboard-topbar">
-                <div class="window-dots" aria-hidden="true">
-                  <span></span><span></span><span></span>
-                </div>
-                <div class="dashboard-pill">Veritas control layer</div>
-              </div>
-
-              <div class="dashboard-grid">
-                <div class="stack">
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">Weekly priorities</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
-                      </svg>
-                    </div>
-                    <div class="mini-value">3 critical</div>
-                    <div class="progress"><span style="width: 74%;"></span></div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>Decision review</span><span class="tiny-badge">Today</span></div>
-                      <div class="tiny-row"><span>Provider shortlist</span><span class="tiny-badge">Live</span></div>
-                    </div>
-                  </div>
-
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">Trusted network</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9.5" cy="7" r="4"></circle>
-                        <path d="M20 8v6"></path>
-                        <path d="M23 11h-6"></path>
-                      </svg>
-                    </div>
-                    <div class="mini-value">12 priority</div>
-                    <div class="avatars" aria-hidden="true">
-                      <span></span><span></span><span></span><span></span>
-                    </div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>High-trust contacts</span><span class="tiny-badge">Updated</span></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="stack">
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">AI research</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M12 2v4"></path>
-                        <path d="M12 18v4"></path>
-                        <path d="M4.93 4.93l2.83 2.83"></path>
-                        <path d="M16.24 16.24l2.83 2.83"></path>
-                        <path d="M2 12h4"></path>
-                        <path d="M18 12h4"></path>
-                        <path d="M4.93 19.07l2.83-2.83"></path>
-                        <path d="M16.24 7.76l2.83-2.83"></path>
-                        <circle cx="12" cy="12" r="4"></circle>
-                      </svg>
-                    </div>
-                    <div class="tiny-row"><span>Signal quality</span><strong class="score">86</strong></div>
-                    <div class="progress"><span style="width: 86%;"></span></div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>3 matched providers</span><span class="tiny-badge">Verified</span></div>
-                    </div>
-                  </div>
-
-                  <div class="mini-card">
-                    <div class="mini-top">
-                      <div class="mini-label">Goals</div>
-                      <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="12" r="9"></circle>
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 3v3"></path>
-                        <path d="M21 12h-3"></path>
-                      </svg>
-                    </div>
-                    <div class="mini-value">74%</div>
-                    <div class="progress"><span style="width: 74%;"></span></div>
-                    <div class="tiny-list">
-                      <div class="tiny-row"><span>Quarterly target</span><span class="tiny-badge">On track</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="features" class="feature-section">
-        <div class="section-heading">
-          <div class="tiny-label">
-            <span class="tiny-dot"></span>
-            Core tools
-          </div>
-          <h2>A modular system for decisions, relationships, and follow-through.</h2>
-          <p>
-            Each tool is designed as a functional layer inside one premium interface — structured, intelligent, and built to reduce fragmentation across the way you run life.
-          </p>
-        </div>
-
-        <div class="bento">
-         <article class="feature-card feature-1 large glass-strong">
-  <div class="feature-top">
-    <div class="icon-shell" aria-hidden="true">
-      <svg class="symbol lg" viewBox="0 0 24 24">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-        <circle cx="12" cy="7" r="4"></circle>
-      </svg>
-    </div>
-    <div class="feature-no">01</div>
-  </div>
-
-  <div class="personal-only">
-    <h3>Relationship Intelligence (IntroWise)</h3>
-    <p>
-      Beyond a CRM. Use AI to discover who you can help, who can help you,
-      and automate high-trust introductions.
-    </p>
-  </div>
-
-  <div class="business-only">
-    <h3>CRM Leads Intelligence</h3>
-    <p>
-      Organize prospects, surface warm paths, and identify the highest-trust
-      lead flow across your network.
-    </p>
-  </div>
-
-  <div class="viz">
-    <div class="viz-top">
-      <div class="viz-title">Relationship layer</div>
-      <div class="tiny-badge">12 active</div>
-    </div>
-
-    <div class="crm-grid">
-      <div class="metric-box">
-        <div class="mini-label">Priority people</div>
-        <strong>12</strong>
-        <div class="avatars" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-      </div>
-      <div class="list-box">
-        <div class="mini-label">Recent touchpoints</div>
-        <div class="tiny-bars">
-          <div><span style="width: 78%;"></span></div>
-          <div><span style="width: 56%;"></span></div>
-          <div><span style="width: 84%;"></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-
-          <article class="feature-card feature-2 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-              </div>
-              <div class="feature-no">02</div>
-            </div>
-            <h3>AI News Researcher</h3>
-            <p>Turn noise into signal with summarized updates, provider analysis, and high-quality research context.</p>
-
-            <div class="viz">
-              <div class="viz-top">
-                <div class="viz-title">Signal engine</div>
-               <div class="tiny-badge">Fact-based</div>
-              </div>
-
-              <div class="research-block">
-                <div class="input-line">Search topic, region, provider, legal issue…</div>
-                <div class="signal-card">
-                  <div class="mini-label">Research score</div>
-                  <div class="signal-row">
-                    <span>Confidence</span>
-                    <strong class="score">86</strong>
-                  </div>
-                  <div class="progress"><span style="width: 86%;"></span></div>
-                </div>
-                <div class="summary-card">
-                  <div class="mini-label">Summary</div>
-                  <div class="tiny-row" style="margin-top:10px;">
-                    <span>3 vetted providers surfaced</span>
-                    <span class="tiny-badge">High fit</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="feature-card feature-3 glass-strong">
-  <div class="feature-top">
-    <div class="icon-shell" aria-hidden="true">
-      <svg class="symbol lg" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-      </svg>
-    </div>
-    <div class="feature-no">03</div>
-  </div>
-
-  <div class="personal-only">
-    <h3>EverBetter Engine</h3>
-    <p>
-      Daily reflection and wellness tracking. Monitor what went well,
-      identify improvements, and maintain your Human Layer health.
-    </p>
-  </div>
-
-  <div class="business-only">
-    <h3>Execution Engine</h3>
-    <p>
-      Keep priorities moving with measurable milestones, accountability,
-      and a cleaner system for operational follow-through.
-    </p>
-  </div>
-
-  <div class="viz">
-    <div class="viz-top">
-      <div class="viz-title">Progress layer</div>
-      <div class="tiny-badge">Daily review</div>
-    </div>
-
-    <div class="goal-chart">
-      <div class="mini-label">Momentum curve</div>
-      <div class="goal-bars" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-</article>
-
-          <article class="feature-card feature-4 large glass-strong">
-  <div class="feature-top">
-    <div class="icon-shell" aria-hidden="true">
-      <svg class="symbol lg" viewBox="0 0 24 24">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-      </svg>
-    </div>
-    <div class="feature-no">04</div>
-  </div>
-
-  <div class="personal-only">
-    <h3>Community Forums</h3>
-    <p>
-      AI-moderated spaces for alumni, interest groups, and family nodes.
-    </p>
-
-    <div class="viz">
-      <div class="viz-top">
-        <div class="viz-title">Knowledge network</div>
-        <div class="tiny-badge">2.4k members</div>
+<main>
+  <section class="hero public-hero">
+    <div class="hero-copy center-copy">
+      <div class="eyebrow">
+        <span class="tiny-dot"></span>
+        Modern life intelligence
       </div>
 
-      <div class="forum-grid">
-        <div class="forum-cluster">
-          <div class="mini-label">Active threads</div>
-          <strong class="big-stat">146</strong>
-        </div>
-        <div class="forum-cluster">
-          <div class="mini-label">Private groups</div>
-          <strong class="big-stat">08</strong>
-        </div>
-        <div class="forum-cluster">
-          <div class="mini-label">Clusters</div>
-          <div class="cluster-bubbles">
-            <span>Family</span>
-            <span>Health</span>
-            <span>Career</span>
-            <span>Alumni</span>
-          </div>
-        </div>
+      <h1>
+        Manage Your Life
+        <span>With Intelligence</span>
+      </h1>
+
+      <p>
+        A comprehensive suite of tools to help you stay organized,
+        maintain relationships, and achieve your goals.
+      </p>
+
+      <div class="hero-actions">
+        <a href="dashboard.html" class="primary-btn">
+          Log in / Sign up
+        </a>
+        <a href="#features" class="secondary-btn">
+          Explore tools
+        </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="business-only">
-    <h3>Omni Marketing</h3>
-    <p>
-      Multi-channel outreach across LinkedIn, email, and SMS with automated
-      follow-ups and cleaner campaign orchestration.
-    </p>
-
-    <div class="viz">
-      <div class="viz-top">
-        <div class="viz-title">Outreach engine</div>
-        <div class="tiny-badge">3 channels</div>
-      </div>
-
-      <div class="forum-grid">
-        <div class="forum-cluster">
-          <div class="mini-label">Sequences live</div>
-          <strong class="big-stat">24</strong>
-        </div>
-        <div class="forum-cluster">
-          <div class="mini-label">Reply rate</div>
-          <strong class="big-stat">18%</strong>
-        </div>
-        <div class="forum-cluster">
-          <div class="mini-label">Channels</div>
-          <div class="cluster-bubbles">
-            <span>Email</span>
-            <span>LinkedIn</span>
-            <span>SMS</span>
-            <span>Follow-up</span>
-          </div>
-        </div>
-      </div>
+  <section class="feature-section" id="features">
+    <div class="section-heading center-copy">
+      <h2>Why choose our platform?</h2>
+      <p>
+        Built around relationships, purpose, and motivation.
+      </p>
     </div>
-  </div>
-</article>
-        </div>
-      </section>
 
-      <section id="system" class="system-section">
-        <div class="system-card glass-strong">
-          <div class="system-layout">
-            <div>
-              <div class="tiny-label">
-                <span class="tiny-dot"></span>
-                Why it feels different
-              </div>
-              <h2>Built like infrastructure, not another lifestyle app.</h2>
-            </div>
+    <div class="bento">
+      <article class="feature-card feature-1 glass-strong">
+        <h3>Relationships</h3>
+        <p>Create, build, and maintain meaningful connections.</p>
+      </article>
 
-            <div class="system-copy">
-              <p>
-                Veritas Life OS is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.
-              </p>
-              <p>
-                The result is calmer, clearer, and more capable than fragmented tools designed for isolated tasks.
-              </p>
-            </div>
-          </div>
+      <article class="feature-card feature-2 glass-strong">
+        <h3>Purpose</h3>
+        <p>Track progress toward your life goals and priorities.</p>
+      </article>
 
-          <div class="system-points">
-            <div class="point">
-              <svg class="symbol lg accent" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7" rx="2"></rect>
-                <rect x="14" y="3" width="7" height="7" rx="2"></rect>
-                <rect x="14" y="14" width="7" height="7" rx="2"></rect>
-                <rect x="3" y="14" width="7" height="7" rx="2"></rect>
-              </svg>
-              <strong>Unified interface</strong>
-              <p>One premium system for priorities, trusted people, research, and follow-through.</p>
-            </div>
+      <article class="feature-card feature-3 glass-strong">
+        <h3>Motivation</h3>
+        <p>Stay accountable and build momentum every day.</p>
+      </article>
+    </div>
+  </section>
 
-            <div class="point">
-              <svg class="symbol lg accent" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-              <strong>Private by design</strong>
-              <p>Calm, structured interfaces built around trust, discretion, and signal quality.</p>
-            </div>
+  <section class="feature-section">
+    <div class="section-heading center-copy">
+      <h2>Core tools</h2>
+    </div>
 
-            <div class="point">
-              <svg class="symbol lg accent" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2v4"></path>
-                <path d="M12 18v4"></path>
-                <path d="M4.93 4.93l2.83 2.83"></path>
-                <path d="M16.24 16.24l2.83 2.83"></path>
-                <path d="M2 12h4"></path>
-                <path d="M18 12h4"></path>
-                <path d="M4.93 19.07l2.83-2.83"></path>
-                <path d="M16.24 7.76l2.83-2.83"></path>
-                <circle cx="12" cy="12" r="4"></circle>
-              </svg>
-              <strong>AI with restraint</strong>
-              <p>Use intelligence to clarify decisions, not to overload the interface with noise.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div class="bento">
+      <article class="feature-card feature-1 glass-strong">
+        <h3>Stay in Touch</h3>
+      </article>
 
-      <section id="access" class="cta-section">
-        <div class="cta-card glass-strong">
-          <div>
-            <div class="tiny-label">
-              <span class="tiny-dot"></span>
-              Early access
-            </div>
-            <h2>Bring structure, trust, and clarity back into the way you run life.</h2>
-          </div>
+      <article class="feature-card feature-2 glass-strong">
+        <h3>Communities</h3>
+      </article>
 
-          <div class="cta-actions">
-            <a href="#" class="primary-btn">Join waitlist</a>
-            <a href="#" class="secondary-btn">Book intro</a>
-          </div>
-        </div>
-      </section>
-    </main>
+      <article class="feature-card feature-3 glass-strong">
+        <h3>EverBetter</h3>
+      </article>
 
-    <footer class="footer">
-      <span>Veritas Life OS</span>
-      <span>Premium operating system for modern life management</span>
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+      <article class="feature-card feature-4 glass-strong">
+        <h3>CRM & IntroWise</h3>
+      </article>
+    </div>
+  </section>
+</main>
