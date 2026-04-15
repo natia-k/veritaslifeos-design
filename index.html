@@ -11,61 +11,62 @@
 
   <style>
     :root{
-      --bg:#0a0d12;
-      --bg-2:#0f141b;
-      --surface:rgba(16,20,28,.72);
-      --surface-2:rgba(19,24,34,.88);
-      --surface-3:rgba(255,255,255,.028);
+      --bg:#07090d;
+      --bg-2:#0b0f16;
+      --bg-3:#101622;
 
-      --text:#f3f5f7;
-      --muted:rgba(243,245,247,.64);
-      --faint:rgba(243,245,247,.38);
+      --surface:rgba(14,18,26,.72);
+      --surface-2:rgba(18,24,34,.88);
+      --surface-3:rgba(255,255,255,.035);
+
+      --text:#f5f7fb;
+      --muted:rgba(245,247,251,.66);
+      --faint:rgba(245,247,251,.38);
 
       --border:rgba(255,255,255,.08);
       --border-2:rgba(255,255,255,.14);
 
-      --accent:#5f6fff;
-      --accent-rgb:95,111,255;
-      --accent-soft:rgba(95,111,255,.14);
+      --accent:#5d6bff;
+      --accent-rgb:93,107,255;
+      --accent-soft:rgba(93,107,255,.16);
 
-      --shadow:0 24px 70px rgba(0,0,0,.34);
-      --shadow-soft:0 10px 30px rgba(0,0,0,.22);
+      --shadow:0 30px 80px rgba(0,0,0,.38);
+      --shadow-soft:0 12px 30px rgba(0,0,0,.22);
 
-      --grid-opacity:.05;
-      --noise-opacity:.018;
-      --blur:18px;
+      --noise-opacity:.015;
+      --grid-opacity:.045;
 
-      --max:1280px;
-      --radius-xl:32px;
-      --radius-lg:24px;
-      --radius-md:18px;
+      --max:1320px;
+      --blur:20px;
     }
 
     html[data-mode="business"]{
-      --accent:#7f9777;
-      --accent-rgb:127,151,119;
-      --accent-soft:rgba(127,151,119,.14);
+      --accent:#7f9776;
+      --accent-rgb:127,151,118;
+      --accent-soft:rgba(127,151,118,.16);
     }
 
     html[data-theme="light"]{
-      --bg:#eef2f7;
+      --bg:#edf1f6;
       --bg-2:#e7ecf3;
+      --bg-3:#dde4ee;
+
       --surface:rgba(255,255,255,.78);
-      --surface-2:rgba(255,255,255,.90);
-      --surface-3:rgba(15,23,42,.022);
+      --surface-2:rgba(255,255,255,.92);
+      --surface-3:rgba(17,24,39,.03);
 
       --text:#101722;
-      --muted:rgba(16,23,34,.66);
-      --faint:rgba(16,23,34,.40);
+      --muted:rgba(16,23,34,.68);
+      --faint:rgba(16,23,34,.42);
 
-      --border:rgba(20,28,40,.08);
-      --border-2:rgba(20,28,40,.14);
+      --border:rgba(17,24,39,.08);
+      --border-2:rgba(17,24,39,.14);
 
-      --shadow:0 20px 60px rgba(17,24,39,.08);
-      --shadow-soft:0 8px 24px rgba(17,24,39,.05);
+      --shadow:0 22px 55px rgba(17,24,39,.08);
+      --shadow-soft:0 8px 22px rgba(17,24,39,.05);
 
-      --grid-opacity:.04;
-      --noise-opacity:.01;
+      --noise-opacity:.008;
+      --grid-opacity:.035;
     }
 
     *{box-sizing:border-box}
@@ -75,18 +76,18 @@
       font-family:"Inter",sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 78% 18%, rgba(var(--accent-rgb),.10), transparent 18%),
-        radial-gradient(circle at 18% 14%, rgba(var(--accent-rgb),.04), transparent 18%),
-        linear-gradient(180deg,var(--bg),var(--bg-2));
-      transition:background .35s ease,color .35s ease;
+        radial-gradient(circle at 78% 20%, rgba(var(--accent-rgb),.10), transparent 17%),
+        radial-gradient(circle at 20% 12%, rgba(var(--accent-rgb),.04), transparent 18%),
+        linear-gradient(180deg,var(--bg),var(--bg-2) 48%, var(--bg-3));
       overflow-x:hidden;
+      transition:background .35s ease,color .35s ease;
     }
 
     a{text-decoration:none;color:inherit}
     button{font:inherit}
     svg{display:block}
 
-    .bg-layer{
+    .bg{
       position:fixed;
       inset:0;
       pointer-events:none;
@@ -94,29 +95,29 @@
       overflow:hidden;
     }
 
-    .bg-layer::before{
+    .bg::before{
       content:"";
       position:absolute;
       inset:0;
       background-image:
         linear-gradient(rgba(127,127,127,var(--grid-opacity)) 1px, transparent 1px),
         linear-gradient(90deg, rgba(127,127,127,var(--grid-opacity)) 1px, transparent 1px);
-      background-size:42px 42px;
-      mask-image:radial-gradient(circle at center, black 36%, transparent 88%);
-      -webkit-mask-image:radial-gradient(circle at center, black 36%, transparent 88%);
+      background-size:44px 44px;
+      mask-image:radial-gradient(circle at center, black 34%, transparent 86%);
+      -webkit-mask-image:radial-gradient(circle at center, black 34%, transparent 86%);
     }
 
-    .bg-layer::after{
+    .bg::after{
       content:"";
       position:absolute;
       inset:-120%;
-      background-image:radial-gradient(circle, rgba(255,255,255,.85) .45px, transparent .8px);
+      background-image:radial-gradient(circle, rgba(255,255,255,.8) .45px, transparent .8px);
       background-size:7px 7px;
       opacity:var(--noise-opacity);
-      animation:noise 10s linear infinite;
+      animation:noiseShift 11s linear infinite;
     }
 
-    @keyframes noise{
+    @keyframes noiseShift{
       0%{transform:translate(0,0)}
       25%{transform:translate(-2%,1%)}
       50%{transform:translate(1%,-2%)}
@@ -125,35 +126,33 @@
     }
 
     .wrap{
-      width:min(var(--max),calc(100% - 32px));
+      width:min(var(--max), calc(100% - 32px));
       margin:0 auto;
       position:relative;
       z-index:2;
     }
 
     .glass{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.018));
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border:1px solid var(--border);
-      backdrop-filter:blur(18px) saturate(125%);
-      -webkit-backdrop-filter:blur(18px) saturate(125%);
+      backdrop-filter:blur(var(--blur)) saturate(130%);
+      -webkit-backdrop-filter:blur(var(--blur)) saturate(130%);
       box-shadow:var(--shadow-soft);
     }
 
     .glass-strong{
       background:
-        radial-gradient(circle at 82% 18%, rgba(var(--accent-rgb),.06), transparent 24%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.016));
+        radial-gradient(circle at 82% 18%, rgba(var(--accent-rgb),.08), transparent 26%),
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
       border:1px solid var(--border);
-      backdrop-filter:blur(20px) saturate(130%);
-      -webkit-backdrop-filter:blur(20px) saturate(130%);
+      backdrop-filter:blur(calc(var(--blur) + 2px)) saturate(135%);
+      -webkit-backdrop-filter:blur(calc(var(--blur) + 2px)) saturate(135%);
       box-shadow:var(--shadow);
     }
 
     html[data-theme="light"] .glass,
     html[data-theme="light"] .glass-strong{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.66));
+      background:linear-gradient(180deg, rgba(255,255,255,.84), rgba(255,255,255,.70));
     }
 
     .tiny{
@@ -177,7 +176,7 @@
     .nav{
       position:sticky;
       top:16px;
-      z-index:30;
+      z-index:40;
       padding-top:16px;
     }
 
@@ -188,7 +187,7 @@
       gap:16px;
       padding:14px 18px;
       border-radius:24px;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
       border:1px solid var(--border);
       box-shadow:var(--shadow-soft);
       backdrop-filter:blur(18px) saturate(125%);
@@ -196,7 +195,7 @@
     }
 
     html[data-theme="light"] .nav-shell{
-      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.64));
+      background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.68));
     }
 
     .brand{
@@ -209,12 +208,12 @@
       width:42px;
       height:42px;
       border-radius:14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.24), transparent 30%),
-        linear-gradient(180deg, rgba(var(--accent-rgb),.20), rgba(255,255,255,.03));
-      border:1px solid var(--border);
       position:relative;
       overflow:hidden;
+      border:1px solid var(--border);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 28%),
+        linear-gradient(180deg, rgba(var(--accent-rgb),.22), rgba(255,255,255,.03));
       flex:0 0 auto;
     }
 
@@ -222,7 +221,7 @@
       content:"";
       position:absolute;
       inset:11px;
-      border:1px solid rgba(255,255,255,.35);
+      border:1px solid rgba(255,255,255,.34);
       border-radius:7px;
       transform:rotate(45deg);
     }
@@ -245,10 +244,6 @@
       gap:28px;
       font-size:14px;
       color:var(--muted);
-    }
-
-    .nav-links a{
-      transition:color .2s ease;
     }
 
     .nav-links a:hover{
@@ -280,7 +275,7 @@
       cursor:pointer;
       font-size:12px;
       font-weight:600;
-      transition:all .22s ease;
+      transition:.22s ease;
     }
 
     .switch button.active{
@@ -295,14 +290,17 @@
 
     .hero{
       display:grid;
-      grid-template-columns:1.02fr .98fr;
-      gap:36px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap:32px;
       align-items:center;
-      padding:52px 0 34px;
+      min-height:calc(100vh - 110px);
+      padding:40px 0 20px;
     }
 
     .hero-copy{
-      max-width:660px;
+      max-width:620px;
+      position:relative;
+      z-index:2;
     }
 
     .eyebrow{
@@ -311,8 +309,8 @@
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      background:var(--surface);
       border:1px solid var(--border);
+      background:var(--surface);
       color:var(--muted);
       font-size:12px;
       font-weight:500;
@@ -321,23 +319,23 @@
 
     h1{
       margin:18px 0 0;
-      font-size:clamp(52px,7vw,88px);
-      line-height:.92;
-      letter-spacing:-.065em;
+      font-size:clamp(58px,8vw,104px);
+      line-height:.90;
+      letter-spacing:-.07em;
       font-weight:700;
-      color:var(--text);
+      max-width:640px;
     }
 
     h1 span{
       display:block;
-      color:color-mix(in srgb, var(--text) 72%, transparent);
+      color:color-mix(in srgb, var(--text) 70%, transparent);
     }
 
     .hero-copy p{
-      margin:22px 0 0;
-      max-width:560px;
-      font-size:18px;
-      line-height:1.72;
+      margin:24px 0 0;
+      max-width:540px;
+      font-size:19px;
+      line-height:1.68;
       color:var(--muted);
     }
 
@@ -345,12 +343,12 @@
       display:flex;
       flex-wrap:wrap;
       gap:14px;
-      margin-top:28px;
+      margin-top:30px;
     }
 
     .btn,
     .btn-secondary{
-      min-height:50px;
+      min-height:52px;
       padding:0 18px;
       border-radius:16px;
       display:inline-flex;
@@ -359,7 +357,7 @@
       border:1px solid var(--border);
       font-size:14px;
       font-weight:600;
-      transition:all .22s ease;
+      transition:.22s ease;
     }
 
     .btn{
@@ -389,60 +387,75 @@
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:20px;
+      margin-top:22px;
     }
 
     .hero-visual{
       position:relative;
-      min-height:660px;
+      min-height:760px;
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
-    .orb{
+    .hero-glow{
       position:absolute;
-      inset:4% 4% 5% 6%;
+      inset:6% 2% 6% 10%;
+      border-radius:48px;
       background:
-        radial-gradient(circle at 62% 16%, rgba(var(--accent-rgb),.18), transparent 20%),
-        radial-gradient(circle at 48% 44%, rgba(255,255,255,.05), transparent 16%),
-        radial-gradient(circle at 58% 76%, rgba(var(--accent-rgb),.08), transparent 20%);
-      filter:blur(18px);
-      border-radius:42px;
+        radial-gradient(circle at 62% 26%, rgba(var(--accent-rgb),.20), transparent 17%),
+        radial-gradient(circle at 52% 54%, rgba(255,255,255,.05), transparent 16%),
+        radial-gradient(circle at 50% 78%, rgba(var(--accent-rgb),.10), transparent 18%);
+      filter:blur(26px);
+      opacity:.95;
     }
 
     .scene{
       position:relative;
-      width:min(100%,600px);
-      height:600px;
+      width:min(100%, 760px);
+      height:720px;
     }
 
-    .float-card{
+    .panel{
       position:absolute;
-      border-radius:28px;
+      border-radius:34px;
       overflow:hidden;
     }
 
-    .main-dashboard{
-      inset:68px 30px 40px 34px;
+    .main-shell{
+      inset:60px 28px 28px 70px;
       padding:18px;
     }
 
-    .dashboard-core{
+    .main-core{
       height:100%;
-      border-radius:22px;
-      overflow:hidden;
-      position:relative;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.022));
+      border-radius:28px;
       border:1px solid var(--border);
+      overflow:hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      position:relative;
     }
 
-    .dashboard-head{
+    .main-core::after{
+      content:"";
+      position:absolute;
+      right:-10%;
+      top:16%;
+      width:280px;
+      height:280px;
+      border-radius:999px;
+      background:radial-gradient(circle, rgba(var(--accent-rgb),.16), transparent 66%);
+      filter:blur(24px);
+      pointer-events:none;
+    }
+
+    .windowbar{
+      height:62px;
+      padding:0 18px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:14px 16px;
       border-bottom:1px solid var(--border);
       background:rgba(255,255,255,.02);
     }
@@ -460,39 +473,38 @@
     }
 
     html[data-theme="light"] .window-dots span{
-      background:rgba(15,23,42,.14);
+      background:rgba(17,24,39,.14);
     }
 
-    .dashboard-pill{
-      padding:7px 10px;
+    .pill{
+      padding:8px 12px;
       border-radius:999px;
+      border:1px solid var(--border);
       font-size:11px;
       letter-spacing:.14em;
       text-transform:uppercase;
-      border:1px solid var(--border);
       color:var(--faint);
       background:var(--surface);
     }
 
-    .dashboard-body{
+    .dashboard{
+      padding:18px;
       display:grid;
-      grid-template-columns:1.08fr .92fr;
-      gap:14px;
-      padding:14px;
-      height:calc(100% - 58px);
+      grid-template-columns: 1.05fr .95fr;
+      gap:16px;
+      height:calc(100% - 62px);
     }
 
     .stack{
       display:grid;
-      gap:14px;
+      gap:16px;
     }
 
     .mini{
-      border-radius:20px;
-      padding:16px;
-      min-height:124px;
-      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.018));
+      border-radius:24px;
       border:1px solid var(--border);
+      padding:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.016));
       position:relative;
       overflow:hidden;
     }
@@ -502,11 +514,11 @@
       position:absolute;
       right:-18%;
       bottom:-35%;
-      width:170px;
-      height:170px;
+      width:180px;
+      height:180px;
       border-radius:999px;
-      background:radial-gradient(circle, rgba(var(--accent-rgb),.10), transparent 64%);
-      filter:blur(22px);
+      background:radial-gradient(circle, rgba(var(--accent-rgb),.12), transparent 64%);
+      filter:blur(20px);
     }
 
     .mini-top{
@@ -514,43 +526,52 @@
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      margin-bottom:12px;
+      margin-bottom:14px;
       font-size:11px;
-      letter-spacing:.14em;
+      letter-spacing:.15em;
       text-transform:uppercase;
       color:var(--faint);
     }
 
-    .big-num{
-      font-size:28px;
+    .big{
+      font-size:42px;
+      line-height:1;
+      letter-spacing:-.06em;
       font-weight:700;
+      color:var(--text);
+    }
+
+    .mid{
+      font-size:30px;
+      line-height:1.05;
       letter-spacing:-.05em;
+      font-weight:700;
       color:var(--text);
     }
 
     .progress{
-      margin-top:12px;
       height:8px;
       border-radius:999px;
       background:rgba(255,255,255,.06);
       overflow:hidden;
+      margin-top:14px;
     }
 
     html[data-theme="light"] .progress{
-      background:rgba(15,23,42,.06);
+      background:rgba(17,24,39,.06);
     }
 
     .progress span{
       display:block;
       height:100%;
       border-radius:inherit;
-      background:linear-gradient(90deg, rgba(var(--accent-rgb),.96), rgba(var(--accent-rgb),.38));
+      background:linear-gradient(90deg, rgba(var(--accent-rgb),.96), rgba(var(--accent-rgb),.34));
     }
 
-    .tiny-list{
+    .rows{
       display:grid;
       gap:10px;
-      margin-top:12px;
+      margin-top:14px;
     }
 
     .row{
@@ -566,76 +587,122 @@
       padding:5px 9px;
       border-radius:999px;
       border:1px solid var(--border);
-      font-size:11px;
-      color:var(--text);
       background:rgba(255,255,255,.04);
-    }
-
-    .side-panel{
-      width:210px;
-      height:150px;
-      top:18px;
-      right:14px;
-      padding:14px;
-      transform:rotate(2deg);
-    }
-
-    .bottom-panel{
-      width:220px;
-      height:126px;
-      left:10px;
-      bottom:12px;
-      padding:14px;
-      transform:rotate(-2deg);
-    }
-
-    .floating-title{
-      font-size:11px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:var(--faint);
-    }
-
-    .metric-line{
-      margin-top:12px;
-      display:flex;
-      align-items:end;
-      gap:8px;
-    }
-
-    .metric-line strong{
-      font-size:34px;
-      line-height:1;
-      letter-spacing:-.06em;
       color:var(--text);
+      font-size:11px;
+      white-space:nowrap;
     }
 
-    .small-bars{
+    .left-tall{
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .network-strip{
       display:grid;
-      gap:8px;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
       margin-top:12px;
     }
 
-    .small-bars div{
+    .network-box{
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      padding:14px;
+    }
+
+    .avatars{
+      display:flex;
+      margin-top:10px;
+    }
+
+    .avatars span{
+      width:30px;
+      height:30px;
+      border-radius:999px;
+      margin-left:-7px;
+      border:2px solid color-mix(in srgb, var(--bg) 90%, transparent);
+      background:linear-gradient(180deg, rgba(var(--accent-rgb),.30), rgba(255,255,255,.07));
+    }
+
+    .avatars span:first-child{margin-left:0}
+
+    .bars{
+      display:grid;
+      gap:9px;
+      margin-top:12px;
+    }
+
+    .bars div{
       height:8px;
       border-radius:999px;
       background:rgba(255,255,255,.06);
       overflow:hidden;
     }
 
-    html[data-theme="light"] .small-bars div{
-      background:rgba(15,23,42,.06);
+    html[data-theme="light"] .bars div{
+      background:rgba(17,24,39,.06);
     }
 
-    .small-bars div span{
+    .bars div span{
       display:block;
       height:100%;
       border-radius:inherit;
-      background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.3));
+      background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.28));
+    }
+
+    .float{
+      width:240px;
+      min-height:160px;
+      padding:18px;
+    }
+
+    .float.right{
+      top:46px;
+      right:0;
+      transform:rotate(2deg);
+    }
+
+    .float.left{
+      left:0;
+      bottom:24px;
+      transform:rotate(-2deg);
+      width:250px;
+      min-height:150px;
+    }
+
+    .float .label{
+      font-size:11px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--faint);
+    }
+
+    .metric{
+      display:flex;
+      align-items:flex-end;
+      gap:8px;
+      margin-top:14px;
+    }
+
+    .metric strong{
+      font-size:48px;
+      line-height:1;
+      letter-spacing:-.07em;
+      color:var(--text);
+    }
+
+    .metric span{
+      font-size:15px;
+      color:var(--muted);
+      margin-bottom:6px;
     }
 
     .feature-section{
-      padding:56px 0 22px;
+      padding:34px 0 24px;
     }
 
     .section-head{
@@ -669,28 +736,13 @@
       overflow:hidden;
       border-radius:28px;
       padding:22px;
-      transition:all .25s ease;
+      transition:.25s ease;
     }
 
     .card:hover{
       transform:translateY(-5px);
       border-color:var(--border-2);
       box-shadow:var(--shadow), 0 0 0 1px rgba(var(--accent-rgb),.08);
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:24px;
-      line-height:1.08;
-      letter-spacing:-.04em;
-    }
-
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-      max-width:430px;
     }
 
     .card-top{
@@ -719,6 +771,21 @@
       text-transform:uppercase;
     }
 
+    .card h3{
+      margin:0 0 10px;
+      font-size:24px;
+      line-height:1.08;
+      letter-spacing:-.04em;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7;
+      max-width:430px;
+    }
+
     .crm{grid-column:span 7; min-height:350px}
     .research{grid-column:span 5; min-height:350px}
     .goals{grid-column:span 5; min-height:316px}
@@ -739,8 +806,8 @@
       position:absolute;
       right:-12%;
       bottom:-30%;
-      width:190px;
-      height:190px;
+      width:200px;
+      height:200px;
       border-radius:999px;
       background:radial-gradient(circle, rgba(var(--accent-rgb),.10), transparent 62%);
       filter:blur(18px);
@@ -767,14 +834,14 @@
       gap:12px;
     }
 
-    .panel{
+    .inner{
       border-radius:18px;
-      padding:14px;
       border:1px solid var(--border);
       background:rgba(255,255,255,.03);
+      padding:14px;
     }
 
-    .panel strong{
+    .inner strong{
       display:block;
       font-size:30px;
       letter-spacing:-.05em;
@@ -782,55 +849,12 @@
       color:var(--text);
     }
 
-    .avatars{
-      display:flex;
-      margin-top:10px;
-    }
-
-    .avatars span{
-      width:28px;
-      height:28px;
-      border-radius:999px;
-      margin-left:-6px;
-      border:2px solid color-mix(in srgb, var(--bg) 90%, transparent);
-      background:linear-gradient(180deg, rgba(var(--accent-rgb),.32), rgba(255,255,255,.08));
-    }
-
-    .avatars span:first-child{
-      margin-left:0;
-    }
-
-    .barstack{
-      display:grid;
-      gap:9px;
-      margin-top:10px;
-    }
-
-    .barstack div{
-      height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      overflow:hidden;
-    }
-
-    html[data-theme="light"] .barstack div{
-      background:rgba(15,23,42,.06);
-    }
-
-    .barstack div span{
-      display:block;
-      height:100%;
-      border-radius:inherit;
-      background:linear-gradient(90deg, rgba(var(--accent-rgb),.95), rgba(var(--accent-rgb),.28));
-    }
-
     .research-stack{
       display:grid;
       gap:12px;
     }
 
-    .searchline,
-    .block{
+    .searchline,.block{
       border-radius:18px;
       border:1px solid var(--border);
       background:rgba(255,255,255,.03);
@@ -845,9 +869,7 @@
       color:var(--faint);
     }
 
-    .block{
-      padding:14px;
-    }
+    .block{padding:14px}
 
     .signal{
       display:flex;
@@ -873,7 +895,7 @@
       background:rgba(255,255,255,.03);
     }
 
-    .bars{
+    .goal-bars{
       display:flex;
       align-items:end;
       gap:9px;
@@ -881,7 +903,7 @@
       margin-top:16px;
     }
 
-    .bars span{
+    .goal-bars span{
       flex:1;
       border-radius:14px 14px 6px 6px;
       background:rgba(255,255,255,.06);
@@ -889,11 +911,11 @@
       position:relative;
     }
 
-    html[data-theme="light"] .bars span{
-      background:rgba(15,23,42,.06);
+    html[data-theme="light"] .goal-bars span{
+      background:rgba(17,24,39,.06);
     }
 
-    .bars span::after{
+    .goal-bars span::after{
       content:"";
       position:absolute;
       inset:auto 0 0 0;
@@ -901,14 +923,14 @@
       background:linear-gradient(180deg, rgba(var(--accent-rgb),.85), rgba(var(--accent-rgb),.24));
     }
 
-    .bars span:nth-child(1){height:44px}
-    .bars span:nth-child(1)::after{height:58%}
-    .bars span:nth-child(2){height:68px}
-    .bars span:nth-child(2)::after{height:66%}
-    .bars span:nth-child(3){height:88px}
-    .bars span:nth-child(3)::after{height:74%}
-    .bars span:nth-child(4){height:112px}
-    .bars span:nth-child(4)::after{height:82%}
+    .goal-bars span:nth-child(1){height:44px}
+    .goal-bars span:nth-child(1)::after{height:58%}
+    .goal-bars span:nth-child(2){height:68px}
+    .goal-bars span:nth-child(2)::after{height:66%}
+    .goal-bars span:nth-child(3){height:88px}
+    .goal-bars span:nth-child(3)::after{height:74%}
+    .goal-bars span:nth-child(4){height:112px}
+    .goal-bars span:nth-child(4)::after{height:82%}
 
     .forums-grid{
       display:grid;
@@ -1030,18 +1052,19 @@
       height:20px;
     }
 
-    @media (max-width:1120px){
+    @media (max-width:1180px){
       .hero{
         grid-template-columns:1fr;
+        min-height:auto;
         padding-top:42px;
       }
 
       .hero-visual{
-        min-height:560px;
+        min-height:620px;
       }
 
       .scene{
-        height:540px;
+        height:610px;
       }
 
       .crm,.research,.goals,.forums{
@@ -1060,7 +1083,7 @@
 
     @media (max-width:860px){
       .wrap{
-        width:min(var(--max),calc(100% - 24px));
+        width:min(var(--max), calc(100% - 24px));
       }
 
       .nav-shell{
@@ -1081,30 +1104,35 @@
         justify-content:space-between;
       }
 
-      .dashboard-body,.crm-grid,.forums-grid{
+      .dashboard,
+      .crm-grid,
+      .forums-grid,
+      .network-strip{
         grid-template-columns:1fr;
       }
 
       .hero-visual{
-        min-height:480px;
+        min-height:520px;
       }
 
       .scene{
-        height:470px;
+        height:500px;
       }
 
-      .main-dashboard{
-        inset:54px 14px 24px 16px;
+      .main-shell{
+        inset:40px 10px 20px 26px;
       }
 
-      .side-panel{
-        width:180px;
-        height:144px;
+      .float.right{
+        width:190px;
+        min-height:140px;
+        top:10px;
       }
 
-      .bottom-panel{
+      .float.left{
         width:200px;
-        height:124px;
+        min-height:132px;
+        left:-4px;
       }
     }
 
@@ -1127,7 +1155,7 @@
       }
 
       h1{
-        font-size:clamp(42px,14vw,60px);
+        font-size:clamp(44px,15vw,64px);
       }
 
       .hero-copy p{
@@ -1138,23 +1166,15 @@
         height:430px;
       }
 
-      .side-panel,
-      .bottom-panel{
+      .float{
         display:none;
       }
 
-      .dashboard-body{
-        height:auto;
+      .main-shell{
+        inset:0;
       }
 
-      .main-dashboard{
-        inset:10px 0 0 0;
-      }
-
-      .system-card,
-      .cta-card,
-      .card,
-      .main-dashboard{
+      .system-card,.cta-card,.card{
         padding:18px;
       }
 
@@ -1166,7 +1186,7 @@
   </style>
 </head>
 <body>
-  <div class="bg-layer" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true"></div>
 
   <div class="wrap">
     <header class="nav">
@@ -1186,12 +1206,12 @@
         </nav>
 
         <div class="controls">
-          <div class="switch glass" data-switch="mode">
+          <div class="switch glass">
             <button type="button" class="mode-btn active" data-mode="personal">Personal</button>
             <button type="button" class="mode-btn" data-mode="business">Business</button>
           </div>
 
-          <div class="switch glass" data-switch="theme">
+          <div class="switch glass">
             <button type="button" class="theme-btn active" data-theme="dark">Dark</button>
             <button type="button" class="theme-btn" data-theme="light">Light</button>
           </div>
@@ -1208,12 +1228,12 @@
           </div>
 
           <h1>
-            Run your life
-            <span>like a system.</span>
+            Everything important.
+            <span>One clear system.</span>
           </h1>
 
           <p>
-            Veritas brings priorities, trusted people, research, and execution into one calm, premium interface built for modern personal and professional complexity.
+            Veritas brings priorities, trusted relationships, research, and execution into one deliberate interface built for personal and professional complexity.
           </p>
 
           <div class="hero-actions">
@@ -1241,32 +1261,37 @@
         </div>
 
         <div class="hero-visual">
-          <div class="orb" aria-hidden="true"></div>
+          <div class="hero-glow" aria-hidden="true"></div>
 
           <div class="scene">
-            <div class="float-card main-dashboard glass-strong">
-              <div class="dashboard-core">
-                <div class="dashboard-head">
+            <div class="panel main-shell glass-strong">
+              <div class="main-core">
+                <div class="windowbar">
                   <div class="window-dots" aria-hidden="true">
                     <span></span><span></span><span></span>
                   </div>
-                  <div class="dashboard-pill">Veritas control layer</div>
+                  <div class="pill">Veritas control layer</div>
                 </div>
 
-                <div class="dashboard-body">
+                <div class="dashboard">
                   <div class="stack">
-                    <div class="mini">
-                      <div class="mini-top">
-                        <span>Weekly priorities</span>
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
-                        </svg>
+                    <div class="mini left-tall">
+                      <div>
+                        <div class="mini-top">
+                          <span>Weekly priorities</span>
+                          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
+                          </svg>
+                        </div>
+                        <div class="big">3</div>
+                        <div class="mid" style="margin-top:4px;">critical priorities</div>
+                        <div class="progress"><span style="width:78%"></span></div>
                       </div>
-                      <div class="big-num">3 critical</div>
-                      <div class="progress"><span style="width:74%"></span></div>
-                      <div class="tiny-list">
+
+                      <div class="rows">
                         <div class="row"><span>Decision review</span><span class="badge">Today</span></div>
                         <div class="row"><span>Provider shortlist</span><span class="badge">Live</span></div>
+                        <div class="row"><span>Escalation track</span><span class="badge">2 pending</span></div>
                       </div>
                     </div>
 
@@ -1280,10 +1305,30 @@
                           <path d="M23 11h-6"></path>
                         </svg>
                       </div>
-                      <div class="big-num">12 priority</div>
-                      <div class="tiny-list">
-                        <div class="row"><span>High-trust contacts</span><span class="badge">Updated</span></div>
-                        <div class="row"><span>Warm introductions</span><span class="badge">4</span></div>
+
+                      <div class="network-strip">
+                        <div class="network-box">
+                          <div class="tiny" style="letter-spacing:.14em; font-size:10px;">
+                            <span class="dot" style="width:6px;height:6px;"></span>
+                            Priority people
+                          </div>
+                          <div class="mid" style="margin-top:8px;">12</div>
+                          <div class="avatars" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span><span></span>
+                          </div>
+                        </div>
+
+                        <div class="network-box">
+                          <div class="tiny" style="letter-spacing:.14em; font-size:10px;">
+                            <span class="dot" style="width:6px;height:6px;"></span>
+                            Recent touchpoints
+                          </div>
+                          <div class="bars">
+                            <div><span style="width:78%"></span></div>
+                            <div><span style="width:56%"></span></div>
+                            <div><span style="width:84%"></span></div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1304,10 +1349,17 @@
                           <circle cx="12" cy="12" r="4"></circle>
                         </svg>
                       </div>
-                      <div class="row"><span>Signal quality</span><strong class="big-num" style="font-size:26px">86</strong></div>
+
+                      <div class="row" style="margin-top:6px;">
+                        <span>Signal quality</span>
+                        <strong class="score">86</strong>
+                      </div>
+
                       <div class="progress"><span style="width:86%"></span></div>
-                      <div class="tiny-list">
+
+                      <div class="rows">
                         <div class="row"><span>3 vetted providers</span><span class="badge">Verified</span></div>
+                        <div class="row"><span>2 reports summarized</span><span class="badge">Fresh</span></div>
                       </div>
                     </div>
 
@@ -1321,10 +1373,28 @@
                           <path d="M21 12h-3"></path>
                         </svg>
                       </div>
-                      <div class="big-num">74%</div>
+
+                      <div class="mid">74% on track</div>
                       <div class="progress"><span style="width:74%"></span></div>
-                      <div class="tiny-list">
+
+                      <div class="rows">
                         <div class="row"><span>Quarterly target</span><span class="badge">On track</span></div>
+                        <div class="row"><span>Review cadence</span><span class="badge">Weekly</span></div>
+                      </div>
+                    </div>
+
+                    <div class="mini">
+                      <div class="mini-top">
+                        <span>Forum clusters</span>
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                      </div>
+
+                      <div class="rows">
+                        <div class="row"><span>Legal</span><span class="badge">34 threads</span></div>
+                        <div class="row"><span>Career</span><span class="badge">18 threads</span></div>
+                        <div class="row"><span>Family</span><span class="badge">12 threads</span></div>
                       </div>
                     </div>
                   </div>
@@ -1332,26 +1402,26 @@
               </div>
             </div>
 
-            <div class="float-card side-panel glass">
-              <div class="floating-title">Research signal</div>
-              <div class="metric-line">
+            <div class="panel float right glass">
+              <div class="label">Research signal</div>
+              <div class="metric">
                 <strong>86</strong>
-                <span class="muted">confidence</span>
+                <span>confidence</span>
               </div>
-              <div class="small-bars">
+              <div class="bars" style="margin-top:16px;">
                 <div><span style="width:82%"></span></div>
                 <div><span style="width:68%"></span></div>
                 <div><span style="width:91%"></span></div>
               </div>
             </div>
 
-            <div class="float-card bottom-panel glass">
-              <div class="floating-title">Trusted cluster</div>
-              <div class="metric-line">
+            <div class="panel float left glass">
+              <div class="label">Trusted cluster</div>
+              <div class="metric">
                 <strong>12</strong>
-                <span class="muted">priority people</span>
+                <span>priority people</span>
               </div>
-              <div class="small-bars">
+              <div class="bars" style="margin-top:16px;">
                 <div><span style="width:78%"></span></div>
                 <div><span style="width:58%"></span></div>
               </div>
@@ -1368,7 +1438,7 @@
           </div>
           <h2>A modular system for decisions, relationships, and follow-through.</h2>
           <p>
-            Each tool is designed as a functional layer inside one premium interface — structured, intelligent, and built to reduce fragmentation across the way you run life.
+            Each tool works as a focused layer inside one interface — calmer than fragmented apps, more useful than vague life-management promises.
           </p>
         </div>
 
@@ -1384,7 +1454,7 @@
               <div class="card-no">01</div>
             </div>
             <h3>Personal CRM</h3>
-            <p>Organize relationships, track touchpoints, and keep the people who matter visible inside a trust-based system.</p>
+            <p>Track the people who matter, organize continuity, and keep high-trust relationships active without mental clutter.</p>
 
             <div class="viz">
               <div class="viz-top">
@@ -1393,7 +1463,7 @@
               </div>
 
               <div class="crm-grid">
-                <div class="panel">
+                <div class="inner">
                   <div class="viz-title">Priority people</div>
                   <strong>12</strong>
                   <div class="avatars" aria-hidden="true">
@@ -1401,9 +1471,9 @@
                   </div>
                 </div>
 
-                <div class="panel">
+                <div class="inner">
                   <div class="viz-title">Recent touchpoints</div>
-                  <div class="barstack">
+                  <div class="bars">
                     <div><span style="width:78%"></span></div>
                     <div><span style="width:56%"></span></div>
                     <div><span style="width:84%"></span></div>
@@ -1424,7 +1494,7 @@
               <div class="card-no">02</div>
             </div>
             <h3>AI News Researcher</h3>
-            <p>Turn noise into signal with summarized updates, provider analysis, and high-quality research context.</p>
+            <p>Turn noise into signal with summarized updates, provider analysis, and research context grounded in relevance.</p>
 
             <div class="viz">
               <div class="viz-top">
@@ -1477,7 +1547,7 @@
 
               <div class="goal-chart">
                 <div class="viz-title">Progress curve</div>
-                <div class="bars" aria-hidden="true">
+                <div class="goal-bars" aria-hidden="true">
                   <span></span><span></span><span></span><span></span>
                 </div>
               </div>
@@ -1503,17 +1573,17 @@
               </div>
 
               <div class="forums-grid">
-                <div class="panel">
+                <div class="inner">
                   <div class="viz-title">Active threads</div>
                   <strong>146</strong>
                 </div>
 
-                <div class="panel">
+                <div class="inner">
                   <div class="viz-title">Private groups</div>
                   <strong>08</strong>
                 </div>
 
-                <div class="panel">
+                <div class="inner">
                   <div class="viz-title">Clusters</div>
                   <div class="bubbles">
                     <span>Legal</span>
@@ -1540,7 +1610,7 @@
             </div>
 
             <div class="system-copy">
-              <p>Veritas Life OS is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.</p>
+              <p>Veritas is structured as a decision layer for real life — combining research, relationships, goals, and execution inside one coherent interface.</p>
               <p>The result is calmer, clearer, and more capable than fragmented tools designed for isolated tasks.</p>
             </div>
           </div>
