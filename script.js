@@ -103,4 +103,65 @@
   );
 
   revealCards.forEach((card) => observer.observe(card));
+    const featureCards = document.querySelectorAll(".feature-card");
+
+  featureCards.forEach((card) => {
+    card.classList.add("reveal");
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const offsetX = (x - centerX) / centerX;
+      const offsetY = (y - centerY) / centerY;
+
+      card.style.setProperty("--mouse-x", `${x}px`);
+      card.style.setProperty("--mouse-y", `${y}px`);
+
+      card.style.setProperty("--rotate-y", `${offsetX * 3.5}deg`);
+      card.style.setProperty("--rotate-x", `${offsetY * -3}deg`);
+
+      card.style.setProperty("--icon-x", `${offsetX * 10}px`);
+      card.style.setProperty("--icon-y", `${offsetY * 10}px`);
+
+      card.style.setProperty("--content-x", `${offsetX * 8}px`);
+      card.style.setProperty("--content-y", `${offsetY * 8}px`);
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.setProperty("--rotate-y", `0deg`);
+      card.style.setProperty("--rotate-x", `0deg`);
+      card.style.setProperty("--icon-x", `0px`);
+      card.style.setProperty("--icon-y", `0px`);
+      card.style.setProperty("--content-x", `0px`);
+      card.style.setProperty("--content-y", `0px`);
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          const allCards = [...featureCards];
+          const staggerIndex = allCards.indexOf(entry.target);
+
+          setTimeout(() => {
+            entry.target.classList.add("is-visible");
+          }, staggerIndex * 110);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  featureCards.forEach((card) => observer.observe(card));
 })();
