@@ -68,4 +68,39 @@
       closePanel();
     }
   });
+    // feature card mouse glow
+  document.querySelectorAll(".feature-card").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+      card.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
+    });
+  });
+
+  // staggered reveal on scroll
+  const revealCards = document.querySelectorAll(".feature-card");
+  revealCards.forEach((card) => card.classList.add("reveal"));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          const cards = [...revealCards];
+          const staggerIndex = cards.indexOf(entry.target);
+
+          setTimeout(() => {
+            entry.target.classList.add("is-visible");
+          }, staggerIndex * 90);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -40px 0px",
+    }
+  );
+
+  revealCards.forEach((card) => observer.observe(card));
 })();
