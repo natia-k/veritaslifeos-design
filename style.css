@@ -1246,4 +1246,20 @@ html[data-theme="light"] .goal-bars span {
   .settings-panel {
     padding: 18px;
   }
-} give me fixed full code is it now okay?
+  .workspace-trigger {
+  gap: 8px;
+}
+
+.bento.workspace-mode .feature-card {
+  cursor: grab;
+  user-select: none;
+}
+
+.feature-card.dragging {
+  opacity: 0.88;
+  transform: scale(0.98);
+  box-shadow:
+    0 18px 48px rgba(var(--accent-rgb), 0.2),
+    0 0 0 1px rgba(var(--accent-rgb), 0.22);
+}
+} 
