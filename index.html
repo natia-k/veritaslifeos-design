@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-mode="personal" data-accent="cream" data-density="balanced">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veritas Life OS</title>
-  <meta name="description" content="Veritas Life OS — a premium operating system for modern life management." />
+  <meta
+    name="description"
+    content="Veritas Life OS — modern life intelligence for relationships, clarity, and momentum."
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="homepage">
   <div class="page-bg" aria-hidden="true"></div>
 
   <div class="wrap">
@@ -25,36 +31,34 @@
         </div>
 
         <nav class="nav-links" aria-label="Primary">
-          <a href="#features">Features</a>
           <a href="#why">Why Veritas</a>
+          <a href="#tools">Tools</a>
           <a href="#access">Access</a>
         </nav>
 
-        <a href="dashboard.html" class="settings-trigger glass">
-          Log in / Sign up
-        </a>
+        <a href="dashboard.html" class="settings-trigger glass">Log in / Sign up</a>
       </div>
     </header>
 
     <main>
-      <section class="hero public-hero">
-        <div class="hero-copy center-copy">
+      <section class="hero homepage-hero">
+        <div class="homepage-hero__copy">
           <div class="eyebrow">
             <span class="tiny-dot"></span>
             Modern life intelligence
           </div>
 
-          <h1>
-            Manage Your Life
-            <span>With Intelligence</span>
+          <h1 class="homepage-title">
+            Manage your life
+            <span>with intelligence.</span>
           </h1>
 
-          <p>
-            A comprehensive suite of tools to help you stay organized,
-            maintain relationships, and achieve your goals.
+          <p class="homepage-subtitle">
+            A premium operating system for relationships, clarity, and follow-through —
+            built to help modern life feel less fragmented and more intentional.
           </p>
 
-          <div class="hero-actions">
+          <div class="hero-actions homepage-actions">
             <a href="dashboard.html" class="primary-btn">
               Log in / Sign up
               <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
@@ -63,92 +67,108 @@
               </svg>
             </a>
 
-            <a href="#features" class="secondary-btn">
-              Explore tools
-            </a>
+            <a href="#tools" class="secondary-btn">Explore tools</a>
+          </div>
+        </div>
+
+        <div class="homepage-hero__visual">
+          <div class="hero-orb" aria-hidden="true"></div>
+
+          <div class="homepage-preview glass-strong">
+            <div class="homepage-preview__topbar">
+              <div class="window-dots" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="dashboard-pill">Public layer</div>
+            </div>
+
+            <div class="homepage-preview__grid">
+              <div class="preview-panel glass">
+                <div class="mini-label">Relationships</div>
+                <strong class="preview-stat">12</strong>
+                <p>Priority contacts and warm paths kept visible.</p>
+              </div>
+
+              <div class="preview-panel glass">
+                <div class="mini-label">Fact-based research</div>
+                <strong class="preview-stat">86</strong>
+                <p>Signal scoring, trusted providers, and cleaner context.</p>
+              </div>
+
+              <div class="preview-panel glass preview-panel--wide">
+                <div class="mini-label">EverBetter</div>
+                <p>
+                  Daily reflection, progress tracking, and a calmer system for
+                  staying aligned with what matters.
+                </p>
+                <div class="preview-bars" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="why" class="feature-section">
-        <div class="section-heading center-copy">
+      <section id="why" class="homepage-section">
+        <div class="section-heading homepage-center">
           <div class="tiny-label">
             <span class="tiny-dot"></span>
-            Why choose our platform
+            Why Veritas
           </div>
-          <h2>Built around relationships, purpose, and motivation.</h2>
+          <h2>Built around relationships, purpose, and momentum.</h2>
           <p>
-            Veritas helps people manage modern life with more clarity —
-            bringing structure to priorities, trusted connections, daily momentum, and intelligent decision-making.
+            Veritas is designed as an intelligent layer for modern life —
+            combining people, goals, context, and decision-making inside one
+            clearer system.
           </p>
         </div>
 
-        <div class="bento">
-          <article class="feature-card feature-1 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <div class="feature-no">01</div>
-            </div>
+        <div class="homepage-values">
+          <article class="value-card glass-strong">
+            <div class="feature-no">01</div>
             <h3>Relationships</h3>
             <p>
-              Create, build, and maintain meaningful connections with more intention and less fragmentation.
+              Keep trusted connections visible, intentional, and easier to
+              maintain over time.
             </p>
           </article>
 
-          <article class="feature-card feature-2 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <circle cx="12" cy="12" r="4"></circle>
-                  <path d="M12 3v3"></path>
-                  <path d="M21 12h-3"></path>
-                </svg>
-              </div>
-              <div class="feature-no">02</div>
-            </div>
+          <article class="value-card glass-strong">
+            <div class="feature-no">02</div>
             <h3>Purpose</h3>
             <p>
-              Track your goals, reflect on progress, and build a clearer sense of direction across life and work.
+              Turn long-term goals into something measurable, calmer, and easier
+              to return to every day.
             </p>
           </article>
 
-          <article class="feature-card feature-3 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M12 3l2.6 5.3L20 9.2l-4 4 .9 5.8L12 16.7 7.1 19 8 13.2l-4-4 5.4-.9L12 3z"></path>
-                </svg>
-              </div>
-              <div class="feature-no">03</div>
-            </div>
+          <article class="value-card glass-strong">
+            <div class="feature-no">03</div>
             <h3>Motivation</h3>
             <p>
-              Stay accountable, create momentum, and turn intention into follow-through through a calmer system.
+              Build momentum through reflection, progress tracking, and a more
+              deliberate control layer.
             </p>
           </article>
         </div>
       </section>
 
-      <section id="features" class="feature-section">
-        <div class="section-heading center-copy">
+      <section id="tools" class="homepage-section">
+        <div class="section-heading homepage-center">
           <div class="tiny-label">
             <span class="tiny-dot"></span>
             Core tools
           </div>
           <h2>A modular suite for modern life management.</h2>
           <p>
-            Explore the key layers of the Veritas system — from relationships and communities to reflection, research, and intelligent coordination.
+            Explore the main layers of the Veritas system before entering the
+            full workspace.
           </p>
         </div>
 
-        <div class="bento">
-          <article class="feature-card feature-1 glass-strong">
+        <div class="bento homepage-bento">
+          <article class="feature-card feature-1 large glass-strong">
             <div class="feature-top">
               <div class="icon-shell" aria-hidden="true">
                 <svg class="symbol lg" viewBox="0 0 24 24">
@@ -160,7 +180,8 @@
             </div>
             <h3>Stay in Touch</h3>
             <p>
-              Keep relationships visible, track important touchpoints, and stay connected with more consistency.
+              Keep relationships visible, track touchpoints, and maintain
+              meaningful personal and professional connections.
             </p>
           </article>
 
@@ -175,7 +196,8 @@
             </div>
             <h3>Communities</h3>
             <p>
-              Join curated spaces for alumni, interest groups, and trusted networks that keep context and signal intact.
+              Join trusted spaces for alumni, interest groups, and family nodes
+              without losing context or signal.
             </p>
           </article>
 
@@ -190,11 +212,12 @@
             </div>
             <h3>EverBetter</h3>
             <p>
-              Daily reflection, wellness tracking, and personal momentum tools to support the human layer of the system.
+              Daily reflection and wellness tracking designed to support the
+              human layer of the system.
             </p>
           </article>
 
-          <article class="feature-card feature-4 glass-strong">
+          <article class="feature-card feature-4 large glass-strong">
             <div class="feature-top">
               <div class="icon-shell" aria-hidden="true">
                 <svg class="symbol lg" viewBox="0 0 24 24">
@@ -206,9 +229,36 @@
             </div>
             <h3>CRM & IntroWise</h3>
             <p>
-              Go beyond static contact lists with AI-assisted relationship intelligence, warm introductions, and trusted networking.
+              Go beyond static contacts with AI-assisted relationship
+              intelligence, warm introductions, and trusted networking.
             </p>
           </article>
+        </div>
+      </section>
+
+      <section class="homepage-section">
+        <div class="system-card glass-strong homepage-system">
+          <div class="system-layout">
+            <div>
+              <div class="tiny-label">
+                <span class="tiny-dot"></span>
+                The idea
+              </div>
+              <h2>Infrastructure for modern life, not another noisy app.</h2>
+            </div>
+
+            <div class="system-copy">
+              <p>
+                Veritas brings together relationships, reflection, research, and
+                momentum inside a calmer interface that feels more like an
+                intentional workspace than a collection of disconnected tools.
+              </p>
+              <p>
+                The result is a more coherent way to manage life with clarity,
+                trust, and better decisions.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -217,14 +267,14 @@
           <div>
             <div class="tiny-label">
               <span class="tiny-dot"></span>
-              Access the system
+              Enter the workspace
             </div>
-            <h2>Move from the public layer into your personal control layer.</h2>
+            <h2>Step into the control layer and make the system your own.</h2>
           </div>
 
           <div class="cta-actions">
             <a href="dashboard.html" class="primary-btn">Log in / Sign up</a>
-            <a href="#features" class="secondary-btn">View tools</a>
+            <a href="#tools" class="secondary-btn">View tools</a>
           </div>
         </div>
       </section>
@@ -232,7 +282,7 @@
 
     <footer class="footer">
       <span>Veritas Life OS</span>
-      <span>Modern life management with intelligence</span>
+      <span>Modern life intelligence</span>
     </footer>
   </div>
 
