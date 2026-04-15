@@ -3,16 +3,15 @@
   const settingsTrigger = document.getElementById("settingsTrigger");
   const settingsPanel = document.getElementById("settingsPanel");
   const settingsClose = document.getElementById("settingsClose");
-  const settingButtons = document.querySelectorAll(
-    ".setting-btn, .mini-setting-btn"
-  );
+  const settingButtons = document.querySelectorAll(".setting-btn, .mini-setting-btn");
+  const featureCards = document.querySelectorAll(".feature-card");
+  const bento = document.querySelector(".bento");
+  const workspaceTrigger = document.getElementById("workspaceTrigger");
 
   function syncButtons(setting, value) {
-    document
-      .querySelectorAll(`[data-setting="${setting}"]`)
-      .forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.value === value);
-      });
+    document.querySelectorAll(`[data-setting="${setting}"]`).forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.value === value);
+    });
   }
 
   function applySetting(setting, value, save = true) {
@@ -28,6 +27,8 @@
     const saved = localStorage.getItem(`veritas-${setting}`);
     if (saved) {
       applySetting(setting, saved, false);
+    } else {
+      syncButtons(setting, root.getAttribute(`data-${setting}`));
     }
   });
 
@@ -38,53 +39,60 @@
   });
 
   function openPanel() {
+    if (!settingsPanel || !settingsTrigger) return;
     settingsPanel.hidden = false;
     settingsTrigger.setAttribute("aria-expanded", "true");
   }
 
   function closePanel() {
+    if (!settingsPanel || !settingsTrigger) return;
     settingsPanel.hidden = true;
     settingsTrigger.setAttribute("aria-expanded", "false");
   }
 
   settingsTrigger?.addEventListener("click", () => {
-    settingsPanel.hidden ? openPanel() : closePanel();
+    if (settingsPanel.hidden) {
+      openPanel();
+    } else {
+      closePanel();
+    }
   });
 
   settingsClose?.addEventListener("click", closePanel);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closePanel();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closePanel();
+    }
   });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", (event) => {
     if (
+      settingsPanel &&
+      settingsTrigger &&
       !settingsPanel.hidden &&
-      !settingsPanel.contains(e.target) &&
-      !settingsTrigger.contains(e.target)
+      !settingsPanel.contains(event.target) &&
+      !settingsTrigger.contains(event.target)
     ) {
       closePanel();
     }
   });
 
-  const featureCards = document.querySelectorAll(".feature-card");
-
   featureCards.forEach((card) => {
     card.classList.add("reveal");
 
-    card.addEventListener("mousemove", (e) => {
+    card.addEventListener("mousemove", (event) => {
       const rect = card.getBoundingClientRect();
-
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
 
       card.style.setProperty("--mouse-x", `${x}px`);
       card.style.setProperty("--mouse-y", `${y}px`);
     });
 
     card.addEventListener("mouseleave", () => {
-      card.style.setProperty("--mouse-x", `50%`);
-      card.style.setProperty("--mouse-y", `50%`);
+      card.style.setProperty("--mouse-x", "50%");
+      card.style.setProperty("--mouse-y", "50%");
     });
   });
 
@@ -106,25 +114,19 @@
     }
   );
 
- featureCards.forEach((card) => revealObserver.observe(card));
-})();
+  featureCards.forEach((card) => revealObserver.observe(card));
 
-(() => {
-  const bento = document.querySelector(".bento");
-  const workspaceTrigger = document.getElementById("workspaceTrigger");
+  if (bento && workspaceTrigger) {
+    let workspaceMode = false;
 
-  if (!bento || !workspaceTrigger) return;
+    workspaceTrigger.addEventListener("click", () => {
+      workspaceMode = !workspaceMode;
+      bento.classList.toggle("workspace-mode", workspaceMode);
+      workspaceTrigger.setAttribute("aria-pressed", String(workspaceMode));
 
-  let workspaceMode = false;
-
-  workspaceTrigger.addEventListener("click", () => {
-    workspaceMode = !workspaceMode;
-
-    bento.classList.toggle("workspace-mode", workspaceMode);
-
-    document.querySelectorAll(".feature-card").forEach((card, index) => {
-      card.draggable = workspaceMode;
-      card.style.order = index + 1;
+      featureCards.forEach((card) => {
+        card.draggable = workspaceMode;
+      });
     });
-  });
+  }
 })();
