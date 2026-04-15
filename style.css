@@ -1246,43 +1246,6 @@ html[data-theme="light"] .goal-bars span {
   .settings-panel {
     padding: 18px;
   }
-  .workspace-trigger {
-  gap: 8px;
-}
-
-.bento.workspace-mode .feature-card {
-  cursor: grab;
-  user-select: none;
-}
-
-.feature-card.dragging {
-  opacity: 0.88;
-  transform: scale(0.98);
-  box-shadow:
-    0 18px 48px rgba(var(--accent-rgb), 0.2),
-    0 0 0 1px rgba(var(--accent-rgb), 0.22);
-}
-  .public-hero {
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.center-copy {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 760px;
-}
-
-.center-copy .tiny-label,
-.center-copy .eyebrow {
-  justify-content: center;
-}
-
-.center-copy .hero-actions,
-.center-copy .cta-actions {
-  justify-content: center;
 }
 body.homepage {
   overflow-x: hidden;
@@ -1341,7 +1304,6 @@ body.homepage {
   padding: 20px;
   z-index: 2;
 }
-
 .homepage-preview__topbar {
   display: flex;
   align-items: center;
@@ -1365,7 +1327,6 @@ body.homepage {
 .preview-panel--wide {
   grid-column: span 2;
 }
-
 .preview-panel p {
   margin: 10px 0 0;
   color: var(--text-muted);
@@ -1470,7 +1431,15 @@ html[data-theme="light"] .preview-bars span {
 .homepage-system {
   padding: 30px;
 }
+.homepage-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.homepage-center .tiny-label {
+  justify-content: center;
+}
 @media (max-width: 1120px) {
   .homepage-hero {
     grid-template-columns: 1fr;
