@@ -676,13 +676,71 @@ html[data-theme="light"] .progress { background: rgba(120, 92, 82, 0.08); }
   border-radius: 28px;
   min-height: 280px;
   overflow: hidden;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  will-change: transform, opacity;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.6s ease;
+}
+
+/* interactive glow */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    520px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--accent-rgb), 0.10),
+    transparent 42%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* subtle frosted texture */
+.feature-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 0.4px, transparent 0.8px);
+  background-size: 8px 8px;
+  mix-blend-mode: soft-light;
+  z-index: 1;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--border-strong);
-  box-shadow: var(--shadow), 0 0 0 1px rgba(var(--accent-rgb), 0.06);
+  transform: translateY(-6px);
+  border-color: rgba(var(--accent-rgb), 0.28);
+  box-shadow:
+    var(--shadow),
+    0 0 0 1px rgba(var(--accent-rgb), 0.08);
+}
+
+/* keep content above glow */
+.feature-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* reveal animation */
+.feature-card.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature-card.large { min-height: 340px; }
