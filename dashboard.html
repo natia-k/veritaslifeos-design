@@ -11,6 +11,8 @@
     :root {
       --font-sans: 'Geist', system-ui, sans-serif;
       --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --sidebar-open: 228px;
+      --rightbar-open: 284px;
 
       --bg: #f7f1e8;
       --bg-2: #ede4d8;
@@ -871,6 +873,87 @@
       display: none !important;
     }
 
+
+    body.sidebar-collapsed {
+      --sidebar-open: 84px;
+    }
+
+    body.rightbar-collapsed {
+      --rightbar-open: 76px;
+    }
+
+    body.sidebar-collapsed .brand-copy,
+    body.sidebar-collapsed .workspace-card,
+    body.sidebar-collapsed .mini-card,
+    body.sidebar-collapsed .section-label,
+    body.sidebar-collapsed .nav-item span:last-child,
+    body.sidebar-collapsed .nav-left div:last-child {
+      display: none;
+    }
+
+    body.sidebar-collapsed .sidebar {
+      padding: 14px 10px;
+    }
+
+    body.sidebar-collapsed .nav-item {
+      justify-content: center;
+      padding: 10px;
+    }
+
+    body.sidebar-collapsed .nav-left {
+      gap: 0;
+    }
+
+    body.sidebar-collapsed .nav-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .rightbar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .collapse-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid var(--line-soft);
+      background: color-mix(in srgb, white 10%, var(--bg-2) 90%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      font-family: var(--font-mono);
+      box-shadow: var(--shadow-soft);
+    }
+
+    body.rightbar-collapsed .rightbar {
+      padding: 14px 10px;
+    }
+
+    body.rightbar-collapsed .rightbar-section {
+      display: none;
+    }
+
+    body.rightbar-collapsed .rightbar-top {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+
+    body.rightbar-collapsed .rightbar-title {
+      display: none;
+    }
+
+    body.rightbar-collapsed .rightbar {
+      overflow: hidden;
+    }
+
 @media (max-width: 1400px) {
       .app-shell {
         grid-template-columns: 220px minmax(0, 1fr) 280px;
@@ -1248,6 +1331,10 @@
     </main>
 
     <aside class="rightbar glass-panel">
+      <div class="rightbar-top">
+        <div class="section-label rightbar-title" style="margin-bottom:0;">Setup</div>
+        <button class="collapse-btn" id="toggleRightbarBtn" title="Close setup">×</button>
+      </div>
       <div class="rightbar-section">
         <div class="section-label">Appearance</div>
         <div class="theme-grid" id="themeGrid">
@@ -1373,6 +1460,8 @@
     const modeChip = document.querySelector('.mode-chip');
     const cards = document.querySelectorAll('.card');
     const navItems = document.querySelectorAll('.nav-item');
+    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+    const toggleRightbarBtn = document.getElementById('toggleRightbarBtn');
     const viewButtons = document.querySelectorAll('.seg button');
     const miniTabs = document.querySelectorAll('.mini-tab');
     const actionButtons = document.querySelectorAll('.action-btn');
@@ -1533,6 +1622,18 @@
       btn.addEventListener('click', () => {
         showToast(btn.dataset.message || 'Action complete');
       });
+    });
+
+    toggleSidebarBtn?.addEventListener('click', () => {
+      body.classList.toggle('sidebar-collapsed');
+      showToast(body.classList.contains('sidebar-collapsed') ? 'navigation collapsed' : 'navigation opened');
+    });
+
+    toggleRightbarBtn?.addEventListener('click', () => {
+      body.classList.toggle('rightbar-collapsed');
+      toggleRightbarBtn.textContent = body.classList.contains('rightbar-collapsed') ? '⚙' : '×';
+      toggleRightbarBtn.title = body.classList.contains('rightbar-collapsed') ? 'Open setup' : 'Close setup';
+      showToast(body.classList.contains('rightbar-collapsed') ? 'setup closed' : 'setup opened');
     });
   </script>
 
