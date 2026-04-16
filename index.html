@@ -3,289 +3,662 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veritas Life OS</title>
-  <meta
-    name="description"
-    content="Veritas Life OS — modern life intelligence for relationships, clarity, and momentum."
-  />
+  <title>Veritas Life OS — Landing Hero</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --bg-2: #ede4d8;
+      --paper: rgba(255, 255, 255, 0.58);
+      --paper-soft: rgba(255, 255, 255, 0.40);
+      --text: #17171b;
+      --muted: #6f685f;
+      --soft: #9d9387;
+      --amber: #f4be79;
+      --amber-deep: #eba255;
+      --violet: rgba(164, 152, 255, 0.10);
+      --glass-line: rgba(255,255,255,0.56);
+      --shadow: 0 28px 90px rgba(93, 70, 41, 0.10);
+      --shadow-soft: 0 16px 44px rgba(93, 70, 41, 0.08);
+      --radius-xl: 42px;
+      --radius-lg: 34px;
+      --radius-md: 24px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(255,255,255,0.86), transparent 28%),
+        radial-gradient(circle at 80% 16%, rgba(255,196,114,0.18), transparent 25%),
+        radial-gradient(circle at 77% 20%, var(--violet), transparent 18%),
+        radial-gradient(circle at 70% 72%, rgba(255,255,255,0.30), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(255,255,255,0.22), transparent 18%),
+        radial-gradient(circle at 83% 34%, rgba(255,188,82,0.10), transparent 20%),
+        radial-gradient(circle at 68% 80%, rgba(255,255,255,0.18), transparent 18%);
+      filter: blur(16px);
+      opacity: 0.95;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      border-radius: var(--radius-xl);
+      padding: 26px 30px 34px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.12));
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      top: 0;
+      width: 620px;
+      height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,216,160,0.22), rgba(255,172,92,0.10) 30%, rgba(255,255,255,0.10) 48%, rgba(173,160,255,0.06) 58%, transparent 72%);
+      filter: blur(34px);
+      pointer-events: none;
+    }
+
+    .topbar {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-soft);
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .brand-copy h1 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-copy p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font: inherit;
+      cursor: pointer;
+      color: var(--text);
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-soft);
+      transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+
+    .pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 42px rgba(93,70,41,0.10);
+    }
+
+    .pill.primary {
+      background: linear-gradient(180deg, var(--amber), var(--amber-deep));
+      color: white;
+      box-shadow: 0 18px 40px rgba(238,165,84,0.24);
+    }
+
+    .stage {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 28px;
+      align-items: center;
+      min-height: 76vh;
+      padding: 34px 4px 0;
+    }
+
+    .copy {
+      padding-left: 8px;
+    }
+
+    .whisper {
+      margin: 0 0 20px;
+      color: var(--soft);
+      font-size: 14px;
+      letter-spacing: .03em;
+    }
+
+    .copy h2 {
+      margin: 0;
+      font-size: clamp(64px, 7vw, 112px);
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      font-weight: 560;
+      max-width: 7.8ch;
+      text-wrap: balance;
+    }
+
+    .sub {
+      margin: 28px 0 0;
+      max-width: 32ch;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.78;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .micro-lines {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .scene {
+      position: relative;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(18px);
+      transition: transform .35s ease-out;
+      z-index: 1;
+    }
+
+    .orb.a {
+      width: 260px;
+      height: 260px;
+      right: 28px;
+      top: 72px;
+      background: radial-gradient(circle, rgba(255,216,164,0.24), rgba(255,171,86,0.18) 24%, rgba(255,255,255,0.10) 44%, rgba(158,146,255,0.08) 58%, transparent 72%);
+    }
+
+    .orb.b {
+      width: 180px;
+      height: 180px;
+      left: 54px;
+      bottom: 78px;
+      background: radial-gradient(circle, rgba(255,230,186,0.22), rgba(255,255,255,0.08) 44%, transparent 72%);
+    }
+
+    .flow-blob {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: 72px;
+      top: 154px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 45%, rgba(255,208,138,0.95) 0%, rgba(255,175,84,0.88) 42%, rgba(255,197,129,0.42) 60%, rgba(255,255,255,0.08) 72%, rgba(255,255,255,0) 78%);
+      filter: blur(20px);
+      opacity: .96;
+      pointer-events: none;
+      z-index: 1;
+      box-shadow: 0 0 80px rgba(255,186,96,0.24);
+      transition: transform .4s ease-out;
+    }
+
+    .sheet {
+      position: absolute;
+      border: 1px solid var(--glass-line);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(42px) saturate(165%);
+      -webkit-backdrop-filter: blur(42px) saturate(165%);
+      background-clip: padding-box;
+      box-shadow:
+        0 26px 90px rgba(96,72,42,0.10),
+        0 8px 30px rgba(255,255,255,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        inset 0 -1px 0 rgba(255,255,255,0.18);
+      will-change: transform;
+      transition:
+        box-shadow .35s ease,
+        transform .08s linear;
+      z-index: 3;
+    }
+
+    .sheet:hover {
+      box-shadow:
+        0 32px 90px rgba(96,72,42,0.14),
+        0 12px 30px rgba(255,255,255,0.18),
+        inset 0 1px 0 rgba(255,255,255,0.72);
+    }
+
+    .sheet.settle {
+      transition:
+        transform .65s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow .35s ease;
+    }
+
+    .sheet.main {
+      width: min(580px, 92%);
+      min-height: 390px;
+      padding: 38px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.34));
+    }
+
+    .sheet.main .time {
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .01em;
+    }
+
+    .sheet.main h3 {
+      margin: 18px 0 14px;
+      font-size: clamp(48px, 4.6vw, 64px);
+      line-height: .94;
+      letter-spacing: -0.065em;
+      font-weight: 620;
+      max-width: 9ch;
+      text-wrap: balance;
+    }
+
+    .sheet.main p {
+      margin: 0;
+      max-width: 34ch;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      text-wrap: balance;
+    }
+
+    .sheet.small {
+      width: 230px;
+      min-height: 146px;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(255,255,255,0.30));
+      box-shadow: 0 18px 44px rgba(96,72,42,0.08), inset 0 1px 0 rgba(255,255,255,0.48);
+      z-index: 4;
+    }
+
+    .sheet.small span {
+      color: var(--soft);
+      font-size: 13px;
+      letter-spacing: .01em;
+    }
+
+    .sheet.small strong {
+      display: block;
+      margin-top: 12px;
+      font-size: 26px;
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      font-weight: 600;
+      max-width: 9ch;
+      text-wrap: balance;
+    }
+
+    .sheet.top {
+      top: 84px;
+      right: 14px;
+    }
+
+    .sheet.bottom {
+      left: 24px;
+      bottom: 72px;
+    }
+
+    .system-whisper {
+      position: absolute;
+      right: 22px;
+      bottom: 18px;
+      font-size: 11px;
+      color: rgba(23,23,27,0.34);
+      letter-spacing: .04em;
+      z-index: 2;
+    }
+
+    .dashboard-tease {
+      margin-top: 18px;
+      border-radius: 34px;
+      padding: 18px;
+      background: rgba(17,17,19,0.88);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.24);
+      color: #f2efe8;
+    }
+
+    .tease-bar {
+      display: grid;
+      grid-template-columns: 220px 1fr 260px;
+      gap: 16px;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 24px;
+    }
+
+    .tease-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tease-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .tease-search {
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(242,239,232,0.72);
+    }
+
+    .tease-right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .tiny-chip {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(242,239,232,0.9);
+    }
+
+    @media (max-width: 1100px) {
+      .stage {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        min-height: auto;
+      }
+
+      .copy h2 {
+        max-width: 8.5ch;
+      }
+
+      .scene {
+        min-height: 520px;
+      }
+
+      .tease-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .tease-right {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page { padding: 14px; }
+
+      .hero {
+        padding: 18px 18px 24px;
+        border-radius: 28px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .copy h2 {
+        font-size: clamp(54px, 16vw, 84px);
+      }
+
+      .sub {
+        font-size: 16px;
+        max-width: 100%;
+      }
+
+      .scene {
+        min-height: 460px;
+      }
+
+      .sheet.main {
+        min-height: 280px;
+        padding: 24px;
+      }
+
+      .sheet.main h3 {
+        font-size: 40px;
+      }
+
+      .sheet.small {
+        width: 180px;
+        min-height: 116px;
+      }
+
+      .dashboard-tease {
+        display: none;
+      }
+    }
+  </style>
 </head>
-<body class="homepage">
-  <div class="page-bg" aria-hidden="true"></div>
-
-  <div class="wrap">
-    <header class="nav">
-      <div class="nav-shell glass">
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="topbar">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-mark">V</div>
           <div class="brand-copy">
-            <strong>Veritas</strong>
-            <span>Life OS</span>
+            <h1>Veritas Life OS</h1>
+            <p>a space, not a system</p>
           </div>
         </div>
 
-        <nav class="nav-links" aria-label="Primary">
-          <a href="#why">Why Veritas</a>
-          <a href="#tools">Tools</a>
-          <a href="#access">Access</a>
-        </nav>
-
-        <a href="dashboard.html" class="settings-trigger glass">Log in / Sign up</a>
+        <div class="hero-actions">
+          <button class="pill">preview</button>
+          <button class="pill primary">enter your space</button>
+        </div>
       </div>
-    </header>
 
-    <main>
-      <section class="hero homepage-hero">
-        <div class="homepage-hero__copy">
-          <div class="eyebrow">
-            <span class="tiny-dot"></span>
-            Modern life intelligence
+      <div class="stage">
+        <div class="copy">
+          <p class="whisper">for mornings, thoughts, rituals, and the life in between</p>
+          <h2>your life,<br>held gently</h2>
+          <p class="sub">A quieter digital room for plans, notes, priorities, and soft momentum. Built to feel warm, spacious, and deeply yours — something people want to return to every morning and every night.</p>
+          <div class="cta-row">
+            <button class="pill primary">start softly</button>
+            <button class="pill">see the flow</button>
           </div>
-
-          <h1 class="homepage-title">
-            Manage your life
-            <span>with intelligence.</span>
-          </h1>
-
-          <p class="homepage-subtitle">
-            A premium operating system for relationships, clarity, and follow-through —
-            built to help modern life feel less fragmented and more intentional.
-          </p>
-
-          <div class="hero-actions homepage-actions">
-            <a href="dashboard.html" class="primary-btn">
-              Log in / Sign up
-              <svg class="symbol" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14"></path>
-                <path d="M13 5l7 7-7 7"></path>
-              </svg>
-            </a>
-
-            <a href="#tools" class="secondary-btn">Explore tools</a>
+          <div class="micro-lines">
+            <span>modular</span>
+            <span>comfort-first</span>
+            <span>daily use</span>
           </div>
         </div>
 
-        <div class="homepage-hero__visual">
-          <div class="hero-orb" aria-hidden="true"></div>
+        <div class="scene" id="scene">
+          <div class="orb a" id="orbA"></div>
+          <div class="orb b" id="orbB"></div>
+          <div class="flow-blob" id="flowBlob"></div>
 
-          <div class="homepage-preview glass-strong">
-            <div class="homepage-preview__topbar">
-              <div class="window-dots" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </div>
-              <div class="dashboard-pill">Public layer</div>
-            </div>
-
-            <div class="homepage-preview__grid">
-              <div class="preview-panel glass">
-                <div class="mini-label">Relationships</div>
-                <strong class="preview-stat">12</strong>
-                <p>Priority contacts and warm paths kept visible.</p>
-              </div>
-
-              <div class="preview-panel glass">
-                <div class="mini-label">Fact-based research</div>
-                <strong class="preview-stat">86</strong>
-                <p>Signal scoring, trusted providers, and cleaner context.</p>
-              </div>
-
-              <div class="preview-panel glass preview-panel--wide">
-                <div class="mini-label">EverBetter</div>
-                <p>
-                  Daily reflection, progress tracking, and a calmer system for
-                  staying aligned with what matters.
-                </p>
-                <div class="preview-bars" aria-hidden="true">
-                  <span></span><span></span><span></span><span></span>
-                </div>
-              </div>
-            </div>
+          <div class="sheet main draggable" data-rotate="0" data-x="0" data-y="0">
+            <div class="time">09:00 · morning ritual</div>
+            <h3>today begins with calm</h3>
+            <p>three priorities, one note to self, and room to breathe.</p>
           </div>
-        </div>
-      </section>
 
-      <section id="why" class="homepage-section">
-        <div class="section-heading homepage-center">
-          <div class="tiny-label">
-            <span class="tiny-dot"></span>
-            Why Veritas
+          <div class="sheet small top draggable" data-rotate="0" data-x="0" data-y="0">
+            <span>journal</span>
+            <strong>how do i want today to feel?</strong>
           </div>
-          <h2>Built around relationships, purpose, and momentum.</h2>
-          <p>
-            Veritas is designed as an intelligent layer for modern life —
-            combining people, goals, context, and decision-making inside one
-            clearer system.
-          </p>
-        </div>
 
-        <div class="homepage-values">
-          <article class="value-card glass-strong">
-            <div class="feature-no">01</div>
-            <h3>Relationships</h3>
-            <p>
-              Keep trusted connections visible, intentional, and easier to
-              maintain over time.
-            </p>
-          </article>
-
-          <article class="value-card glass-strong">
-            <div class="feature-no">02</div>
-            <h3>Purpose</h3>
-            <p>
-              Turn long-term goals into something measurable, calmer, and easier
-              to return to every day.
-            </p>
-          </article>
-
-          <article class="value-card glass-strong">
-            <div class="feature-no">03</div>
-            <h3>Motivation</h3>
-            <p>
-              Build momentum through reflection, progress tracking, and a more
-              deliberate control layer.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="tools" class="homepage-section">
-        <div class="section-heading homepage-center">
-          <div class="tiny-label">
-            <span class="tiny-dot"></span>
-            Core tools
+          <div class="sheet small bottom draggable" data-rotate="0" data-x="0" data-y="0">
+            <span>focus</span>
+            <strong>deep work at 11:00</strong>
           </div>
-          <h2>A modular suite for modern life management.</h2>
-          <p>
-            Explore the main layers of the Veritas system before entering the
-            full workspace.
-          </p>
+
+          <div class="system-whisper">last synced · 2m ago</div>
         </div>
+      </div>
+    </section>
 
-        <div class="bento homepage-bento">
-          <article class="feature-card feature-1 large glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-              </div>
-              <div class="feature-no">01</div>
-            </div>
-            <h3>Stay in Touch</h3>
-            <p>
-              Keep relationships visible, track touchpoints, and maintain
-              meaningful personal and professional connections.
-            </p>
-          </article>
-
-          <article class="feature-card feature-2 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                </svg>
-              </div>
-              <div class="feature-no">02</div>
-            </div>
-            <h3>Communities</h3>
-            <p>
-              Join trusted spaces for alumni, interest groups, and family nodes
-              without losing context or signal.
-            </p>
-          </article>
-
-          <article class="feature-card feature-3 glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-              </div>
-              <div class="feature-no">03</div>
-            </div>
-            <h3>EverBetter</h3>
-            <p>
-              Daily reflection and wellness tracking designed to support the
-              human layer of the system.
-            </p>
-          </article>
-
-          <article class="feature-card feature-4 large glass-strong">
-            <div class="feature-top">
-              <div class="icon-shell" aria-hidden="true">
-                <svg class="symbol lg" viewBox="0 0 24 24">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-              </div>
-              <div class="feature-no">04</div>
-            </div>
-            <h3>CRM & IntroWise</h3>
-            <p>
-              Go beyond static contacts with AI-assisted relationship
-              intelligence, warm introductions, and trusted networking.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="homepage-section">
-        <div class="system-card glass-strong homepage-system">
-          <div class="system-layout">
-            <div>
-              <div class="tiny-label">
-                <span class="tiny-dot"></span>
-                The idea
-              </div>
-              <h2>Infrastructure for modern life, not another noisy app.</h2>
-            </div>
-
-            <div class="system-copy">
-              <p>
-                Veritas brings together relationships, reflection, research, and
-                momentum inside a calmer interface that feels more like an
-                intentional workspace than a collection of disconnected tools.
-              </p>
-              <p>
-                The result is a more coherent way to manage life with clarity,
-                trust, and better decisions.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="access" class="cta-section">
-        <div class="cta-card glass-strong">
+    <section class="dashboard-tease">
+      <div class="tease-bar">
+        <div class="tease-brand">
+          <div class="tease-mark">V</div>
           <div>
-            <div class="tiny-label">
-              <span class="tiny-dot"></span>
-              Enter the workspace
-            </div>
-            <h2>Step into the control layer and make the system your own.</h2>
-          </div>
-
-          <div class="cta-actions">
-            <a href="dashboard.html" class="primary-btn">Log in / Sign up</a>
-            <a href="#tools" class="secondary-btn">View tools</a>
+            <strong>Veritas Life OS</strong><br>
+            <span style="color:rgba(242,239,232,0.62); font-size:13px;">inside the space</span>
           </div>
         </div>
-      </section>
-    </main>
 
-    <footer class="footer">
-      <span>Veritas Life OS</span>
-      <span>Modern life intelligence</span>
-    </footer>
+        <div class="tease-search">⌘K &nbsp; Search pages, goals, notes, habits…</div>
+
+        <div class="tease-right">
+          <div class="tiny-chip">Cozy</div>
+          <div class="tiny-chip">✦</div>
+          <div class="tiny-chip">N</div>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const draggables = document.querySelectorAll('.draggable');
+
+    draggables.forEach((card) => {
+      let startX = 0;
+      let startY = 0;
+      let initialX = 0;
+      let initialY = 0;
+      let dragging = false;
+      const rotate = Number(card.dataset.rotate || 0);
+
+      const applyTransform = (x, y, lift = 0) => {
+        card.style.transform = `rotate(${rotate}deg) translate(${x}px, ${y + lift}px)`;
+      };
+
+      applyTransform(Number(card.dataset.x || 0), Number(card.dataset.y || 0));
+      card.style.cursor = 'grab';
+
+      card.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        card.classList.remove('settle');
+        startX = e.clientX;
+        startY = e.clientY;
+        initialX = Number(card.dataset.x || 0);
+        initialY = Number(card.dataset.y || 0);
+        card.style.cursor = 'grabbing';
+        card.style.zIndex = '20';
+        applyTransform(initialX, initialY, -4);
+        card.setPointerCapture(e.pointerId);
+      });
+
+      card.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const x = initialX + (e.clientX - startX);
+        const y = initialY + (e.clientY - startY);
+        card.dataset.x = String(x);
+        card.dataset.y = String(y);
+        applyTransform(x, y, -4);
+      });
+
+      const stopDrag = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        card.style.cursor = 'grab';
+        card.style.zIndex = '';
+        card.classList.add('settle');
+        applyTransform(Number(card.dataset.x || 0), Number(card.dataset.y || 0), 0);
+        window.setTimeout(() => card.classList.remove('settle'), 650);
+        try { card.releasePointerCapture(e.pointerId); } catch (_) {}
+      };
+
+      card.addEventListener('pointerup', stopDrag);
+      card.addEventListener('pointercancel', stopDrag);
+
+      card.addEventListener('mouseenter', () => {
+        if (dragging) return;
+        applyTransform(Number(card.dataset.x || 0), Number(card.dataset.y || 0), -6);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (dragging) return;
+        applyTransform(Number(card.dataset.x || 0), Number(card.dataset.y || 0), 0);
+      });
+    });
+
+    const orbA = document.getElementById('orbA');
+    const orbB = document.getElementById('orbB');
+    const flowBlob = document.getElementById('flowBlob');
+
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 12;
+      const y = (e.clientY / window.innerHeight - 0.5) * 12;
+
+      orbA.style.transform = `translate(${x}px, ${y}px)`;
+      orbB.style.transform = `translate(${-x * 0.6}px, ${-y * 0.6}px)`;
+      flowBlob.style.transform = `translate(${x * 0.45}px, ${y * 0.45}px)`;
+    });
+  </script>
 </body>
 </html>
