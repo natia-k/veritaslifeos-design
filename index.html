@@ -6,9 +6,12 @@
   <title>Veritas Life OS — Landing Hero</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
       --bg: #f7f1e8;
       --bg-2: #ede4d8;
       --paper: rgba(255, 255, 255, 0.58);
@@ -32,7 +35,7 @@
 
     body {
       margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: var(--font-sans);
       color: var(--text);
       background:
         radial-gradient(circle at 14% 10%, rgba(255,255,255,0.86), transparent 28%),
@@ -100,6 +103,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      text-decoration: none;
+      color: inherit;
     }
 
     .brand-mark {
@@ -113,6 +118,7 @@
       box-shadow: var(--shadow-soft);
       font-weight: 700;
       letter-spacing: .02em;
+      color: inherit;
     }
 
     .brand-copy h1 {
@@ -145,6 +151,10 @@
       backdrop-filter: blur(14px);
       box-shadow: var(--shadow-soft);
       transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .pill:hover {
@@ -305,10 +315,12 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,255,255,0.34));
     }
 
-    .sheet.main .time {
+    .sheet.main .time,
+    .system-whisper {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: .01em;
+      font-family: var(--font-mono);
     }
 
     .sheet.main h3 {
@@ -316,7 +328,7 @@
       font-size: clamp(48px, 4.6vw, 64px);
       line-height: .94;
       letter-spacing: -0.065em;
-      font-weight: 620;
+      font-weight: 500;
       max-width: 9ch;
       text-wrap: balance;
     }
@@ -343,6 +355,7 @@
       color: var(--soft);
       font-size: 13px;
       letter-spacing: .01em;
+      font-family: var(--font-mono);
     }
 
     .sheet.small strong {
@@ -351,7 +364,7 @@
       font-size: 26px;
       line-height: 1.02;
       letter-spacing: -0.06em;
-      font-weight: 600;
+      font-weight: 500;
       max-width: 9ch;
       text-wrap: balance;
     }
@@ -370,7 +383,6 @@
       position: absolute;
       right: 22px;
       bottom: 18px;
-      font-size: 11px;
       color: rgba(23,23,27,0.34);
       letter-spacing: .04em;
       z-index: 2;
@@ -415,6 +427,8 @@
       border-radius: 18px;
       background: rgba(255,255,255,0.08);
       color: rgba(242,239,232,0.72);
+      font-family: var(--font-mono);
+      letter-spacing: -0.02em;
     }
 
     .tease-right {
@@ -429,75 +443,28 @@
       border-radius: 16px;
       background: rgba(255,255,255,0.08);
       color: rgba(242,239,232,0.9);
+      font-family: var(--font-mono);
     }
 
-    @media (max-width: 1100px) {
-      .stage {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        min-height: auto;
-      }
-
-      .copy h2 {
-        max-width: 8.5ch;
-      }
-
-      .scene {
-        min-height: 520px;
-      }
-
-      .tease-bar {
-        grid-template-columns: 1fr;
-      }
-
-      .tease-right {
-        justify-content: flex-start;
-      }
+    @media (max-width: 1100px){
+      .stage{grid-template-columns:1fr; gap:8px; min-height:auto}
+      .copy h2{max-width:8.5ch}
+      .scene{min-height:520px}
+      .tease-bar{grid-template-columns:1fr}
+      .tease-right{justify-content:flex-start}
     }
 
-    @media (max-width: 720px) {
-      .page { padding: 14px; }
-
-      .hero {
-        padding: 18px 18px 24px;
-        border-radius: 28px;
-      }
-
-      .topbar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .copy h2 {
-        font-size: clamp(54px, 16vw, 84px);
-      }
-
-      .sub {
-        font-size: 16px;
-        max-width: 100%;
-      }
-
-      .scene {
-        min-height: 460px;
-      }
-
-      .sheet.main {
-        min-height: 280px;
-        padding: 24px;
-      }
-
-      .sheet.main h3 {
-        font-size: 40px;
-      }
-
-      .sheet.small {
-        width: 180px;
-        min-height: 116px;
-      }
-
-      .dashboard-tease {
-        display: none;
-      }
+    @media (max-width: 720px){
+      .page{padding:14px}
+      .hero{padding:18px 18px 24px; border-radius:28px}
+      .topbar{flex-direction:column; align-items:stretch}
+      .copy h2{font-size: clamp(54px, 16vw, 84px)}
+      .sub{font-size:16px; max-width:100%}
+      .scene{min-height:460px}
+      .sheet.main{min-height:280px; padding:24px}
+      .sheet.main h3{font-size:40px}
+      .sheet.small{width:180px; min-height:116px}
+      .dashboard-tease{display:none}
     }
   </style>
 </head>
@@ -505,17 +472,17 @@
   <div class="page">
     <section class="hero">
       <div class="topbar">
-        <div class="brand">
+        <a class="brand" href="index.html" aria-label="Go to landing page">
           <div class="brand-mark">V</div>
           <div class="brand-copy">
             <h1>Veritas Life OS</h1>
             <p>a space, not a system</p>
           </div>
-        </div>
+        </a>
 
         <div class="hero-actions">
-          <button class="pill">preview</button>
-          <button class="pill primary">enter your space</button>
+          <a class="pill" href="inside.html">preview inside</a>
+          <a class="pill primary" href="inside.html">enter your space</a>
         </div>
       </div>
 
@@ -525,8 +492,8 @@
           <h2>your life,<br>held gently</h2>
           <p class="sub">A quieter digital room for plans, notes, priorities, and soft momentum. Built to feel warm, spacious, and deeply yours — something people want to return to every morning and every night.</p>
           <div class="cta-row">
-            <button class="pill primary">start softly</button>
-            <button class="pill">see the flow</button>
+            <a class="pill primary" href="inside.html">start softly</a>
+            <a class="pill" href="inside.html">see the flow</a>
           </div>
           <div class="micro-lines">
             <span>modular</span>
@@ -574,7 +541,7 @@
         <div class="tease-search">⌘K &nbsp; Search pages, goals, notes, habits…</div>
 
         <div class="tease-right">
-          <div class="tiny-chip">Cozy</div>
+          <div class="tiny-chip">Light</div>
           <div class="tiny-chip">✦</div>
           <div class="tiny-chip">N</div>
         </div>
