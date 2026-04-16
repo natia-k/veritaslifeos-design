@@ -6,34 +6,34 @@
   <title>Veritas Life OS — Inside Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --font-sans: 'Geist', system-ui, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
       --bg: #f7f1e8;
       --bg-2: #ede4d8;
       --text: #17171b;
       --muted: #6f685f;
       --soft: #9d9387;
-      --glass: rgba(255,255,255,0.42);
-      --glass-2: rgba(255,255,255,0.32);
-      --glass-3: rgba(255,255,255,0.24);
-      --line: rgba(255,255,255,0.56);
-      --line-soft: rgba(255,255,255,0.34);
-      --line-strong: rgba(255,220,184,0.7);
+      --glass: rgba(255,255,255,0.18);
+      --glass-2: rgba(255,255,255,0.12);
+      --glass-3: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.18);
+      --line-soft: rgba(255,255,255,0.12);
+      --line-strong: rgba(255,220,184,0.34);
       --amber: #f4be79;
       --amber-deep: #eba255;
       --amber-soft: rgba(255,190,121,0.18);
       --violet-soft: rgba(164,152,255,0.08);
-      --shadow: 0 28px 90px rgba(93,70,41,0.10);
-      --shadow-soft: 0 16px 44px rgba(93,70,41,0.08);
+      --shadow: 0 40px 100px rgba(120,110,100,0.06);
+      --shadow-soft: 0 24px 60px rgba(120,110,100,0.05);
       --radius-xl: 34px;
       --radius-lg: 28px;
       --radius-md: 22px;
       --radius-sm: 16px;
-      --gap: 22px;
+      --gap: 32px;
       --sidebar-w: 228px;
       --rightbar-w: 284px;
     }
@@ -75,19 +75,15 @@
       grid-template-rows: 84px minmax(0, 1fr);
       gap: var(--gap);
       height: 100vh;
-      padding: 20px;
+      padding: 24px;
     }
 
     .glass-panel {
-      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 42%, white 22%), color-mix(in srgb, var(--bg-2) 58%, white 8%));
-      border: 1px solid var(--line);
-      backdrop-filter: blur(28px) saturate(145%);
-      -webkit-backdrop-filter: blur(28px) saturate(145%);
-      box-shadow:
-        0 24px 80px rgba(93,70,41,0.10),
-        0 8px 28px rgba(255,255,255,0.10),
-        inset 0 1px 0 rgba(255,255,255,0.34),
-        inset 0 -1px 0 rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, color-mix(in srgb, white 18%, var(--bg) 82%), color-mix(in srgb, white 8%, var(--bg-2) 92%));
+      border: 0.5px solid var(--line-soft);
+      backdrop-filter: blur(12px) saturate(125%);
+      -webkit-backdrop-filter: blur(12px) saturate(125%);
+      box-shadow: var(--shadow);
     }
 
     .topbar {
@@ -122,9 +118,9 @@
     .theme-btn,
     .density-btn,
     .mini-tab {
-      border: 1px solid var(--line-soft);
-      background: color-mix(in srgb, white 26%, var(--bg-2) 74%);
-      backdrop-filter: blur(18px);
+      border: 0.5px solid var(--line-soft);
+      background: color-mix(in srgb, white 14%, var(--bg-2) 86%);
+      backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(18px);
       box-shadow: var(--shadow-soft);
     }
@@ -233,13 +229,13 @@
 
     .sidebar,
     .rightbar {
-      padding: 16px;
+      padding: 18px;
       overflow: auto;
     }
 
     .main {
       overflow: auto;
-      padding: 20px;
+      padding: 24px;
     }
 
     .sidebar-section + .sidebar-section,
@@ -276,11 +272,11 @@
     .mini-line,
     .stat,
     .day {
-      background: linear-gradient(180deg, color-mix(in srgb, white 32%, var(--bg) 68%), color-mix(in srgb, white 18%, var(--bg-2) 82%));
-      border: 1px solid var(--line-soft);
+      background: color-mix(in srgb, white 16%, var(--bg) 84%);
+      border: 0.5px solid var(--line-soft);
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .workspace-card,
@@ -309,7 +305,7 @@
     .workspace-card p,
     .mini-card p,
     .card p,
-    .footer-note { color: var(--muted); line-height: 1.5; }
+    .footer-note { color: var(--muted); line-height: 1.8; font-weight: 300; }
 
     .mini-tabs,
     .nav-list,
@@ -446,10 +442,10 @@
     }
 
     .welcome-copy h2 {
-      font-size: clamp(24px, 2.5vw, 34px);
-      line-height: 1.08;
-      letter-spacing: -0.042em;
-      font-weight: 540;
+      font-size: clamp(22px, 2.2vw, 30px);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      font-weight: 500;
       max-width: 13ch;
       text-wrap: balance;
       margin-bottom: 12px;
@@ -457,10 +453,11 @@
 
     .welcome-copy p {
       margin: 0;
-      max-width: 50ch;
+      max-width: 52ch;
       font-size: 14px;
       color: var(--muted);
-      line-height: 1.68;
+      line-height: 1.9;
+      font-weight: 300;
       text-wrap: balance;
     }
 
@@ -548,7 +545,7 @@
       overflow: hidden;
       grid-column: span 4;
       min-height: 180px;
-      padding: 16px;
+      padding: 24px;
       border-radius: calc(var(--radius-lg) - 2px);
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
@@ -598,9 +595,9 @@
     }
 
     .card-title-wrap h3 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.01em;
     }
 
     .card-chip,
@@ -653,8 +650,8 @@
     .quick-item strong {
       display: block;
       font-size: 14px;
-      line-height: 1.35;
-      font-weight: 600;
+      line-height: 1.45;
+      font-weight: 500;
     }
 
     .meta {
@@ -1300,11 +1297,11 @@
             <strong>Compact</strong>
             <div class="meta">More information, tighter rhythm</div>
           </button>
-          <button class="density-btn active" data-density="balanced">
+          <button class="density-btn" data-density="balanced">
             <strong>Balanced</strong>
             <div class="meta">Best default for most users</div>
           </button>
-          <button class="density-btn" data-density="spacious">
+          <button class="density-btn active" data-density="spacious">
             <strong>Spacious</strong>
             <div class="meta">Breathable layout, calmer feeling</div>
           </button>
@@ -1470,7 +1467,7 @@
       btn.addEventListener('click', () => {
         densityButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        body.style.setProperty('--gap', btn.dataset.density === 'compact' ? '14px' : btn.dataset.density === 'spacious' ? '26px' : '22px');
+        body.style.setProperty('--gap', btn.dataset.density === 'compact' ? '18px' : btn.dataset.density === 'spacious' ? '32px' : '24px');
         showToast(`${btn.dataset.density} density applied`);
       });
     });
