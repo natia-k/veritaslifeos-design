@@ -6,36 +6,34 @@
   <title>Veritas Life OS — Inside Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --font-sans: 'Geist', system-ui, sans-serif;
-      --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-      --sidebar-open: 228px;
-      --rightbar-open: 284px;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
       --bg: #f7f1e8;
       --bg-2: #ede4d8;
       --text: #17171b;
       --muted: #6f685f;
       --soft: #9d9387;
-      --glass: rgba(255,255,255,0.18);
-      --glass-2: rgba(255,255,255,0.12);
-      --glass-3: rgba(255,255,255,0.08);
-      --line: rgba(255,255,255,0.18);
-      --line-soft: rgba(255,255,255,0.12);
-      --line-strong: rgba(255,220,184,0.34);
+      --glass: rgba(255,255,255,0.42);
+      --glass-2: rgba(255,255,255,0.32);
+      --glass-3: rgba(255,255,255,0.24);
+      --line: rgba(255,255,255,0.56);
+      --line-soft: rgba(255,255,255,0.34);
+      --line-strong: rgba(255,220,184,0.7);
       --amber: #f4be79;
       --amber-deep: #eba255;
       --amber-soft: rgba(255,190,121,0.18);
       --violet-soft: rgba(164,152,255,0.08);
-      --shadow: 0 40px 100px rgba(120,110,100,0.06);
-      --shadow-soft: 0 24px 60px rgba(120,110,100,0.05);
+      --shadow: 0 28px 90px rgba(93,70,41,0.10);
+      --shadow-soft: 0 16px 44px rgba(93,70,41,0.08);
       --radius-xl: 34px;
       --radius-lg: 28px;
       --radius-md: 22px;
       --radius-sm: 16px;
-      --gap: 32px;
+      --gap: 22px;
       --sidebar-w: 228px;
       --rightbar-w: 284px;
     }
@@ -77,15 +75,19 @@
       grid-template-rows: 84px minmax(0, 1fr);
       gap: var(--gap);
       height: 100vh;
-      padding: 24px;
+      padding: 20px;
     }
 
     .glass-panel {
-      background: linear-gradient(180deg, color-mix(in srgb, white 18%, var(--bg) 82%), color-mix(in srgb, white 8%, var(--bg-2) 92%));
-      border: 0.5px solid var(--line-soft);
-      backdrop-filter: blur(12px) saturate(125%);
-      -webkit-backdrop-filter: blur(12px) saturate(125%);
-      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.18));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(28px) saturate(145%);
+      -webkit-backdrop-filter: blur(28px) saturate(145%);
+      box-shadow:
+        0 24px 80px rgba(93,70,41,0.10),
+        0 8px 28px rgba(255,255,255,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.72),
+        inset 0 -1px 0 rgba(255,255,255,0.14);
     }
 
     .topbar {
@@ -95,7 +97,7 @@
       justify-content: space-between;
       gap: 18px;
       padding: 14px 18px;
-      border-radius: var(--radius-xl);
+      border-radius: 30px;
     }
 
     .brand {
@@ -120,9 +122,9 @@
     .theme-btn,
     .density-btn,
     .mini-tab {
-      border: 0.5px solid var(--line-soft);
-      background: color-mix(in srgb, white 14%, var(--bg-2) 86%);
-      backdrop-filter: blur(12px);
+      border: 1px solid var(--line-soft);
+      background: rgba(255,255,255,0.28);
+      backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       box-shadow: var(--shadow-soft);
     }
@@ -130,7 +132,7 @@
     .brand-mark {
       width: 42px;
       height: 42px;
-      border-radius: var(--radius-sm);
+      border-radius: 16px;
       display: grid;
       place-items: center;
       font-weight: 700;
@@ -163,8 +165,8 @@
       gap: 12px;
       padding: 12px 16px;
       border: 1px solid var(--line-soft);
-      border-radius: var(--radius-md);
-      background: color-mix(in srgb, white 22%, var(--bg-2) 78%);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.24);
       color: var(--muted);
       backdrop-filter: blur(18px);
       font-family: var(--font-mono);
@@ -226,18 +228,18 @@
     .main,
     .rightbar {
       min-height: 0;
-      border-radius: var(--radius-xl);
+      border-radius: 30px;
     }
 
     .sidebar,
     .rightbar {
-      padding: 18px;
+      padding: 16px;
       overflow: auto;
     }
 
     .main {
       overflow: auto;
-      padding: 24px;
+      padding: 20px;
     }
 
     .sidebar-section + .sidebar-section,
@@ -274,11 +276,11 @@
     .mini-line,
     .stat,
     .day {
-      background: color-mix(in srgb, white 16%, var(--bg) 84%);
-      border: 0.5px solid var(--line-soft);
+      background: linear-gradient(180deg, rgba(255,255,255,0.30), rgba(255,255,255,0.18));
+      border: 1px solid var(--line-soft);
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .workspace-card,
@@ -295,7 +297,7 @@
     .timeline-item,
     .stat,
     .day {
-      border-radius: var(--radius-md);
+      border-radius: 20px;
       padding: 14px;
     }
 
@@ -307,7 +309,7 @@
     .workspace-card p,
     .mini-card p,
     .card p,
-    .footer-note { color: var(--muted); line-height: 1.8; font-weight: 300; }
+    .footer-note { color: var(--muted); line-height: 1.5; }
 
     .mini-tabs,
     .nav-list,
@@ -328,7 +330,7 @@
 
     .mini-tab,
     .seg button {
-      border-radius: calc(var(--radius-sm) - 2px);
+      border-radius: 14px;
       padding: 10px 12px;
       color: var(--muted);
       cursor: pointer;
@@ -354,7 +356,7 @@
       justify-content: space-between;
       gap: 12px;
       padding: 12px 14px;
-      border-radius: calc(var(--radius-sm) + 2px);
+      border-radius: 18px;
       cursor: pointer;
       color: var(--muted);
       border: 1px solid transparent;
@@ -370,7 +372,7 @@
     .nav-icon {
       width: 34px;
       height: 34px;
-      border-radius: calc(var(--radius-sm) - 4px);
+      border-radius: 12px;
       display: grid;
       place-items: center;
       font-family: var(--font-mono);
@@ -394,7 +396,7 @@
     .insight-panel {
       position: relative;
       overflow: hidden;
-      border-radius: var(--radius-lg);
+      border-radius: 28px;
       padding: 22px;
     }
 
@@ -444,10 +446,10 @@
     }
 
     .welcome-copy h2 {
-      font-size: clamp(22px, 2.2vw, 30px);
-      line-height: 1.12;
-      letter-spacing: -0.01em;
-      font-weight: 500;
+      font-size: clamp(24px, 2.5vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -0.042em;
+      font-weight: 540;
       max-width: 13ch;
       text-wrap: balance;
       margin-bottom: 12px;
@@ -455,11 +457,10 @@
 
     .welcome-copy p {
       margin: 0;
-      max-width: 52ch;
+      max-width: 50ch;
       font-size: 14px;
       color: var(--muted);
-      line-height: 1.9;
-      font-weight: 300;
+      line-height: 1.68;
       text-wrap: balance;
     }
 
@@ -485,7 +486,7 @@
     .action-pill,
     .toolbar-btn {
       padding: 12px 15px;
-      border-radius: var(--radius-sm);
+      border-radius: 16px;
       border: 1px solid var(--line-soft);
       background: rgba(255,255,255,0.26);
       color: var(--text);
@@ -528,7 +529,7 @@
       display: inline-flex;
       gap: 6px;
       padding: 5px;
-      border-radius: var(--radius-sm);
+      border-radius: 16px;
       background: rgba(255,255,255,0.18);
       border: 1px solid var(--line-soft);
       margin-bottom: 16px;
@@ -547,8 +548,8 @@
       overflow: hidden;
       grid-column: span 4;
       min-height: 180px;
-      padding: 24px;
-      border-radius: calc(var(--radius-lg) - 2px);
+      padding: 16px;
+      border-radius: 26px;
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
 
@@ -566,10 +567,10 @@
     }
 
     .card.active {
-      border-color: rgba(255,214,160,0.56);
+      border-color: var(--line-strong);
       box-shadow:
-        0 0 0 1px rgba(255,214,160,0.24),
-        0 24px 70px rgba(93,70,41,0.14);
+        0 0 0 1px rgba(255,214,160,0.28),
+        0 24px 70px rgba(93,70,41,0.12);
     }
 
     .card::after {
@@ -597,9 +598,9 @@
     }
 
     .card-title-wrap h3 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 500;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.03em;
     }
 
     .card-chip,
@@ -608,7 +609,7 @@
       border-radius: 999px;
       font-size: 12px;
       color: var(--muted);
-      background: color-mix(in srgb, white 22%, var(--bg-2) 78%);
+      background: rgba(255,255,255,0.24);
       border: 1px solid var(--line-soft);
     }
 
@@ -652,8 +653,8 @@
     .quick-item strong {
       display: block;
       font-size: 14px;
-      line-height: 1.45;
-      font-weight: 500;
+      line-height: 1.35;
+      font-weight: 600;
     }
 
     .meta {
@@ -809,7 +810,7 @@
       width: 44px;
       height: 26px;
       border-radius: 999px;
-      background: color-mix(in srgb, white 22%, var(--bg-2) 78%);
+      background: rgba(255,255,255,0.24);
       border: 1px solid var(--line-soft);
       position: relative;
       transition: .22s ease;
@@ -849,7 +850,7 @@
       bottom: 22px;
       z-index: 50;
       padding: 12px 14px;
-      border-radius: var(--radius-sm);
+      border-radius: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.72));
       border: 1px solid var(--line);
       box-shadow: 0 18px 44px rgba(93,70,41,0.12);
@@ -874,84 +875,43 @@
     }
 
 
-    body.sidebar-collapsed {
-      --sidebar-open: 84px;
-    }
-
     body.rightbar-collapsed {
-      --rightbar-open: 76px;
+      --rightbar-open: 0px;
     }
 
-    body.sidebar-collapsed .brand-copy,
-    body.sidebar-collapsed .workspace-card,
-    body.sidebar-collapsed .mini-card,
-    body.sidebar-collapsed .section-label,
-    body.sidebar-collapsed .nav-item span:last-child,
-    body.sidebar-collapsed .nav-left div:last-child {
-      display: none;
+    body.rightbar-collapsed .rightbar {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(28px);
     }
 
-    body.sidebar-collapsed .sidebar {
-      padding: 14px 10px;
-    }
-
-    body.sidebar-collapsed .nav-item {
-      justify-content: center;
-      padding: 10px;
-    }
-
-    body.sidebar-collapsed .nav-left {
-      gap: 0;
-    }
-
-    body.sidebar-collapsed .nav-icon {
-      width: 40px;
-      height: 40px;
-    }
-
-    .rightbar-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
-    .collapse-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-sm);
+    .floating-setup-tab {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 60;
+      width: 46px;
+      height: 120px;
+      border-radius: 20px;
       border: 0.5px solid var(--line-soft);
       background: color-mix(in srgb, white 10%, var(--bg-2) 90%);
-      color: var(--text);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
       backdrop-filter: blur(12px);
-      font-family: var(--font-mono);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow-soft);
-    }
-
-    body.rightbar-collapsed .rightbar {
-      padding: 14px 10px;
-    }
-
-    body.rightbar-collapsed .rightbar-section {
       display: none;
-    }
-
-    body.rightbar-collapsed .rightbar-top {
-      display: flex;
+      align-items: center;
       justify-content: center;
-      margin: 0;
+      color: var(--text);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.02em;
     }
 
-    body.rightbar-collapsed .rightbar-title {
-      display: none;
-    }
-
-    body.rightbar-collapsed .rightbar {
-      overflow: hidden;
+    body.rightbar-collapsed .floating-setup-tab {
+      display: flex;
     }
 
 @media (max-width: 1400px) {
@@ -1331,10 +1291,6 @@
     </main>
 
     <aside class="rightbar glass-panel">
-      <div class="rightbar-top">
-        <div class="section-label rightbar-title" style="margin-bottom:0;">Setup</div>
-        <button class="collapse-btn" id="toggleRightbarBtn" title="Close setup">×</button>
-      </div>
       <div class="rightbar-section">
         <div class="section-label">Appearance</div>
         <div class="theme-grid" id="themeGrid">
@@ -1384,11 +1340,11 @@
             <strong>Compact</strong>
             <div class="meta">More information, tighter rhythm</div>
           </button>
-          <button class="density-btn" data-density="balanced">
+          <button class="density-btn active" data-density="balanced">
             <strong>Balanced</strong>
             <div class="meta">Best default for most users</div>
           </button>
-          <button class="density-btn active" data-density="spacious">
+          <button class="density-btn" data-density="spacious">
             <strong>Spacious</strong>
             <div class="meta">Breathable layout, calmer feeling</div>
           </button>
@@ -1460,8 +1416,6 @@
     const modeChip = document.querySelector('.mode-chip');
     const cards = document.querySelectorAll('.card');
     const navItems = document.querySelectorAll('.nav-item');
-    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
-    const toggleRightbarBtn = document.getElementById('toggleRightbarBtn');
     const viewButtons = document.querySelectorAll('.seg button');
     const miniTabs = document.querySelectorAll('.mini-tab');
     const actionButtons = document.querySelectorAll('.action-btn');
@@ -1469,52 +1423,44 @@
 
     const themes = {
       light: {
-        bg: '#f6efe6',
-        bg2: '#ebe0d2',
+        bg: '#f7f1e8',
+        bg2: '#ede4d8',
         text: '#17171b',
         muted: '#6f685f',
         soft: '#9d9387',
-        amber: '#f2b66a',
-        amberDeep: '#e59a45',
-        violet: 'rgba(155,145,255,0.08)',
-        line: 'rgba(255,255,255,0.56)',
-        lineSoft: 'rgba(255,255,255,0.34)'
+        amber: '#f4be79',
+        amberDeep: '#eba255',
+        violet: 'rgba(164,152,255,0.10)'
       },
       cozy: {
-        bg: '#f4eadf',
-        bg2: '#eadccd',
+        bg: '#f3eadf',
+        bg2: '#eadfce',
         text: '#1a1817',
-        muted: '#766b5f',
-        soft: '#a29285',
-        amber: '#ebb37b',
-        amberDeep: '#d99153',
-        violet: 'rgba(184,168,255,0.06)',
-        line: 'rgba(255,248,240,0.50)',
-        lineSoft: 'rgba(255,245,236,0.28)'
+        muted: '#756a5f',
+        soft: '#a09184',
+        amber: '#eab47f',
+        amberDeep: '#d99856',
+        violet: 'rgba(185,170,255,0.07)'
       },
       studio: {
-        bg: '#2a2423',
-        bg2: '#352d2c',
-        text: '#f3ede6',
-        muted: '#cdbfb4',
-        soft: '#a89284',
-        amber: '#d8a06c',
-        amberDeep: '#bc7b44',
-        violet: 'rgba(151,139,255,0.07)',
-        line: 'rgba(255,255,255,0.18)',
-        lineSoft: 'rgba(255,255,255,0.10)'
+        bg: '#211d1f',
+        bg2: '#2b2528',
+        text: '#f4efe9',
+        muted: '#c4b7af',
+        soft: '#9f938d',
+        amber: '#c79c77',
+        amberDeep: '#b9865e',
+        violet: 'rgba(177,160,255,0.10)'
       },
       night: {
-        bg: '#13151a',
-        bg2: '#1b1e25',
-        text: '#f4efe8',
-        muted: '#b9b0a7',
-        soft: '#8d857d',
-        amber: '#cf945a',
-        amberDeep: '#b66f35',
-        violet: 'rgba(124,114,255,0.10)',
-        line: 'rgba(255,255,255,0.14)',
-        lineSoft: 'rgba(255,255,255,0.08)'
+        bg: '#111218',
+        bg2: '#181a21',
+        text: '#f4f2ed',
+        muted: '#a9a3a0',
+        soft: '#837d79',
+        amber: '#c98a53',
+        amberDeep: '#b67237',
+        violet: 'rgba(142,128,255,0.12)'
       }
     };
 
@@ -1538,8 +1484,6 @@
       root.style.setProperty('--amber', theme.amber);
       root.style.setProperty('--amber-deep', theme.amberDeep);
       root.style.setProperty('--violet-soft', theme.violet);
-      root.style.setProperty('--line', theme.line);
-      root.style.setProperty('--line-soft', theme.lineSoft);
       modeChip.innerHTML = `<strong>Mode</strong> ${themeName.charAt(0).toUpperCase() + themeName.slice(1)}`;
       showToast(`${themeName} mode applied`);
     }
@@ -1556,18 +1500,15 @@
       btn.addEventListener('click', () => {
         densityButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        body.style.setProperty('--gap', btn.dataset.density === 'compact' ? '18px' : btn.dataset.density === 'spacious' ? '32px' : '24px');
+        body.style.setProperty('--gap', btn.dataset.density === 'compact' ? '14px' : btn.dataset.density === 'spacious' ? '26px' : '22px');
         showToast(`${btn.dataset.density} density applied`);
       });
     });
 
     radiusSlider.addEventListener('input', () => {
-      const value = Number(radiusSlider.value);
-      radiusValue.textContent = String(value);
+      const value = radiusSlider.value;
+      radiusValue.textContent = value;
       root.style.setProperty('--radius-lg', `${value}px`);
-      root.style.setProperty('--radius-xl', `${value + 6}px`);
-      root.style.setProperty('--radius-md', `${Math.max(16, value - 6)}px`);
-      root.style.setProperty('--radius-sm', `${Math.max(12, value - 12)}px`);
     });
 
     radiusSlider.addEventListener('change', () => {
@@ -1622,18 +1563,6 @@
       btn.addEventListener('click', () => {
         showToast(btn.dataset.message || 'Action complete');
       });
-    });
-
-    toggleSidebarBtn?.addEventListener('click', () => {
-      body.classList.toggle('sidebar-collapsed');
-      showToast(body.classList.contains('sidebar-collapsed') ? 'navigation collapsed' : 'navigation opened');
-    });
-
-    toggleRightbarBtn?.addEventListener('click', () => {
-      body.classList.toggle('rightbar-collapsed');
-      toggleRightbarBtn.textContent = body.classList.contains('rightbar-collapsed') ? '⚙' : '×';
-      toggleRightbarBtn.title = body.classList.contains('rightbar-collapsed') ? 'Open setup' : 'Close setup';
-      showToast(body.classList.contains('rightbar-collapsed') ? 'setup closed' : 'setup opened');
     });
   </script>
 
