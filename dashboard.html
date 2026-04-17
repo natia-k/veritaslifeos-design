@@ -6,34 +6,34 @@
   <title>Veritas Life OS — Inside Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      --font-sans: 'Geist', system-ui, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
       --bg: #f7f1e8;
       --bg-2: #ede4d8;
       --text: #17171b;
       --muted: #6f685f;
       --soft: #9d9387;
-      --glass: rgba(255,255,255,0.42);
-      --glass-2: rgba(255,255,255,0.32);
-      --glass-3: rgba(255,255,255,0.24);
-      --line: rgba(255,255,255,0.56);
-      --line-soft: rgba(255,255,255,0.34);
-      --line-strong: rgba(255,220,184,0.7);
+      --glass: rgba(255,255,255,0.18);
+      --glass-2: rgba(255,255,255,0.12);
+      --glass-3: rgba(255,255,255,0.08);
+      --line: rgba(255,255,255,0.18);
+      --line-soft: rgba(255,255,255,0.12);
+      --line-strong: rgba(255,220,184,0.34);
       --amber: #f4be79;
       --amber-deep: #eba255;
       --amber-soft: rgba(255,190,121,0.18);
       --violet-soft: rgba(164,152,255,0.08);
-      --shadow: 0 28px 90px rgba(93,70,41,0.10);
-      --shadow-soft: 0 16px 44px rgba(93,70,41,0.08);
+      --shadow: 0 40px 100px rgba(120,110,100,0.06);
+      --shadow-soft: 0 24px 60px rgba(120,110,100,0.05);
       --radius-xl: 34px;
       --radius-lg: 28px;
       --radius-md: 22px;
       --radius-sm: 16px;
-      --gap: 18px;
+      --gap: 28px;
       --sidebar-w: 244px;
       --rightbar-w: 300px;
     }
@@ -75,19 +75,15 @@
       grid-template-rows: 84px minmax(0, 1fr);
       gap: var(--gap);
       height: 100vh;
-      padding: 18px;
+      padding: 24px;
     }
 
     .glass-panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.34), rgba(255,255,255,0.18));
-      border: 1px solid var(--line);
-      backdrop-filter: blur(28px) saturate(145%);
-      -webkit-backdrop-filter: blur(28px) saturate(145%);
-      box-shadow:
-        0 24px 80px rgba(93,70,41,0.10),
-        0 8px 28px rgba(255,255,255,0.16),
-        inset 0 1px 0 rgba(255,255,255,0.72),
-        inset 0 -1px 0 rgba(255,255,255,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
+      border: 0.5px solid var(--line-soft);
+      backdrop-filter: blur(12px) saturate(125%);
+      -webkit-backdrop-filter: blur(12px) saturate(125%);
+      box-shadow: var(--shadow);
     }
 
     .topbar {
@@ -122,10 +118,10 @@
     .theme-btn,
     .density-btn,
     .mini-tab {
-      border: 1px solid var(--line-soft);
-      background: rgba(255,255,255,0.28);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      border: 0.5px solid var(--line-soft);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--shadow-soft);
     }
 
@@ -239,7 +235,7 @@
 
     .main {
       overflow: auto;
-      padding: 18px;
+      padding: 24px;
     }
 
     .sidebar-section + .sidebar-section,
@@ -276,11 +272,11 @@
     .mini-line,
     .stat,
     .day {
-      background: linear-gradient(180deg, rgba(255,255,255,0.30), rgba(255,255,255,0.18));
-      border: 1px solid var(--line-soft);
+      background: rgba(255,255,255,0.14);
+      border: 0.5px solid var(--line-soft);
       box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .workspace-card,
@@ -298,7 +294,7 @@
     .stat,
     .day {
       border-radius: 20px;
-      padding: 14px;
+      padding: 18px;
     }
 
     .workspace-card h3,
@@ -309,7 +305,7 @@
     .workspace-card p,
     .mini-card p,
     .card p,
-    .footer-note { color: var(--muted); line-height: 1.5; }
+    .footer-note { color: var(--muted); line-height: 1.8; font-weight: 300; }
 
     .mini-tabs,
     .nav-list,
@@ -396,7 +392,7 @@
       position: relative;
       overflow: hidden;
       border-radius: 28px;
-      padding: 22px;
+      padding: 30px;
     }
 
     .welcome-panel::after,
@@ -445,10 +441,10 @@
     }
 
     .welcome-copy h2 {
-      font-size: clamp(28px, 3vw, 42px);
-      line-height: 1.06;
-      letter-spacing: -0.045em;
-      font-weight: 560;
+      font-size: clamp(22px, 2.4vw, 32px);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      font-weight: 500;
       max-width: 14ch;
       text-wrap: balance;
       margin-bottom: 12px;
@@ -457,9 +453,10 @@
     .welcome-copy p {
       margin: 0;
       max-width: 52ch;
-      font-size: 15px;
+      font-size: 14px;
       color: var(--muted);
-      line-height: 1.7;
+      line-height: 1.9;
+      font-weight: 300;
       text-wrap: balance;
     }
 
@@ -547,7 +544,7 @@
       overflow: hidden;
       grid-column: span 4;
       min-height: 180px;
-      padding: 18px;
+      padding: 22px;
       border-radius: 26px;
       transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     }
@@ -597,9 +594,9 @@
     }
 
     .card-title-wrap h3 {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 500;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.01em;
     }
 
     .card-chip,
@@ -915,6 +912,141 @@
       display: flex;
     }
 
+
+    body.sidebar-collapsed {
+      --sidebar-w: 92px;
+    }
+
+    body.sidebar-collapsed .sidebar {
+      padding: 16px 10px;
+    }
+
+    body.sidebar-collapsed .section-label,
+    body.sidebar-collapsed .workspace-card,
+    body.sidebar-collapsed .mini-card,
+    body.sidebar-collapsed .nav-left div:last-child,
+    body.sidebar-collapsed .nav-item span:last-child {
+      display: none;
+    }
+
+    body.sidebar-collapsed .nav-item {
+      justify-content: center;
+      padding: 10px;
+    }
+
+    body.sidebar-collapsed .nav-left {
+      gap: 0;
+    }
+
+    body.rightbar-collapsed {
+      --rightbar-w: 0px;
+    }
+
+    body.rightbar-collapsed .rightbar {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(28px);
+    }
+
+    .app-shell {
+      transition: grid-template-columns .28s ease;
+    }
+
+    .sidebar, .main, .rightbar {
+      transition: transform .28s ease, opacity .28s ease;
+    }
+
+    .rightbar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 0 2px;
+    }
+
+    .collapse-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      border: 0.5px solid rgba(255,210,160,0.42);
+      background: rgba(255,255,255,0.14);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      line-height: 1;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      flex: 0 0 auto;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .collapse-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .floating-setup-tab {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 60;
+      width: 46px;
+      height: 120px;
+      border-radius: 20px;
+      border: 0.5px solid var(--line-soft);
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-soft);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.02em;
+    }
+
+    body.rightbar-collapsed .floating-setup-tab {
+      display: flex;
+    }
+
+    .status-toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 70;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.9);
+      color: var(--text);
+      border: 0.5px solid var(--line-soft);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .status-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .is-hidden {
+      display: none !important;
+    }
+
 @media (max-width: 1400px) {
       .app-shell {
         grid-template-columns: 220px minmax(0, 1fr) 280px;
@@ -992,9 +1124,10 @@
       </div>
 
       <div class="topbar-actions">
+        <button class="icon-btn" id="toggleSidebarBtn" title="Toggle navigation">☰</button>
         <button class="mode-chip"><strong>Mode</strong> Light</button>
-        <button class="icon-btn" title="Presence">✦</button>
-        <button class="icon-btn" title="Quick add">＋</button>
+        <button class="icon-btn action-btn" data-message="Presence opened" title="Presence">✦</button>
+        <button class="icon-btn action-btn" data-message="Quick add opened" title="Quick add">＋</button>
         <div class="avatar">N</div>
       </div>
     </header>
@@ -1069,9 +1202,9 @@
             <p>This inside view now matches the landing mood: softer glass, warmer light, calmer hierarchy, and a dashboard that feels personal rather than technical. It keeps the logic, but changes the emotional texture.</p>
           </div>
           <div class="welcome-actions">
-            <button class="action-pill primary">New card</button>
-            <button class="action-pill">Rearrange layout</button>
-            <button class="action-pill">Save this view</button>
+            <button class="action-pill primary action-btn" data-message="New card created">New card</button>
+            <button class="action-pill action-btn" data-message="Layout edit mode on">Rearrange layout</button>
+            <button class="action-pill action-btn" data-message="View saved">Save this view</button>
           </div>
           <div class="stats-row">
             <div class="stat"><strong>03</strong><span>Priority actions</span></div>
@@ -1116,7 +1249,7 @@
       </div>
 
       <section class="cards-grid">
-        <article class="card span-8 tall active" tabindex="0">
+        <article class="card span-8 tall active" tabindex="0" data-card="focus">
           <div class="card-header">
             <div class="card-title-wrap">
               <small class="label-muted">Pinned module</small>
@@ -1161,7 +1294,7 @@
           </div>
         </article>
 
-        <article class="card span-4 tall" tabindex="0">
+        <article class="card span-4 tall" tabindex="0" data-card="habits">
           <div class="card-header">
             <div class="card-title-wrap">
               <small class="label-muted">Progress module</small>
@@ -1197,7 +1330,7 @@
           </div>
         </article>
 
-        <article class="card span-6" tabindex="0">
+        <article class="card span-6" tabindex="0" data-card="notes">
           <div class="card-header">
             <div class="card-title-wrap">
               <small class="label-muted">Knowledge module</small>
@@ -1223,7 +1356,7 @@
           </div>
         </article>
 
-        <article class="card span-6" tabindex="0">
+        <article class="card span-6" tabindex="0" data-card="calendar">
           <div class="card-header">
             <div class="card-title-wrap">
               <small class="label-muted">Schedule module</small>
@@ -1242,7 +1375,7 @@
           </div>
         </article>
 
-        <article class="card span-4" tabindex="0">
+        <article class="card span-4" tabindex="0" data-card="reflection">
           <div class="card-header">
             <div class="card-title-wrap">
               <small class="label-muted">Timeline module</small>
@@ -1266,7 +1399,7 @@
           </div>
         </article>
 
-        <article class="card span-8 large" tabindex="0">
+        <article class="card span-8 large" tabindex="0" data-card="momentum">
           <div class="card-header">
             <div class="card-title-wrap">
               <small class="label-muted">Insight module</small>
@@ -1345,11 +1478,11 @@
             <strong>Compact</strong>
             <div class="meta">More information, tighter rhythm</div>
           </button>
-          <button class="density-btn active" data-density="balanced">
+          <button class="density-btn" data-density="balanced">
             <strong>Balanced</strong>
             <div class="meta">Best default for most users</div>
           </button>
-          <button class="density-btn" data-density="spacious">
+          <button class="density-btn active" data-density="spacious">
             <strong>Spacious</strong>
             <div class="meta">Breathable layout, calmer feeling</div>
           </button>
@@ -1370,10 +1503,10 @@
       <div class="rightbar-section">
         <div class="section-label">Visible modules</div>
         <div class="toggle-list">
-          <button class="toggle-btn active"><span>Reflection card</span><span class="toggle-pill"></span></button>
-          <button class="toggle-btn active"><span>Momentum graph</span><span class="toggle-pill"></span></button>
-          <button class="toggle-btn active"><span>Calendar snapshot</span><span class="toggle-pill"></span></button>
-          <button class="toggle-btn"><span>AI suggestions</span><span class="toggle-pill"></span></button>
+          <button class="toggle-btn active" data-module="reflection"><span>Reflection card</span><span class="toggle-pill"></span></button>
+          <button class="toggle-btn active" data-module="momentum"><span>Momentum graph</span><span class="toggle-pill"></span></button>
+          <button class="toggle-btn active" data-module="calendar"><span>Calendar snapshot</span><span class="toggle-pill"></span></button>
+          <button class="toggle-btn" data-module="ai"><span>AI suggestions</span><span class="toggle-pill"></span></button>
         </div>
       </div>
 
@@ -1407,109 +1540,139 @@
         </div>
       </div>
     </aside>
-  </div>
+    <div class="status-toast" id="statusToast">Saved</div>
   <button class="floating-setup-tab" id="floatingSetupTab" title="Open setup">setup</button>
 
-  <script>
-    const root = document.documentElement;
-    const body = document.body;
-    const themeButtons = document.querySelectorAll('.theme-btn');
-    const densityButtons = document.querySelectorAll('.density-btn');
-    const radiusSlider = document.getElementById('radiusSlider');
-    const radiusValue = document.getElementById('radiusValue');
-    const toggleButtons = document.querySelectorAll('.toggle-btn');
-    const modeChip = document.querySelector('.mode-chip');
-    const cards = document.querySelectorAll('.card');
+  
+<script>
+  const root = document.documentElement;
+  const body = document.body;
+  const themeButtons = document.querySelectorAll('.theme-btn');
+  const densityButtons = document.querySelectorAll('.density-btn');
+  const radiusSlider = document.getElementById('radiusSlider');
+  const radiusValue = document.getElementById('radiusValue');
+  const toggleButtons = document.querySelectorAll('.toggle-btn');
+  const modeChip = document.querySelector('.mode-chip');
+  const cards = document.querySelectorAll('.card');
+  const navItems = document.querySelectorAll('.nav-item');
+  const miniTabs = document.querySelectorAll('.mini-tab');
+  const viewButtons = document.querySelectorAll('.seg button');
+  const actionButtons = document.querySelectorAll('.action-btn');
+  const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+  const toggleRightbarBtn = document.getElementById('toggleRightbarBtn');
+  const floatingSetupTab = document.getElementById('floatingSetupTab');
+  const statusToast = document.getElementById('statusToast');
 
-    const themes = {
-      light: {
-        bg: '#f7f1e8',
-        bg2: '#ede4d8',
-        text: '#17171b',
-        muted: '#6f685f',
-        soft: '#9d9387',
-        amber: '#f4be79',
-        amberDeep: '#eba255',
-        violet: 'rgba(164,152,255,0.10)'
-      },
-      cozy: {
-        bg: '#f3eadf',
-        bg2: '#eadfce',
-        text: '#1a1817',
-        muted: '#756a5f',
-        soft: '#a09184',
-        amber: '#eab47f',
-        amberDeep: '#d99856',
-        violet: 'rgba(185,170,255,0.07)'
-      },
-      studio: {
-        bg: '#211d1f',
-        bg2: '#2b2528',
-        text: '#f4efe9',
-        muted: '#c4b7af',
-        soft: '#9f938d',
-        amber: '#c79c77',
-        amberDeep: '#b9865e',
-        violet: 'rgba(177,160,255,0.10)'
-      },
-      night: {
-        bg: '#111218',
-        bg2: '#181a21',
-        text: '#f4f2ed',
-        muted: '#a9a3a0',
-        soft: '#837d79',
-        amber: '#c98a53',
-        amberDeep: '#b67237',
-        violet: 'rgba(142,128,255,0.12)'
-      }
-    };
+  const themes = {
+    light: { bg:'#f7f1e8', bg2:'#ede4d8', text:'#17171b', muted:'#6f685f', soft:'#9d9387', amber:'#f4be79', amberDeep:'#eba255', violet:'rgba(164,152,255,0.08)' },
+    cozy: { bg:'#f4eadf', bg2:'#eadccd', text:'#1a1817', muted:'#766b5f', soft:'#a29285', amber:'#ebb37b', amberDeep:'#d99153', violet:'rgba(184,168,255,0.06)' },
+    studio: { bg:'#2a2423', bg2:'#352d2c', text:'#f3ede6', muted:'#cdbfb4', soft:'#a89284', amber:'#d8a06c', amberDeep:'#bc7b44', violet:'rgba(151,139,255,0.07)' },
+    night: { bg:'#13151a', bg2:'#1b1e25', text:'#f4efe8', muted:'#b9b0a7', soft:'#8d857d', amber:'#cf945a', amberDeep:'#b66f35', violet:'rgba(124,114,255,0.10)' }
+  };
 
-    function applyTheme(themeName) {
-      const theme = themes[themeName];
-      if (!theme) return;
-      root.style.setProperty('--bg', theme.bg);
-      root.style.setProperty('--bg-2', theme.bg2);
-      root.style.setProperty('--text', theme.text);
-      root.style.setProperty('--muted', theme.muted);
-      root.style.setProperty('--soft', theme.soft);
-      root.style.setProperty('--amber', theme.amber);
-      root.style.setProperty('--amber-deep', theme.amberDeep);
-      root.style.setProperty('--violet-soft', theme.violet);
-      modeChip.innerHTML = `<strong>Mode</strong> ${themeName.charAt(0).toUpperCase() + themeName.slice(1)}`;
-    }
+  let toastTimer;
+  function showToast(message) {
+    if (!statusToast) return;
+    statusToast.textContent = message;
+    statusToast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => statusToast.classList.remove('show'), 1400);
+  }
 
-    themeButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        themeButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        applyTheme(btn.dataset.theme);
-      });
-    });
+  function applyTheme(themeName) {
+    const t = themes[themeName];
+    if (!t) return;
+    root.style.setProperty('--bg', t.bg);
+    root.style.setProperty('--bg-2', t.bg2);
+    root.style.setProperty('--text', t.text);
+    root.style.setProperty('--muted', t.muted);
+    root.style.setProperty('--soft', t.soft);
+    root.style.setProperty('--amber', t.amber);
+    root.style.setProperty('--amber-deep', t.amberDeep);
+    root.style.setProperty('--violet-soft', t.violet);
+    modeChip.innerHTML = `<strong>Mode</strong> ${themeName.charAt(0).toUpperCase() + themeName.slice(1)}`;
+    showToast(`${themeName} mode`);
+  }
 
-    densityButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        densityButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        body.style.setProperty('--gap', btn.dataset.density === 'compact' ? '14px' : btn.dataset.density === 'spacious' ? '24px' : '18px');
-      });
-    });
+  function applyDensity(density) {
+    const gap = density === 'compact' ? '18px' : density === 'spacious' ? '32px' : '24px';
+    root.style.setProperty('--gap', gap);
+    showToast(`${density} density`);
+  }
 
-    radiusSlider.addEventListener('input', () => {
-      const value = radiusSlider.value;
-      radiusValue.textContent = value;
-      root.style.setProperty('--radius-lg', `${value}px`);
-    });
+  function setSetupOpen(isOpen) {
+    body.classList.toggle('rightbar-collapsed', !isOpen);
+    showToast(isOpen ? 'setup opened' : 'setup closed');
+  }
 
-    toggleButtons.forEach(btn => {
-      btn.addEventListener('click', () => btn.classList.toggle('active'));
-    });
+  // init default spacious
+  applyDensity('spacious');
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        cards.forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-      });
-    });
-  </script>
+  themeButtons.forEach(btn => btn.addEventListener('click', () => {
+    themeButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyTheme(btn.dataset.theme);
+  }));
+
+  densityButtons.forEach(btn => btn.addEventListener('click', () => {
+    densityButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyDensity(btn.dataset.density);
+  }));
+
+  radiusSlider?.addEventListener('input', () => {
+    const value = Number(radiusSlider.value);
+    radiusValue.textContent = String(value);
+    root.style.setProperty('--radius-lg', `${value}px`);
+    root.style.setProperty('--radius-xl', `${value + 6}px`);
+    root.style.setProperty('--radius-md', `${Math.max(16, value - 6)}px`);
+    root.style.setProperty('--radius-sm', `${Math.max(12, value - 12)}px`);
+  });
+  radiusSlider?.dispatchEvent(new Event('input'));
+
+  toggleButtons.forEach(btn => btn.addEventListener('click', () => {
+    btn.classList.toggle('active');
+    const module = btn.dataset.module;
+    const card = document.querySelector(`[data-card="${module}"]`);
+    if (card) card.classList.toggle('is-hidden', !btn.classList.contains('active'));
+    showToast(`${module || 'module'} ${btn.classList.contains('active') ? 'shown' : 'hidden'}`);
+  }));
+
+  cards.forEach(card => card.addEventListener('click', () => {
+    cards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  }));
+
+  navItems.forEach(item => item.addEventListener('click', () => {
+    navItems.forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    const label = item.querySelector('.nav-left div:last-child')?.textContent || 'section';
+    showToast(`${label} opened`);
+  }));
+
+  miniTabs.forEach(btn => btn.addEventListener('click', () => {
+    miniTabs.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    showToast(`${btn.textContent.trim().toLowerCase()} workspace`);
+  }));
+
+  viewButtons.forEach(btn => btn.addEventListener('click', () => {
+    viewButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    showToast(`${btn.textContent.trim()} view`);
+  }));
+
+  actionButtons.forEach(btn => btn.addEventListener('click', () => {
+    showToast(btn.dataset.message || 'Action complete');
+  }));
+
+  toggleSidebarBtn?.addEventListener('click', () => {
+    body.classList.toggle('sidebar-collapsed');
+    showToast(body.classList.contains('sidebar-collapsed') ? 'navigation collapsed' : 'navigation opened');
+  });
+
+  toggleRightbarBtn?.addEventListener('click', () => setSetupOpen(body.classList.contains('rightbar-collapsed')));
+  floatingSetupTab?.addEventListener('click', () => setSetupOpen(true));
+</script>
 </body>
 </html>
