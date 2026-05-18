@@ -5066,6 +5066,72 @@
     .app-card {
       overflow-wrap: anywhere;
     }
+
+
+    /* ─────────────────────────────────────────────
+       FINAL RIGHT SETUP COLLAPSE FIX
+       - closing Setup now lets the main dashboard reclaim the full width
+       - floating reopen control is a compact button, not vertical split text
+       - no visual redesign; only layout behavior stabilization
+    ───────────────────────────────────────────── */
+    body.rightbar-collapsed .app-shell {
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr) !important;
+    }
+
+    body.rightbar-collapsed .topbar {
+      grid-column: 1 / -1 !important;
+    }
+
+    body.rightbar-collapsed .main {
+      grid-column: auto !important;
+      width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    body.rightbar-collapsed .rightbar {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: none !important;
+    }
+
+    body.rightbar-collapsed .floating-setup-tab {
+      display: grid !important;
+      place-items: center !important;
+    }
+
+    .floating-setup-tab {
+      right: 24px !important;
+      top: auto !important;
+      bottom: 24px !important;
+      transform: none !important;
+      width: 52px !important;
+      height: 52px !important;
+      border-radius: 18px !important;
+      writing-mode: horizontal-tb !important;
+      letter-spacing: 0 !important;
+      font-size: 18px !important;
+      line-height: 1 !important;
+      text-transform: none !important;
+      z-index: 120 !important;
+      transition:
+        transform .18s ease,
+        opacity .18s ease,
+        box-shadow .18s ease,
+        background .18s ease !important;
+    }
+
+    .floating-setup-tab:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: var(--hover-shadow) !important;
+    }
+
+    @media (max-width: 1160px) {
+      body.rightbar-collapsed .app-shell {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -5707,7 +5773,7 @@
     </aside>
 
     <div class="status-toast" id="statusToast">Saved</div>
-    <button class="floating-setup-tab" id="floatingSetupTab" title="Open setup">setup</button>
+    <button class="floating-setup-tab" id="floatingSetupTab" title="Open setup" aria-label="Open setup">⚙</button>
   </div>
 
 <script>
