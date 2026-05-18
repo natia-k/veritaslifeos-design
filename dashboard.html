@@ -4944,6 +4944,128 @@
       }
     }
 
+
+
+    /* FINAL DRAG LABEL FIX — keeps drag functionality, removes overlap-prone helper text */
+    .drag-hint {
+      display: none !important;
+    }
+
+
+
+    /* FINAL PERFORMANCE PASS — same design, smoother scroll, no cursor-light cost */
+    :root {
+      --light-strength: 0 !important;
+      --card-light-opacity: 0 !important;
+      --orb-opacity: .18 !important;
+      --ambient-opacity: .42 !important;
+    }
+
+    html {
+      scroll-behavior: auto !important;
+    }
+
+    body::before {
+      animation: none !important;
+      filter: blur(12px) !important;
+      opacity: .34 !important;
+      transform: none !important;
+    }
+
+    .ambient-orb,
+    .ambient-sheen,
+    .ambient-vignette {
+      display: none !important;
+    }
+
+    .card::before,
+    .welcome-panel::before,
+    .insight-panel::before,
+    .workspace-card::before,
+    .mini-card::before,
+    .app-card::before,
+    .priority-item::before,
+    .habit-item::before,
+    .timeline-item::before,
+    .note-item::before,
+    .agenda-item::before {
+      opacity: 0 !important;
+      transition: none !important;
+    }
+
+    .card,
+    .welcome-panel,
+    .insight-panel {
+      will-change: auto !important;
+      transform-style: flat !important;
+      backface-visibility: visible !important;
+      -webkit-backface-visibility: visible !important;
+    }
+
+    .card:hover,
+    .welcome-panel:hover,
+    .insight-panel:hover {
+      transform: translateY(-2px) !important;
+    }
+
+    .glass-panel,
+    .card,
+    .welcome-panel,
+    .insight-panel,
+    .workspace-card,
+    .mini-card,
+    .theme-btn,
+    .density-btn,
+    .toggle-btn,
+    .quick-item,
+    .priority-item,
+    .habit-item,
+    .timeline-item,
+    .note-item,
+    .mini-line,
+    .agenda-item,
+    .app-card,
+    .action-stat,
+    .create-card-form,
+    .search,
+    .seg,
+    .status-toast {
+      backdrop-filter: blur(4px) saturate(108%) !important;
+      -webkit-backdrop-filter: blur(4px) saturate(108%) !important;
+    }
+
+    .calendar-modal-backdrop {
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    .card,
+    .priority-item,
+    .habit-item,
+    .timeline-item,
+    .note-item,
+    .mini-line,
+    .agenda-item,
+    .app-card,
+    .action-stat,
+    .workspace-card,
+    .mini-card,
+    .theme-btn,
+    .density-btn,
+    .toggle-btn,
+    .quick-item {
+      contain: layout paint;
+    }
+
+    .card,
+    .priority-item,
+    .habit-item,
+    .timeline-item,
+    .note-item,
+    .agenda-item,
+    .app-card {
+      overflow-wrap: anywhere;
+    }
 </style>
 </head>
 <body>
@@ -5166,7 +5288,6 @@
               <span class="pill">system</span>
             </div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- HABIT RHYTHM -->
@@ -5204,7 +5325,6 @@
               <div class="mini-progress">39%</div>
             </div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- ACTION ITEMS -->
@@ -5235,7 +5355,6 @@
             <strong>No action items</strong>
             <p>You're all caught up! No follow-ups needed at this time.</p>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- MESSAGES -->
@@ -5259,7 +5378,6 @@
             <strong>No conversations yet</strong>
             <p>Start messaging any platform user by clicking "New Message" above.</p>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- VERITAS APPS -->
@@ -5321,7 +5439,6 @@
               <p>Incoming leads and contact requests, organized.</p>
             </div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- CALENDAR -->
@@ -5376,7 +5493,6 @@
             <div id="calendarTodoList"></div>
               </div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- NOTES -->
@@ -5404,7 +5520,6 @@
               <span class="pill">ux</span>
             </div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- TODAY FLOW -->
@@ -5430,7 +5545,6 @@
               <span class="pill">journal</span>
             </div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- MOMENTUM -->
@@ -5455,7 +5569,6 @@
             <div class="graph-col" style="height:54%"><span>Sat</span></div>
             <div class="graph-col" style="height:77%"><span>Sun</span></div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
         <!-- AI SUGGESTIONS (hidden by default) -->
@@ -5471,7 +5584,6 @@
             <div class="timeline-item"><div><strong>Move the deep work block earlier</strong><div class="meta">Your cleanest focus window starts before noon.</div></div><span class="pill">suggest</span></div>
             <div class="timeline-item"><div><strong>Turn note into project</strong><div class="meta">"Controlled personalization" has enough structure.</div></div><span class="pill">draft</span></div>
           </div>
-          <div class="drag-hint">↕ drag</div>
         </article>
 
       </section>
@@ -5805,7 +5917,6 @@
             <span class="pill">custom</span>
           </div>
         </div>
-        <div class="drag-hint">↕ drag</div>
       </article>
     `;
   }
@@ -6582,81 +6693,6 @@
       let saved = 'daily';
       try { saved = localStorage.getItem(KEY) || 'daily'; } catch (_) {}
       setView(saved, false);
-    })();
-  </script>
-
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const hoverTargets = '.card, .welcome-panel, .insight-panel, .workspace-card, .mini-card, .app-card, .priority-item, .habit-item, .timeline-item, .note-item, .agenda-item';
-      let targetX = window.innerWidth * 0.72;
-      let targetY = window.innerHeight * 0.18;
-      let currentX = targetX;
-      let currentY = targetY;
-      let raf = null;
-
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      function animateLight() {
-        currentX += (targetX - currentX) * 0.055;
-        currentY += (targetY - currentY) * 0.055;
-        root.style.setProperty('--mx', `${currentX}px`);
-        root.style.setProperty('--my', `${currentY}px`);
-        raf = requestAnimationFrame(animateLight);
-      }
-
-      function setCardLight(e) {
-        const el = e.currentTarget;
-        const rect = el.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        el.style.setProperty('--card-x', `${x}%`);
-        el.style.setProperty('--card-y', `${y}%`);
-
-        if (!prefersReduced && (el.classList.contains('card') || el.classList.contains('welcome-panel') || el.classList.contains('insight-panel'))) {
-          const tiltX = ((x - 50) / 50) * 0.72;
-          const tiltY = ((50 - y) / 50) * 0.72;
-          el.style.setProperty('--tilt-x', `${tiltX}deg`);
-          el.style.setProperty('--tilt-y', `${tiltY}deg`);
-        }
-      }
-
-      function resetTilt(e) {
-        const el = e.currentTarget;
-        el.style.setProperty('--tilt-x', '0deg');
-        el.style.setProperty('--tilt-y', '0deg');
-      }
-
-      function softenLight() {
-        root.style.setProperty('--card-x', '70%');
-        root.style.setProperty('--card-y', '20%');
-      }
-
-      document.addEventListener('pointermove', (e) => {
-        targetX = Math.max(0, Math.min(window.innerWidth, e.clientX));
-        targetY = Math.max(0, Math.min(window.innerHeight, e.clientY));
-      }, { passive: true });
-
-      window.addEventListener('pointerout', (e) => {
-        if (!e.relatedTarget) {
-          targetX = window.innerWidth * 0.72;
-          targetY = window.innerHeight * 0.18;
-        }
-      }, { passive: true });
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden && raf) cancelAnimationFrame(raf);
-        if (!document.hidden && !prefersReduced) animateLight();
-      });
-
-      document.querySelectorAll(hoverTargets).forEach(el => {
-        el.addEventListener('pointermove', setCardLight, { passive: true });
-        el.addEventListener('pointerleave', resetTilt, { passive: true });
-        el.addEventListener('pointercancel', resetTilt, { passive: true });
-      });
-
-      softenLight();
-      if (!prefersReduced) animateLight();
     })();
   </script>
 
