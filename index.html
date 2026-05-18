@@ -425,7 +425,6 @@
       filter: blur(18px);
       transition: transform .42s var(--ease);
       z-index: 1;
-      will-change: transform;
     }
 
     .orb.a {
@@ -459,7 +458,6 @@
       box-shadow: 0 0 110px rgba(186,119,74,0.20);
       transition: transform .46s var(--ease);
       animation: breathe 9s ease-in-out infinite;
-      will-change: transform;
     }
 
     @keyframes breathe {
@@ -475,7 +473,6 @@
       -webkit-backdrop-filter: blur(20px) saturate(142%);
       background-clip: padding-box;
       box-shadow: var(--shadow-card);
-      will-change: transform;
       transition: box-shadow .35s var(--ease), transform .25s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
       z-index: 3;
       overflow: hidden;
@@ -488,7 +485,7 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at var(--mx, 50%) var(--my, 12%), rgba(255,255,255,.62), transparent 34%),
+        radial-gradient(circle at 50% 12%, rgba(255,255,255,.44), transparent 34%),
         linear-gradient(180deg, rgba(255,255,255,.22), transparent 38%);
       opacity: .42;
       transition: opacity .25s var(--ease);
@@ -806,6 +803,12 @@
       .dashboard-tease{display:none;}
     }
 
+
+
+    /* Safety: prevent rare text overlap without changing layout */
+    .sheet, .ritual-chip, .tease-search, .pill, .micro-lines span { min-width: 0; }
+    .sheet h2, .sheet p, .sheet strong, .ritual-chip strong, .tease-search { overflow-wrap: break-word; }
+
     @media (prefers-reduced-motion: reduce){
       *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
     }
@@ -931,12 +934,6 @@
       });
 
       card.addEventListener('pointermove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const mx = ((e.clientX - rect.left) / rect.width) * 100;
-        const my = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mx', `${mx}%`);
-        card.style.setProperty('--my', `${my}%`);
-
         if (!dragging) return;
         const x = initialX + (e.clientX - startX);
         const y = initialY + (e.clientY - startY);
@@ -970,18 +967,6 @@
       });
     });
 
-    const orbA = document.getElementById('orbA');
-    const orbB = document.getElementById('orbB');
-    const flowBlob = document.getElementById('flowBlob');
-
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 14;
-      const y = (e.clientY / window.innerHeight - 0.5) * 14;
-
-      orbA.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-      orbB.style.transform = `translate3d(${-x * 0.65}px, ${-y * 0.65}px, 0)`;
-      flowBlob.style.transform = `translate3d(${x * 0.45}px, ${y * 0.45}px, 0)`;
-    });
   </script>
 </body>
 </html>
